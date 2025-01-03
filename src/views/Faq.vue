@@ -7,6 +7,14 @@ import Notice from '@/components/notice/Notice.vue'
 import NavLoginBtn from '@/components/login/NavLoginBtn.vue'
 import MainFooter from '@/components/home/MainFooter.vue'
 import { useI18n } from 'vue-i18n'
+import AngleL from '@/components/svg/AngleL.vue'
+import AngleR from '@/components/svg/AngleR.vue'
+import Card from '@/components/svg/Card.vue'
+import Clock from '@/components/svg/Clock.vue'
+import Close from '@/components/svg/Close.vue'
+import ListT from '@/components/svg/ListT.vue'
+import ListB from '@/components/svg/ListB.vue'
+import Search from '@/components/svg/Search.vue'
 
 const router = useRouter()
 const { locale } = useI18n()
@@ -176,65 +184,20 @@ onMounted(async () => {
           @click="goBack"
           class="flex-none p-1 text-white rounded-full bg-black/50 default-transition hover:bg-zinc-800/50"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="w-6 h-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M15.75 19.5 8.25 12l7.5-7.5"
-            ></path>
-          </svg>
+          <AngleL class="stroke-[1.5] size-6" />
         </button>
         <button
           @click="goAhead"
-          class="flex-none hidden p-1 text-white rounded-full md:block bg-black/50 default-transition hover:bg-zinc-800/50 disabled:opacity-30"
+          class="flex-none hidden p-1 text-white rounded-full md:block bg-black/50 default-transition hover:bg-zinc-800/50 disabled:opacity-30 disabled:cursor-not-allowed"
           disabled
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="w-6 h-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="m8.25 4.5 7.5 7.5-7.5 7.5"
-            ></path>
-          </svg>
+          <AngleR class="stroke-[1.5] size-6" />
         </button>
         <div class="flex items-center w-full gap-2 overflow-x-auto">
           <div
             class="flex items-center w-full min-w-0 gap-1 p-2 bg-white rounded-full shadow grow-1 md:w-fit text-zinc-700 shadow-zinc-900/50"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-              data-slot="icon"
-              class="flex-none stroke-2 size-5 text-zinc-700"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-              ></path>
-            </svg>
+            <Search class="flex-none stroke-2 size-5 text-zinc-700" />
             <input
               type="text"
               class="w-full min-w-0 p-0 text-sm bg-transparent border-none focus:ring-0 placeholder:text-zinc-500 placeholder:font-light"
@@ -242,62 +205,23 @@ onMounted(async () => {
               v-model="searchQuery"
               @keyup="search"
             />
-            <svg
+            <Close
               @click="clearSearch"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-              data-slot="icon"
               class="flex-none cursor-pointer stroke-2 size-5 text-zinc-700"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6 18 18 6M6 6l12 12"
-              ></path>
-            </svg>
+            />
           </div>
           <button
             @click="toggleSort"
             class="flex items-center flex-none gap-1 p-2 font-bold bg-white rounded-full shadow text-zinc-700 shadow-zinc-900/50"
           >
-            <svg
+            <ListB
               v-if="sortOrder === 'desc'"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-              data-slot="icon"
               class="flex-none stroke-2 size-5 text-zinc-700 default-transition"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3 4.5h14.25M3 9h9.75M3 13.5h9.75m4.5-4.5v12m0 0-3.75-3.75M17.25 21 21 17.25"
-              ></path>
-            </svg>
-            <svg
+            />
+            <ListT
               v-else
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-              data-slot="icon"
               class="flex-none stroke-2 size-5 text-zinc-700 default-transition"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3 4.5h14.25M3 9h9.75M3 13.5h5.25m5.25-.75L17.25 9m0 0L21 12.75M17.25 9v12"
-              ></path>
-            </svg>
+            />
           </button>
         </div>
         <Notice />
@@ -306,7 +230,7 @@ onMounted(async () => {
     </header>
     <div class="background"></div>
     <main
-      class="relative overflow-auto content-container bg-base md:my-2 md:mr-2 z-1 scrollbar"
+      class="relative overflow-auto content-container bg-base md:my-2 md:mr-2 z-1 md:rounded-b-2xl scrollbar"
     >
       <div class="py-8 text-center">
         <h2 class="text-5xl font-black text-zinc-100">問答集</h2>
@@ -340,43 +264,13 @@ onMounted(async () => {
               <p
                 class="flex items-center gap-1 font-mono text-sm text-zinc-300"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                  class="size-4"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                  ></path>
-                </svg>
+                <Clock class="stroke-[1.5] size-4" />
                 {{ qa.date }}
               </p>
               <p
                 class="flex items-center gap-1 font-mono text-sm truncate text-zinc-300"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                  class="size-4"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M16.5 8.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v8.25A2.25 2.25 0 0 0 6 16.5h2.25m8.25-8.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-7.5A2.25 2.25 0 0 1 8.25 18v-1.5m8.25-8.25h-6a2.25 2.25 0 0 0-2.25 2.25v6"
-                  ></path>
-                </svg>
+                <Card class="stroke-[1.5] size-4" />
                 關聯 {{ qa.relations.length }} 張<span
                   v-if="qa.relations.length != 0"
                   >，包含
