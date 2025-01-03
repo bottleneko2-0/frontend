@@ -5,8 +5,11 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import GoogleLogin from '@/components/login/GoogleLogin.vue'
 import SidebarGrid from '@/components/home/SidebarGrid.vue'
-import notice from '@/components/notice/Notice.vue'
+import Notice from '@/components/notice/Notice.vue'
 import NavLoginBtn from '@/components/login/NavLoginBtn.vue'
+import AngleL from '@/components/svg/AngleL.vue'
+import Lock from '@/components/svg/Lock.vue'
+import Mail from '@/components/svg/Mail.vue'
 
 const router = useRouter()
 
@@ -16,10 +19,6 @@ const goBack = () => {
 
 const goSignup = () => {
   router.push({ name: 'signup' })
-}
-
-const goLogin = () => {
-  router.push({ name: 'login' })
 }
 
 const email = ref('')
@@ -34,27 +33,26 @@ const submit = async () => {
       password: password.value,
     })
 
-    // 後端驗證成功回傳 token
     const token = res.data.token || res.data.data?.token
 
     if (token) {
       localStorage.setItem('token', token)
       router.push({ name: 'user' })
     } else {
-      // 如果沒有 token
       Swal.fire({
         icon: 'error',
         title: '登入失敗',
-        text: '未能接收到驗證 token，請稍後重試',
+        text: '請稍後重試',
         color: '#e1e1e1',
         background: '#27272a',
       })
     }
   } catch (error) {
+    console.error(error.response.data.message)
     Swal.fire({
       icon: 'error',
       title: '登入失敗',
-      text: error.response.data.message || '請檢查信箱密碼是否正確',
+      text: '請檢查信箱密碼是否正確',
       color: '#e1e1e1',
       background: '#27272a',
     })
@@ -72,34 +70,14 @@ const submit = async () => {
             @click="goBack"
             class="flex-none p-1 text-white rounded-full bg-black/50 default-transition hover:bg-zinc-800/50"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-              data-slot="icon"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15.75 19.5 8.25 12l7.5-7.5"
-              ></path>
-            </svg>
+            <AngleL class="stroke-[1.5] size-6" />
           </button>
-          <!-- <button class="flex-none hidden p-1 text-white rounded-full md:block bg-black/50 default-transition hover:bg-zinc-800/50 disabled:opacity-30" disabled>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
-                        </svg>
-                    </button> -->
           <div class="w-full min-w-0 text-lg font-bold text-white md:text-2xl">
             <h2 class="invisible text-2xl font-bold truncate">
               每日卡歷史回顧
             </h2>
           </div>
-          <notice />
+          <Notice />
           <NavLoginBtn />
         </nav>
       </header>
@@ -122,22 +100,7 @@ const submit = async () => {
                 <div
                   class="flex items-center w-full gap-2 p-2 rounded-2xl bg-input"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                    data-slot="icon"
-                    class="flex-none size-7 text-zinc-300"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
-                    ></path>
-                  </svg>
+                  <Mail class="flex-none stroke-[1.5] size-7 text-zinc-300" />
                   <input
                     id="email"
                     type="email"
@@ -149,22 +112,7 @@ const submit = async () => {
                 <div
                   class="flex items-center w-full gap-2 p-2 rounded-2xl bg-input"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                    data-slot="icon"
-                    class="flex-none size-7 text-zinc-300"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
-                    ></path>
-                  </svg>
+                  <Lock class="flex-none stroke-[1.5] size-7 text-zinc-300" />
                   <input
                     id="password"
                     type="password"
@@ -177,7 +125,7 @@ const submit = async () => {
                   <button
                     type="submit"
                     :disabled="!email || !password"
-                    class="flex items-center justify-center w-full gap-2 p-2 text-white cursor-pointer rounded-2xl ring ring-white/50 hover:bg-white/90 hover:text-zinc-900"
+                    class="flex items-center justify-center w-full gap-2 p-2 text-white cursor-pointer rounded-2xl ring ring-white/50 disabled:bg-black/30 disabled:text-white/20 hover:bg-white/90 hover:text-zinc-900"
                   >
                     登入
                   </button>
