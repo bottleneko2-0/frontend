@@ -27,6 +27,7 @@ const fetchNotices = async () => {
         Authorization: `Bearer ${token}`,
       },
     })
+        
     const data = await response.json()
     notices.value = (data.notices || []).sort((a, b) => {
       return new Date(b.created_at) - new Date(a.created_at)
