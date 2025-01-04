@@ -15,7 +15,7 @@ const API_URL = import.meta.env.VITE_API_URL
 
 const isVisible = ref(false)
 const deckData = ref({ deck: [] })
-const sortBy = ref('typeTranslate')
+const sortBy = ref('type')
 const togglePriceView = ref(false)
 const toggleTableView = ref(false)
 
@@ -47,11 +47,10 @@ const groupedCards = computed(() => {
     sorted = [...deckData.value.deck].sort(
       (a, b) => colorOrder.indexOf(a.color) - colorOrder.indexOf(b.color)
     )
-  } else if (sortBy.value === 'typeTranslate') {
-    const typeOrder = ['角色', '事件', '名場']
+  } else if (sortBy.value === 'type') {
+    const typeOrder = ['キャラ', 'イベント', 'クライマックス']
     sorted = [...deckData.value.deck].sort(
-      (a, b) =>
-        typeOrder.indexOf(a.typeTranslate) - typeOrder.indexOf(b.typeTranslate)
+      (a, b) => typeOrder.indexOf(a.type) - typeOrder.indexOf(b.type)
     )
   } else if (sortBy.value === 'rare') {
     sorted = [...deckData.value.deck].sort((a, b) => {
@@ -549,8 +548,8 @@ onBeforeUnmount(() => {
             <div class="toolbar-area1">
               <button
                 class="tool-btn1"
-                @click="setSortBy('typeTranslate')"
-                :class="{ active: sortBy === 'typeTranslate' }"
+                @click="setSortBy('type')"
+                :class="{ active: sortBy === 'type' }"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -745,7 +744,19 @@ onBeforeUnmount(() => {
             :key="group.group"
           >
             <div class="card-info-header">
-              <h2 class="group-title">
+              <h2 v-if="group.group === 'キャラ'" class="group-title">
+                角色 - {{ group.cards.length }}
+              </h2>
+              <h2 v-else-if="group.group === 'イベント'" class="group-title">
+                事件 - {{ group.cards.length }}
+              </h2>
+              <h2
+                v-else-if="group.group === 'クライマックス'"
+                class="group-title"
+              >
+                名場 - {{ group.cards.length }}
+              </h2>
+              <h2 v-else class="group-title">
                 {{ group.group || '角色' }} - {{ group.cards.length }}
               </h2>
               <div class="group-count">
@@ -791,7 +802,15 @@ onBeforeUnmount(() => {
                     </div>
                     <h3>{{ card.title }}</h3>
                     <div class="details" v-if="!toggleTableView">
-                      <div><span>類型</span>{{ card.typeTranslate }}</div>
+                      <div v-if="card.type === 'キャラ'">
+                        <span>類型</span>角色
+                      </div>
+                      <div v-else-if="card.type === 'イベント'">
+                        <span>類型</span>事件
+                      </div>
+                      <div v-else-if="card.type === 'クライマックス'">
+                        <span>類型</span>名場
+                      </div>
                       <div><span>魂傷</span>{{ card.soul }}</div>
                       <div><span>等級</span>{{ card.level }}</div>
                       <div><span>攻擊</span>{{ card.attack }}</div>

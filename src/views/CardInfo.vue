@@ -33,8 +33,34 @@ const countCards = deckMakeStore.countCards
 
 const cardInfoDesc = computed(() => {
   return translatedCardInfo.value.effect
-    .replace(/<img[^>]*>/g, '')
+    .replace(/『(.*?)』/g, '<mark class="mark-1">『$1』</mark>')
+    .replace(/\[(.*?)\]/g, '<mark class="mark-2">[$1]</mark>')
+    .replace(/「(.*?)」/g, '<mark class="mark-3">「$1」</mark>')
     .replace(/【(.*?)】/g, '<mark class="mark-4">【$1】</mark>')
+    .replace(/《(.*?)》/g, '<mark class="mark-5">《$1》</mark>')
+    .replace(/\(([^)]*)\)/g, '<mark class="mark-6">($1)</mark>')
+})
+
+const cardInfoQA = computed(() => {
+  return translatedCardQAList.value.map((qa) => {
+    return {
+      ...qa,
+      q: qa.q
+        .replace(/『(.*?)』/g, '<mark class="mark-1">『$1』</mark>')
+        .replace(/\[(.*?)\]/g, '<mark class="mark-2">[$1]</mark>')
+        .replace(/「(.*?)」/g, '<mark class="mark-3">「$1」</mark>')
+        .replace(/【(.*?)】/g, '<mark class="mark-4">【$1】</mark>')
+        .replace(/《(.*?)》/g, '<mark class="mark-5">《$1》</mark>')
+        .replace(/\(([^)]*)\)/g, '<mark class="mark-6">($1)</mark>'),
+      a: qa.a
+        .replace(/『(.*?)』/g, '<mark class="mark-1">『$1』</mark>')
+        .replace(/\[(.*?)\]/g, '<mark class="mark-2">[$1]</mark>')
+        .replace(/「(.*?)」/g, '<mark class="mark-3">「$1」</mark>')
+        .replace(/【(.*?)】/g, '<mark class="mark-4">【$1】</mark>')
+        .replace(/《(.*?)》/g, '<mark class="mark-5">《$1》</mark>')
+        .replace(/\(([^)]*)\)/g, '<mark class="mark-6">($1)</mark>'),
+    }
+  })
 })
 
 // 卡片在牌組中的數量
@@ -353,7 +379,7 @@ onMounted(async () => {
                 ]"
               >
                 <svg
-                  v-if="translatedCardInfo.typeTranslate === '角色'"
+                  v-if="translatedCardInfo.type === 'キャラ'"
                   class="size-8"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -370,7 +396,7 @@ onMounted(async () => {
                   ></path>
                 </svg>
                 <svg
-                  v-else-if="translatedCardInfo.typeTranslate === '名場'"
+                  v-else-if="translatedCardInfo.type === 'イベント'"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -387,7 +413,7 @@ onMounted(async () => {
                   ></path>
                 </svg>
                 <svg
-                  v-else-if="translatedCardInfo.typeTranslate === '事件'"
+                  v-else-if="translatedCardInfo.type === 'クライマックス'"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -405,8 +431,23 @@ onMounted(async () => {
                 </svg>
               </div>
               <!-- <p class="w-full text-xs text-center text-white truncate">角色</p> -->
-              <p class="w-full text-xs text-center text-white truncate">
-                {{ translatedCardInfo.typeTranslate }}
+              <p
+                v-if="translatedCardInfo.type === 'キャラ'"
+                class="w-full text-xs text-center text-white truncate"
+              >
+                角色
+              </p>
+              <p
+                v-else-if="translatedCardInfo.type === 'イベント'"
+                class="w-full text-xs text-center text-white truncate"
+              >
+                事件
+              </p>
+              <p
+                v-else-if="translatedCardInfo.type === 'クライマックス'"
+                class="w-full text-xs text-center text-white truncate"
+              >
+                名場
               </p>
             </div>
             <div>
@@ -734,15 +775,16 @@ onMounted(async () => {
           <div
             v-if="translatedCardQAList.length > 0"
             class="flex flex-col gap-4"
-            v-for="qa in translatedCardQAList"
+            v-for="qa in cardInfoQA"
           >
             <div class="flex items-end gap-2">
               <div
                 class="bg-gradient-to-tr from-emerald-500 to-green-300 p-2 rounded-2xl max-w-[80%]"
               >
-                <p class="text-sm leading-relaxed whitespace-pre-line">
-                  {{ qa.q }}
-                </p>
+                <p
+                  v-html="qa.q"
+                  class="text-sm leading-relaxed whitespace-pre-line"
+                ></p>
               </div>
               <div class="flex flex-col">
                 <p class="font-bold text-zinc-300">Q.{{ qa.id }}</p>
@@ -755,9 +797,10 @@ onMounted(async () => {
               <div
                 class="bg-gradient-to-bl from-white to-neutral-400 p-2 rounded-2xl max-w-[80%]"
               >
-                <p class="text-sm leading-relaxed whitespace-pre-line">
-                  {{ qa.a }}
-                </p>
+                <p
+                  v-html="qa.a"
+                  class="text-sm leading-relaxed whitespace-pre-line"
+                ></p>
               </div>
               <div class="flex flex-col text-right">
                 <p class="font-bold text-zinc-300">A.{{ qa.id }}</p>
@@ -903,31 +946,26 @@ onMounted(async () => {
   }
 }
 
-[class*='mark-'] {
+:deep([class*='mark-']) {
   border-radius: 9999px;
 }
-.mark-1 {
+:deep(.mark-1) {
   background-color: hsla(0, 96%, 89%, 0.8);
 }
-.mark-2 {
+:deep(.mark-2) {
   background-color: hsla(32, 98%, 83%, 0.8);
 }
-.mark-3 {
+:deep(.mark-3) {
   background-color: hsla(53, 98%, 77%, 0.8);
 }
-.mark-4 {
+:deep(.mark-4) {
   background-color: rgba(187, 247, 208, 0.8);
 }
-.mark-5 {
+:deep(.mark-5) {
   background-color: rgba(191, 219, 254, 0.8);
 }
-.mark-6 {
+:deep(.mark-6) {
   background-color: rgba(233, 213, 255, 0.8);
-}
-
-:deep(.mark-4) {
-  border-radius: 9999px;
-  background-color: rgba(187, 247, 208, 0.8);
 }
 
 @media screen and (width < 1200px) {
