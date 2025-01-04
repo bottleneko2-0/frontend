@@ -19,6 +19,7 @@ import MyArticle from '@/views/MyArticle.vue'
 import Team from '@/views/Team.vue'
 import Contact from '@/views/Contact.vue'
 import SocialPost from '@/components/post/SocialPost.vue'
+import EditPost from '@/components/post/EditPost.vue'
 import FindCard from '@/components/card/FindCard.vue'
 import RemitCard from '@/components/card/RemitCard.vue'
 import DeckPage from '@/components/deck/DeckPage.vue'
@@ -156,6 +157,11 @@ const router = createRouter({
       path: '/contact',
       name: 'contact',
       component: Contact,
+    },
+    {
+      path: '/edit/:post_code',
+      name: 'EditPost',
+      component: EditPost,
     },
   ],
 })

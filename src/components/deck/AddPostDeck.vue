@@ -31,9 +31,8 @@ const fetchDeckData = async () => {
   const deckId = route.params.deck_id
   try {
     const response = await axios.get(`${API_URL}/api/deck-page/${deckId}`)
-    title.value = response.data.deck_name || ''
-    deckData.deck_name = response.data.deck_name || ''
-    deckData.deck = Array.isArray(response.data.deck) ? response.data.deck : []
+    title.value = response.data.deck_name
+    deckData.deck_name = response.data.deck_name
     deckData.deck_cover = response.data.deck_cover
     deckData.id = response.data.id
   } catch (error) {
@@ -56,8 +55,17 @@ const getUserDecks = async () => {
 }
 
 const submitArticle = async () => {
+  const API_URL = import.meta.env.VITE_API_URL
   try {
-    const API_URL = import.meta.env.VITE_API_URL
+    if(!title.value) {
+      Swal.fire({
+        icon: 'error',
+        title: '標題不能為空',
+        color: '#e1e1e1',
+        background: '#27272a',
+      })
+      return
+    }
     const response = await axios.post(
       `${API_URL}/api/decks`,
       {
@@ -77,6 +85,8 @@ const submitArticle = async () => {
       icon: 'success',
       title: '成功',
       showConfirmButton: false,
+      color: '#e1e1e1',
+      background: '#27272a',
       timer: 1000,
     }).then(() => {
       router.push(`/social/${postCode}`)
@@ -88,6 +98,8 @@ const submitArticle = async () => {
         title: '請先登入',
         text: '登入後才能發布文章',
         icon: 'warning',
+        color: '#e1e1e1',
+        background: '#27272a',
         confirmButtonText: '確定',
       }).then(() => {
         window.location.href = `${BASE_URL}/login`
@@ -96,7 +108,8 @@ const submitArticle = async () => {
       Swal.fire({
         icon: 'error',
         title: '新增文章失敗',
-        text: error.message,
+        color: '#e1e1e1',
+        background: '#27272a',
       })
     }
   }
@@ -387,188 +400,12 @@ onMounted(() => {
           }"
         />
       </div>
-      <!-- <div class="message-area">
-        <div class="user-message">
-          <div class="message-user-img">
-            <img src="/src/img/avatar.png" alt="" />
-          </div>
-          <div class="message">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-              data-slot="icon"
-              class="flex-none size-7 default-transition text-zinc-300"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"
-              ></path>
-            </svg>
-            <input
-              class="enter-message"
-              type="text"
-              placeholder="留言..."
-              disabled
-            />
-            <button>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-                data-slot="icon"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
-                ></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <span class="message-count">0則留言</span>
-      </div> -->
     </section>
     <MainFooter />
   </main>
 </template>
 
 <style scoped>
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
-}
-body {
-  line-height: 1;
-}
-ol,
-ul {
-  list-style: none;
-}
-blockquote,
-q {
-  quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: '';
-  content: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-a {
-  text-decoration: none;
-  color: #ffffff;
-}
 
 .sidebar-container {
   position: fixed;
@@ -858,6 +695,9 @@ header {
   font-size: 16px;
   font-weight: 900;
   color: white;
+  line-height: 16px;
+  height: 16px;
+  overflow: hidden;
 }
 
 .card-select-btn:hover {

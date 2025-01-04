@@ -1,44 +1,43 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import MainFooter from '@/components/home/MainFooter.vue'
+import SidebarGrid from '@/components/home/SidebarGrid.vue'
 import Notice from '@/components/notice/Notice.vue'
 import NavLoginBtn from '@/components/login/NavLoginBtn.vue'
-import SidebarGrid from '@/components/home/SidebarGrid.vue'
+import MainFooter from '@/components/home/MainFooter.vue'
 import Editor from '@tinymce/tinymce-vue'
 
-const router = useRouter()
-const Tiny_API_KEY = import.meta.env.VITE_Tiny_API_KEY
 
+const Tiny_API_KEY = import.meta.env.VITE_Tiny_API_KEY
+const router = useRouter()
+const route = useRoute()
 const token = ref(localStorage.getItem('token'))
 const title = ref('')
 const content = ref('')
-const imageUrl = ref(null)
-const uploadedImage = ref(null)
-const deckId = ref(null)
-const decks = ref([])
-const filteredDecks = ref([])
-const menuExpanded = ref(false)
-const menuHeight = ref(0)
-const searchQuery = ref('')
-const seriesName = ref('選擇牌組')
+const deck_name = ref('')
+const picture = ref('')
 
-const submitArticle = async () => {
-  const formData = new FormData()
-  formData.append('title', title.value)
-  formData.append('content', content.value)
-  formData.append('deck_id', parseInt(deckId.value, 10))
-
-  if (uploadedImage.value) {
-    formData.append('picture', uploadedImage.value)
-  } else if (imageUrl.value) {
-    formData.append('post_picture', imageUrl.value)
-  }
+const fetchArticle = async () => {
+  const postCode = route.params.post_code
   const API_URL = import.meta.env.VITE_API_URL
   try {
+    const response = await axios.get(`${API_URL}/api/articles/${postCode}`)
+    title.value = response.data.title
+    content.value = response.data.content
+    deck_name.value = response.data.deck_list.deck_name
+    picture.value = response.data.post_picture
+  } catch (error) {
+    console.error('Error fetching article_id:', error)
+  }
+}
 
+
+const submitEdit = async () => {
+  const postCode = route.params.post_code
+  const API_URL = import.meta.env.VITE_API_URL
+ 
     if(!title.value) {
       Swal.fire({
         icon: 'error',
@@ -49,17 +48,21 @@ const submitArticle = async () => {
       return
     }
 
-    const response = await axios.post(`${API_URL}/api/articles`, formData, {
-      headers: {
-        Authorization: `Bearer ${token.value}`,
+  try {
+    await axios.put(
+      `${API_URL}/api/articles/${postCode}`,
+      {
+        title: title.value,
+        content: content.value,
       },
-    })
-
-    const postCode = response.data.post_code
+      {
+        headers: { Authorization: `Bearer ${token.value}` },
+      }
+    )
 
     Swal.fire({
       icon: 'success',
-      title: '成功',
+      title: '更新成功',
       showConfirmButton: false,
       color: '#e1e1e1',
       background: '#27272a',
@@ -72,18 +75,18 @@ const submitArticle = async () => {
       const BASE_URL = import.meta.env.VITE_BASE_URL
       Swal.fire({
         title: '請先登入',
-        text: '登入後才能發布文章',
+        text: '登入後才能更新文章',
         icon: 'warning',
-        confirmButtonText: '確定',
         color: '#e1e1e1',
         background: '#27272a',
+        confirmButtonText: '確定',
       }).then(() => {
         window.location.href = `${BASE_URL}/login`
       })
     } else {
       Swal.fire({
         icon: 'error',
-        title: '新增文章失敗',
+        title: '更新文章失敗',
         color: '#e1e1e1',
         background: '#27272a',
       })
@@ -91,75 +94,6 @@ const submitArticle = async () => {
   }
 }
 
-const handleButtonClick = (event) => {
-  if (imageUrl.value) {
-    imageUrl.value = null
-    uploadedImage.value = null
-    event.target.value = '' // 重置 input 的值
-    event.preventDefault()
-  }
-}
-
-const handleFileUpload = (event) => {
-  const file = event.target.files[0]
-  if (file) {
-    uploadedImage.value = file
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      imageUrl.value = e.target.result
-    }
-    reader.readAsDataURL(file)
-  }
-}
-
-const getUserDecks = async () => {
-  if (!token.value) return
-  const API_URL = import.meta.env.VITE_API_URL
-  try {
-    const res = await axios.get(`${API_URL}/decks`, {
-      headers: { Authorization: `Bearer ${token.value}` },
-    })
-    decks.value = res.data.decks
-    filteredDecks.value = res.data.decks
-  } catch (error) {
-    console.error('獲取牌組資料失敗', error)
-  }
-}
-
-const selectDeck = (deck) => {
-  title.value = deck.deck_name
-  seriesName.value = deck.deck_name
-  imageUrl.value = deck.deck_cover
-  deckId.value = deck.id
-  menuExpanded.value = false
-}
-
-const toggleMenu = () => {
-  menuExpanded.value = !menuExpanded.value
-  if (menuExpanded.value) calculateMenuHeight()
-}
-
-const calculateMenuHeight = () => {
-  menuHeight.value = 45 + filteredDecks.value.length * 35
-}
-
-const searchSeries = () => {
-  if (!searchQuery.value.trim()) {
-    filteredDecks.value = decks.value
-  } else {
-    const query = searchQuery.value.toLowerCase()
-    filteredDecks.value = decks.value.filter((deck) =>
-      deck.deck_name?.toLowerCase().includes(query)
-    )
-  }
-  calculateMenuHeight()
-}
-
-const clearSearch = () => {
-  searchQuery.value = ''
-  filteredDecks.value = decks.value
-  calculateMenuHeight()
-}
 
 const goBack = () => {
   if (window.history.length > 1) {
@@ -170,7 +104,7 @@ const goBack = () => {
 }
 
 onMounted(() => {
-  getUserDecks()
+  fetchArticle()
 })
 </script>
 
@@ -188,7 +122,7 @@ onMounted(() => {
             stroke="currentColor"
             aria-hidden="true"
             data-slot="icon"
-            class="w-6 h-6"
+            class="h-6 w-6"
           >
             <path
               stroke-linecap="round"
@@ -206,7 +140,7 @@ onMounted(() => {
             stroke="currentColor"
             aria-hidden="true"
             data-slot="icon"
-            class="w-6 h-6"
+            class="h-6 w-6"
           >
             <path
               stroke-linecap="round"
@@ -215,10 +149,10 @@ onMounted(() => {
             ></path>
           </svg>
         </button>
-        <h2>新增文章</h2>
+        <h2>更新文章</h2>
       </div>
       <div class="btn-area">
-        <button class="submit-btn" @click="submitArticle">
+        <button class="submit-btn" @click="submitEdit">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -227,7 +161,7 @@ onMounted(() => {
             stroke="currentColor"
             aria-hidden="true"
             data-slot="icon"
-            class="flex-none stroke-2 size-5"
+            class="flex-none size-5 stroke-2"
           >
             <path
               stroke-linecap="round"
@@ -244,7 +178,7 @@ onMounted(() => {
             stroke="currentColor"
             aria-hidden="true"
             data-slot="icon"
-            class="flex-none stroke-2 size-5"
+            class="flex-none size-5 stroke-2"
           >
             <path
               stroke-linecap="round"
@@ -261,54 +195,8 @@ onMounted(() => {
     </header>
     <section class="title-area">
       <div class="title-area-container">
-        <button class="upload-btn" @click="handleButtonClick">
-          <svg
-            v-if="!imageUrl"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="w-20 h-20"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2M12 4v12m0-12 4 4m-4-4L8 8"
-            ></path>
-          </svg>
-
-          <img
-            v-if="imageUrl"
-            :src="imageUrl"
-            alt="預覽圖片"
-            class="preview-image"
-          />
-          <input
-            type="file"
-            class="file-input"
-            @change="handleFileUpload"
-            accept="image/*"
-            ref="fileInput"
-          />
-          <svg
-            v-if="imageUrl"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            ></path>
-          </svg>
+        <button class="upload-btn">
+          <img :src="picture" alt="" />
         </button>
         <div class="add-section">
           <div class="add-article">
@@ -320,7 +208,7 @@ onMounted(() => {
               stroke="currentColor"
               aria-hidden="true"
               data-slot="icon"
-              class="flex-none size-5 md:size-6"
+              class="size-5 md:size-6 flex-none"
             >
               <path
                 stroke-linecap="round"
@@ -328,7 +216,7 @@ onMounted(() => {
                 d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"
               ></path>
             </svg>
-            <p>新增文章</p>
+            <p>更新文章</p>
           </div>
           <input
             v-model="title"
@@ -336,8 +224,8 @@ onMounted(() => {
             type="text"
             placeholder="請輸入標題"
           />
-          <div class="card-select-area" style="position: relative">
-            <button class="card-select-btn" @click="toggleMenu">
+          <div class="card-select-area">
+            <button class="card-select-btn">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -346,7 +234,7 @@ onMounted(() => {
                 stroke="currentColor"
                 aria-hidden="true"
                 data-slot="icon"
-                class="flex-none size-5 md:size-6"
+                class="size-5 md:size-6 flex-none"
               >
                 <path
                   stroke-linecap="round"
@@ -354,53 +242,11 @@ onMounted(() => {
                   d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
                 ></path>
               </svg>
-              <p>{{ seriesName }}</p>
+              <p>{{ deck_name }}</p>
             </button>
-            <ul
-              class="menu-area"
-              v-show="menuExpanded"
-              :style="{ height: menuHeight + 'px' }"
-            >
-              <li class="menu-search">
-                <input
-                  v-model="searchQuery"
-                  @keyup="searchSeries"
-                  class="keyword"
-                  type="text"
-                  placeholder="Keyword"
-                />
-                <button @click="clearSearch">✖</button>
-              </li>
-
-              <li
-                class="menu"
-                v-for="deck in filteredDecks"
-                :key="deck.id"
-                v-if="decks && decks.length"
-                @click="selectDeck(deck)"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                  class="flex-none size-5 md:size-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
-                  ></path>
-                </svg>
-                <p class="text-xs truncate">{{ deck.deck_name }}</p>
-              </li>
-            </ul>
 
             <div class="cannot-change">
-              <p>非必填，但新增文章後將無法更改牌組內容</p>
+              <p>更新文章時，無法更改牌組內容</p>
             </div>
           </div>
         </div>
@@ -440,55 +286,6 @@ onMounted(() => {
           }"
         />
       </div>
-      <div class="message-area">
-        <div class="user-message">
-          <div class="message-user-img">
-            <img src="/src/img/avatar.png" alt="" />
-          </div>
-          <div class="message">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-              data-slot="icon"
-              class="flex-none size-7 default-transition text-zinc-300"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"
-              ></path>
-            </svg>
-            <input
-              class="enter-message"
-              type="text"
-              placeholder="留言..."
-              disabled
-            />
-            <button>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-                data-slot="icon"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
-                ></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <span class="message-count">0則留言</span>
-      </div>
     </section>
     <MainFooter />
   </main>
@@ -496,16 +293,9 @@ onMounted(() => {
 
 <style scoped>
 
-
 .sidebar-container {
   position: fixed;
   top: 0;
-}
-
-.sidebar p {
-  color: #a1a1aa;
-  font-size: 16px;
-  margin-top: 30px;
 }
 
 .pagebtn-area {
@@ -646,38 +436,13 @@ header {
   overflow: hidden;
 }
 
-.preview-image {
-  width: 100%;
-  object-fit: cover;
+.upload-btn img {
+  width: 240px;
   position: absolute;
-  top: 0;
   left: 0;
-}
-
-.upload-btn svg {
-  width: 85px;
-  height: 85px;
-  --tw-text-opacity: 1;
-  color: rgb(228 228 231 / var(--tw-text-opacity, 1));
-  visibility: hidden;
-  opacity: 0;
-  transition: ease 0.2s;
-}
-
-.upload-btn:hover svg {
-  visibility: visible;
-  opacity: 1;
-}
-
-.file-input {
-  position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
 }
+
 
 .add-section {
   width: 100%;
@@ -977,61 +742,6 @@ header {
   height: 24px;
 }
 
-footer {
-  background: linear-gradient(
-    to bottom,
-    rgb(19, 22, 23) 100px,
-    rgb(32, 99, 122) 300px
-  );
-  width: 100%;
-}
-
-.main-footer {
-  background: linear-gradient(to bottom, rgb(19, 22, 23), #121212);
-}
-
-.nav-link {
-  width: 16.66%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.nav-link img {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-}
-
-.link-svg {
-  width: 28px;
-  height: 28px;
-  stroke: #b1afaf;
-}
-
-.link-word {
-  font-size: 9px;
-  margin-top: 8px;
-  color: #b1afaf;
-}
-
-.nav-link:hover svg {
-  stroke: white;
-}
-
-.nav-link:hover span {
-  color: white;
-}
-
-.social-icon svg {
-  stroke: white;
-}
-
-.social-icon span {
-  color: white;
-}
-
 input:disabled {
   cursor: not-allowed;
 }
@@ -1080,7 +790,8 @@ input:disabled {
     height: 288px;
     margin: 0 auto;
   }
-  .preview-image {
+
+  .upload-btn img {
     width: 288px;
   }
 
@@ -1115,23 +826,21 @@ input:disabled {
   .menu-area {
     width: 89%;
   }
+
   .menu-search {
     width: 100%;
   }
+
   .menu-search button {
     right: 40px;
   }
-  .keyword {
-    width: 97%;
-  }
 
-  .cannot-change {
-    width: calc(100% - 16px);
+  .keyword {
+    width: 98%;
   }
 
   .cannot-change p {
     font-size: 14px;
-    width: calc(100% - 16px);
   }
 
   .text-area {

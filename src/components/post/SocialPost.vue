@@ -438,8 +438,10 @@ const deleteArticle = async () => {
     text: '刪除後將無法復原。',
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonText: '確認刪除',
+    confirmButtonText: '確認',
     cancelButtonText: '取消',
+    color: '#e1e1e1',
+    background: '#27272a',
   }).then(async (result) => {
     if (result.isConfirmed) {
       try {
@@ -452,10 +454,17 @@ const deleteArticle = async () => {
           }
         )
 
-        if (response.status === 200) {
-          Swal.fire('刪除成功', '文章已成功刪除', 'success')
-          router.push('/social')
-        }
+        Swal.fire({
+          icon: 'success',
+          title: '刪除成功',
+          showConfirmButton: false,
+          color: '#e1e1e1',
+          background: '#27272a',
+          timer: 1500,
+        })
+        
+        router.push('/social')
+
       } catch (error) {
         if (error.response && error.response.status === 403) {
           Swal.fire({
@@ -476,6 +485,11 @@ const deleteArticle = async () => {
       }
     }
   })
+}
+
+const goEdit = () => {
+  const postCode = route.params.post_code
+  router.push(`/edit/${postCode}`)
 }
 
 const copyDeck = async () => {
@@ -589,7 +603,7 @@ onBeforeUnmount(() => {
         <div class="btn-area">
           <button
             v-if="isMyArticle()"
-            @click="editArticle"
+            @click="goEdit"
             class="social-btn-item social-btn2"
           >
             <svg
@@ -701,7 +715,7 @@ onBeforeUnmount(() => {
           </button>
         </div>
       </header>
-      <section class="carddeck-information">
+      <section class="carddeck-information" v-if="article">
         <div class="information-container">
           <div class="carddeck-img">
             <img
@@ -729,22 +743,22 @@ onBeforeUnmount(() => {
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"
-                ></path></svg
-              >{{ postCode }}
+                ></path>
+              </svg>{{ postCode }}
             </p>
-            <h1>{{ article?.title }}</h1>
+            <h1>{{ article.title }}</h1>
             <div class="data-container">
               <div class="user-link">
                 <div class="user-img">
                   <img
-                    :src="article?.user_picture || userPicture"
+                    :src="article.user_picture || userPicture"
                     alt="用戶頭像"
                   />
                 </div>
                 <span class="date-container">
-                  <a href="#">{{ article?.users?.username }}</a>
+                  <a href="#">{{ article.user_name }}</a>
                   發布於
-                  <span>{{ formatDate(article?.created_at) }}</span>
+                  <span>{{ formatDate(article.created_at) }}</span>
                 </span>
               </div>
               <span class="data-item">
@@ -815,7 +829,7 @@ onBeforeUnmount(() => {
           </div>
         </div>
       </section>
-      <section class="main-container">
+      <section class="main-container" v-if="article">
         <div class="main-container-bg"></div>
         <div class="article-area">
           <div class="text-container">
@@ -837,7 +851,7 @@ onBeforeUnmount(() => {
               <span>文章內容</span>
             </div>
             <div class="article-content">
-              <p v-html="article?.content"></p>
+              <p v-html="article.content"></p>
             </div>
           </div>
           <!-- 留言區域 -->

@@ -1018,10 +1018,6 @@ a {
   align-items: center;
 }
 
-.date {
-  width: 62px;
-}
-
 .date-container svg {
   display: flex;
   width: 15px;
