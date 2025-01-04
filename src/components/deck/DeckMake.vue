@@ -706,7 +706,8 @@ onBeforeUnmount(() => {
       </button>
       <div class="sidebar-footer-box" v-else-if="settingDeckStatus === true">
         <button id="sidebar-footer-active" @click="finalStep">
-          <span>完成
+          <span
+            >完成
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

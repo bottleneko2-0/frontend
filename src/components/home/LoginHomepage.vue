@@ -8,6 +8,7 @@ import Clock from '@/components/svg/Clock.vue'
 import AngleR from '@/components/svg/AngleR.vue'
 import Horn from '@/components/svg/Horn.vue'
 import Card from '@/components/svg/Card.vue'
+import { initSwiper } from '@/assets/js/login-homepage/swiper'
 const BASE_URL = import.meta.env.VITE_BASE_URL
 const API_URL = import.meta.env.VITE_API_URL
 const API_DATA = async () => {
@@ -73,7 +74,7 @@ const formatDate = (dateStr) => {
 onMounted(async () => {
   await API_DATA()
   import('@/assets/js/login-homepage/css-control.js')
-  import('@/assets/js/login-homepage/swiper')
+  initSwiper()
   import('@/assets/js/login-homepage/fancybox')
 })
 </script>
