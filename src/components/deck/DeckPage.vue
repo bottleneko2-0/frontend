@@ -285,19 +285,19 @@ onBeforeUnmount(() => {
         </div>
         <div class="btn-area">
           <button class="social-btn-item social-btn2" @click="copyDeck">
-            <Copy class="stroke-2 size-6" stroke-width="1.5" />
+            <Copy class="stroke-2 size-6 svg-icon" />
             <div class="description-item description2 hover-text">複製牌組</div>
           </button>
           <button class="social-btn-item social-btn3" @click="toggleRemitCard">
-            <Download class="stroke-2 size-6" stroke-width="1.5" />
+            <Download class="stroke-2 size-6 svg-icon" />
             <div class="description-item description7">匯出牌組</div>
           </button>
           <button class="social-btn-item social-btn3" @click="goToArticlePage">
-            <ChatBox class="stroke-2 size-6" stroke-width="1.5" />
+            <ChatBox class="stroke-2 size-6 svg-icon" />
             <div class="description-item description3">發布文章</div>
           </button>
           <button class="social-btn-item social-btn3" @click="deleteDeck()">
-            <Delete class="stroke-2 size-6 red" stroke-width="1.5" />
+            <Delete class="stroke-2 size-6 svg-icon red" />
             <div class="description-item description4">刪除牌組</div>
           </button>
           <button class="social-btn-item social-btn3">
@@ -308,7 +308,7 @@ onBeforeUnmount(() => {
             <NavLoginBtn />
           </div>
           <button class="social-btn-item social-btn5">
-            <Litter class="stroke-2 size-6" stroke-width="1.5" />
+            <Litter class="stroke-2 size-6 svg-icon" />
           </button>
         </div>
       </header>
@@ -319,7 +319,7 @@ onBeforeUnmount(() => {
           </div>
           <div class="carddeck-data">
             <p class="user-number">
-              <Ball class="flex-none size-5 md:size-6" stroke-width="1.5" />
+              <Ball class="flex-none size-5 md:size-6 svg-icon" />
               {{ deckData.deck_id }}
             </p>
             <div class="carddeck-name">
@@ -343,11 +343,11 @@ onBeforeUnmount(() => {
                 class="data-item"
                 v-if="deckData && Array.isArray(deckData.deck)"
               >
-                <Card class="flex-none size-5 md:size-6" stroke-width="1.5" />
+                <Card class="flex-none size-5 md:size-6 svg-icon" />
                 總數{{ deckData.deck.length }}張
               </span>
               <span class="data-item">
-                <Cash class="flex-none size-5 md:size-6" stroke-width="1.5" />
+                <Cash class="flex-none size-5 md:size-6 svg-icon" />
                 總價
                 <span>{{ totalPrice }}円</span>
               </span>
@@ -355,7 +355,7 @@ onBeforeUnmount(() => {
                 class="data-item"
                 v-if="deckData.deck && deckData.deck.length > 0"
               >
-                <Horn class="flex-none size-5 md:size-6" stroke-width="1.5" />
+                <Horn class="flex-none size-5 md:size-6 svg-icon" />
                 系列包含
                 <a
                   v-for="(product, index) in uniqueProductNames"
@@ -388,10 +388,7 @@ onBeforeUnmount(() => {
                 @click="setSortBy('type')"
                 :class="{ active: sortBy === 'type' }"
               >
-                <TypeGroup
-                  class="flex-none stroke-2 size-6"
-                  stroke-width="1.5"
-                />
+                <TypeGroup class="flex-none stroke-2 size-6 svg-icon" />
                 <span>類型</span>
               </button>
               <button
@@ -399,10 +396,7 @@ onBeforeUnmount(() => {
                 @click="setSortBy('color')"
                 :class="{ active: sortBy === 'color' }"
               >
-                <TypeGroup
-                  class="flex-none stroke-2 size-6"
-                  stroke-width="1.5"
-                />
+                <TypeGroup class="flex-none stroke-2 size-6 svg-icon" />
                 <span>顏色</span>
               </button>
               <button
@@ -410,10 +404,7 @@ onBeforeUnmount(() => {
                 @click="setSortBy('level')"
                 :class="{ active: sortBy === 'level' }"
               >
-                <TypeGroup
-                  class="flex-none stroke-2 size-6"
-                  stroke-width="1.5"
-                />
+                <TypeGroup class="flex-none stroke-2 size-6 svg-icon" />
                 <span>等級</span>
               </button>
               <button
@@ -422,10 +413,7 @@ onBeforeUnmount(() => {
                 @click="setSortBy('rare')"
                 :class="{ active: sortBy === 'rare' }"
               >
-                <TypeGroup
-                  class="flex-none stroke-2 size-6"
-                  stroke-width="1.5"
-                />
+                <TypeGroup class="flex-none stroke-2 size-6 svg-icon" />
                 <span>稀有度</span>
               </button>
               <button
@@ -433,10 +421,7 @@ onBeforeUnmount(() => {
                 @click="setSortBy('seriesCode')"
                 :class="{ active: sortBy === 'seriesCode' }"
               >
-                <TypeGroup
-                  class="flex-none stroke-2 size-6"
-                  stroke-width="1.5"
-                />
+                <TypeGroup class="flex-none stroke-2 size-6 svg-icon" />
                 <span>商品</span>
               </button>
             </div>
@@ -448,7 +433,7 @@ onBeforeUnmount(() => {
                   backgroundColor: togglePriceView ? '#060608' : '#06b6d4',
                 }"
               >
-                <Cash class="size-6" stroke-width="1.5" />
+                <Cash class="size-6 svg-icon" />
                 <div class="func-text func-text4">開啟價格</div>
               </button>
               <button
@@ -456,7 +441,7 @@ onBeforeUnmount(() => {
                 @click="toggleTableView = true"
                 :style="{ backgroundColor: toggleTableView ? '#06b6d4' : '' }"
               >
-                <Table class="size-6" stroke-width="1.5" />
+                <Table class="size-6 svg-icon" />
                 <div class="func-text func-text5">表格顯示</div>
               </button>
               <button
@@ -464,7 +449,7 @@ onBeforeUnmount(() => {
                 @click="toggleTableView = false"
                 :style="{ backgroundColor: !toggleTableView ? '#06b6d4' : '' }"
               >
-                <CardInfo class="size-6" stroke-width="1.5" />
+                <CardInfo class="size-6 svg-icon" />
                 <div class="func-text func-text6">卡片資訊</div>
               </button>
             </div>
@@ -505,7 +490,7 @@ onBeforeUnmount(() => {
                 :key="card.index"
               >
                 <p class="price-row" v-if="!togglePriceView">
-                  <CashJP class="currency-icon" stroke-width="1.5" />
+                  <CashJP class="currency-icon" />
                   <span class="price-row-text">{{ card.price.number }}</span>
                   <span class="price-row-text">{{ card.rare }}</span>
                 </p>
@@ -2077,6 +2062,9 @@ span svg {
 }
 .hover-text {
   width: 60px;
+}
+.svg-icon {
+  stroke-width: 1.5px;
 }
 @media screen and (min-width: 1400px) {
   .col-Sheet,
