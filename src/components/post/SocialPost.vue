@@ -50,32 +50,39 @@ const formattedTime = computed(() => {
 })
 
 const groupedCards = computed(() => {
-  let sorted = []
+  let sorted = [...cards.value]
+
   if (sortBy.value === 'level') {
-    sorted = [...cards.value].sort((a, b) => a.level - b.level)
-  } else if (sortBy.value === 'color') {
+    sorted = sorted.sort((a, b) => a.level - b.level)
+  }
+
+  if (sortBy.value === 'color') {
     const colorOrder = ['red', 'yellow', 'green', 'blue']
-    sorted = [...cards.value].sort(
+    sorted = sorted.sort(
       (a, b) => colorOrder.indexOf(a.color) - colorOrder.indexOf(b.color)
     )
-  } else if (sortBy.value === 'type') {
+  }
+  
+  if (sortBy.value === 'type') {
     const typeOrder = ['キャラ', 'イベント', 'クライマックス']
-    sorted = [...cards.value].sort(
+    sorted = sorted.sort(
       (a, b) => typeOrder.indexOf(a.type) - typeOrder.indexOf(b.type)
     )
-  } else if (sortBy.value === 'rare') {
-    sorted = [...cards.value].sort((a, b) => {
+  }
+
+  if (sortBy.value === 'rare') {
+    sorted = sorted.sort((a, b) => {
       if (a.rare.length !== b.rare.length) {
         return a.rare.length - b.rare.length
       }
       return a.rare.localeCompare(b.rare, 'en')
     })
-  } else if (sortBy.value === 'seriesCode') {
-    sorted = [...cards.value].sort((a, b) =>
+  }
+
+  if (sortBy.value === 'seriesCode') {
+    sorted = sorted.sort((a, b) =>
       a.seriesCode.localeCompare(b.seriesCode, 'en')
     )
-  } else {
-    sorted = [...cards.value]
   }
 
   const grouped = sorted.reduce((acc, card) => {
@@ -107,6 +114,10 @@ const groupedCards = computed(() => {
   }))
 })
 
+const toggleView = (obj) => {
+  obj.value = !obj.value
+}
+
 const totalPrice = computed(() => {
   if (!Array.isArray(cards.value)) {
     return 0
@@ -122,11 +133,11 @@ const uniqueProductNames = computed(() => {
 })
 
 const toggleRemitCard = () => {
-  isVisible.value = !isVisible.value
+  toggleView(isVisible)
 }
 
 const togglePriceTableView = () => {
-  togglePriceView.value = !togglePriceView.value
+  toggleView(togglePriceView)
 }
 
 const countSoulCards = (cards) => {
@@ -230,6 +241,8 @@ const sendMessage = async () => {
       text: '留言功能需要登入才能使用。',
       icon: 'warning',
       confirmButtonText: '確定',
+      color: '#e1e1e1',
+      background: '#27272a',
     })
   }
 
@@ -252,7 +265,7 @@ const sendMessage = async () => {
 }
 
 const toggleMessages = () => {
-  showAllMessages.value = !showAllMessages.value
+  toggleView(showAllMessages)
 }
 
 const toggleMenu = (messageId) => {
@@ -320,36 +333,39 @@ const deleteMessage = async (messageId) => {
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
     confirmButtonText: 'OK',
+    color: '#e1e1e1',
+    background: '#27272a',
   }).then(async (result) => {
     if (result.isConfirmed) {
-      try {
-        const userToken = localStorage.getItem('token')
-        if (!userToken) {
-          console.error('User token not found.')
-          return
-        }
+      const userToken = localStorage.getItem('token')
+      if (!userToken) {
+        console.error('User token not found.')
+        return
+      }
 
+      try {
         const response = await axios.delete(
           `${API_URL}/api/comments/${messageId}`,
           {
             headers: { Authorization: `Bearer ${userToken}` },
           }
         )
-
-        if (response.status === 200) {
-          Swal.fire('刪除成功!', '你的留言已被刪除', 'success')
-          messages.value = messages.value.filter((msg) => msg.id !== messageId)
-        }
+        Swal.fire({
+          title: '刪除成功!',
+          text: '你的留言已被刪除',
+          icon: 'success',
+          color: '#e1e1e1',
+          background: '#27272a',
+        })
+        messages.value = messages.value.filter((msg) => msg.id !== messageId)
       } catch (error) {
-        console.error(
-          'Delete request failed:',
-          error.response?.data || error.message
-        )
-        Swal.fire(
-          '刪除失敗',
-          error.response?.data?.error || 'Failed to delete the comment.',
-          'error'
-        )
+        Swal.fire({
+          title: '刪除失敗',
+          text: '無法刪除留言，請稍後再試！',
+          icon: 'error',
+          color: '#e1e1e1',
+          background: '#27272a',
+        })
       }
     }
   })
@@ -364,6 +380,8 @@ const toggleLike = async (message) => {
         text: '按讚功能需要登入才能使用。',
         icon: 'warning',
         confirmButtonText: '確定',
+        color: '#e1e1e1',
+        background: '#27272a',
       })
     }
 
@@ -383,18 +401,19 @@ const toggleLike = async (message) => {
 }
 
 const toggleHate = async (message) => {
-  try {
-    const userToken = localStorage.getItem('token')
-    if (!userToken) {
-      console.error('User token is missing')
-      Swal.fire({
-        title: '請先登入',
-        text: '按讚功能需要登入才能使用。',
-        icon: 'warning',
-        confirmButtonText: '確定',
-      })
-    }
+  const userToken = localStorage.getItem('token')
+  if (!userToken) {
+    Swal.fire({
+      title: '請先登入',
+      text: '按讚功能需要登入才能使用。',
+      icon: 'warning',
+      confirmButtonText: '確定',
+      color: '#e1e1e1',
+      background: '#27272a',
+    })
+  }
 
+  try {
     const response = await axios.post(
       `${API_URL}/api/comments/${message.id}/toggleHate`,
       {},

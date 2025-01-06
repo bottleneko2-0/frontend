@@ -99,6 +99,8 @@ const signup = async () => {
       icon: 'error',
       title: '錯誤',
       text: Object.values(errors).join('\n'),
+      color: '#e1e1e1',
+      background: '#27272a',
     })
   } else {
     try {
@@ -120,6 +122,8 @@ const signup = async () => {
         Swal.fire({
           icon: 'success',
           title: '註冊成功',
+          color: '#e1e1e1',
+          background: '#27272a',
         })
         clearForm()
         router.push('/login')
@@ -136,12 +140,6 @@ const signup = async () => {
             status === 409
               ? message || '此 email 已註冊過'
               : message || '發生未知錯誤，請稍後再試',
-        })
-      } else if (error.request) {
-        Swal.fire({
-          icon: 'error',
-          title: '註冊失敗',
-          text: '無法連接到伺服器，請檢查網路連線',
           color: '#e1e1e1',
           background: '#27272a',
         })
@@ -149,7 +147,7 @@ const signup = async () => {
         Swal.fire({
           icon: 'error',
           title: '註冊失敗',
-          text: `發生錯誤：${error.message}`,
+          text: '無法連接到伺服器，請檢查網路連線',
           color: '#e1e1e1',
           background: '#27272a',
         })
