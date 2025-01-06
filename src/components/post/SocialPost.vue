@@ -22,7 +22,7 @@ const newMessage = ref('')
 const messages = ref([])
 const showAllMessages = ref(false)
 const cards = ref([])
-const sortBy = ref('typeTranslate')
+const sortBy = ref('type')
 const toggleTableView = ref(false)
 const togglePriceView = ref(false)
 const article = ref(null)
@@ -63,11 +63,11 @@ const groupedCards = computed(() => {
     )
   }
 
-  if (sortBy.value === 'typeTranslate') {
+  if (sortBy.value === 'type') {
     const typeOrder = ['角色', '事件', '名場']
     sorted = sorted.sort(
       (a, b) =>
-        typeOrder.indexOf(a.typeTranslate) - typeOrder.indexOf(b.typeTranslate)
+        typeOrder.indexOf(a.type) - typeOrder.indexOf(b.type)
     )
   }
 
@@ -339,10 +339,10 @@ const deleteMessage = async (messageId) => {
   }).then(async (result) => {
     if (result.isConfirmed) {
       const userToken = localStorage.getItem('token')
-        if (!userToken) {
-          console.error('User token not found.')
-          return
-        }
+      if (!userToken) {
+        console.error('User token not found.')
+        return
+      }
 
       try {
         const response = await axios.delete(
@@ -351,20 +351,22 @@ const deleteMessage = async (messageId) => {
             headers: { Authorization: `Bearer ${userToken}` },
           }
         )
-          Swal.fire({
-            title:'刪除成功!', 
-            text:'你的留言已被刪除', 
-            icon:'success',
-            color: '#e1e1e1',
-            background: '#27272a',
-          })
-          messages.value = messages.value.filter((msg) => msg.id !== messageId)
+        Swal.fire({
+          title: '刪除成功!',
+          text: '你的留言已被刪除',
+          icon: 'success',
+          color: '#e1e1e1',
+          background: '#27272a',
+        })
+        messages.value = messages.value.filter((msg) => msg.id !== messageId)
       } catch (error) {
         Swal.fire({
-          title:'刪除失敗',
-          text:'無法刪除留言，請稍後再試！',
-          icon:'error'
-      })
+          title: '刪除失敗',
+          text: '無法刪除留言，請稍後再試！',
+          icon: 'error',
+          color: '#e1e1e1',
+          background: '#27272a',
+        })
       }
     }
   })
@@ -401,16 +403,16 @@ const toggleLike = async (message) => {
 
 const toggleHate = async (message) => {
   const userToken = localStorage.getItem('token')
-    if (!userToken) {
-      Swal.fire({
-        title: '請先登入',
-        text: '按讚功能需要登入才能使用。',
-        icon: 'warning',
-        confirmButtonText: '確定',
-        color: '#e1e1e1',
-        background: '#27272a',
-      })
-    }
+  if (!userToken) {
+    Swal.fire({
+      title: '請先登入',
+      text: '按讚功能需要登入才能使用。',
+      icon: 'warning',
+      confirmButtonText: '確定',
+      color: '#e1e1e1',
+      background: '#27272a',
+    })
+  }
 
   try {
     const response = await axios.post(
@@ -1365,8 +1367,8 @@ onBeforeUnmount(() => {
             <div class="toolbar-area1">
               <button
                 class="tool-btn1"
-                @click="setSortBy('typeTranslate')"
-                :class="{ active: sortBy === 'typeTranslate' }"
+                @click="setSortBy('type')"
+                :class="{ active: sortBy === 'type' }"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -1602,7 +1604,7 @@ onBeforeUnmount(() => {
                     </div>
                     <h3>{{ card.title }}</h3>
                     <div class="details" v-if="!toggleTableView">
-                      <div><span>類型</span>{{ card.typeTranslate }}</div>
+                      <div><span>類型</span>{{ card.type }}</div>
                       <div><span>魂傷</span>{{ card.soul }}</div>
                       <div><span>等級</span>{{ card.level }}</div>
                       <div><span>攻擊</span>{{ card.attack }}</div>

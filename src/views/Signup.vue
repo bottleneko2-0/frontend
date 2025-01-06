@@ -140,8 +140,8 @@ const signup = async () => {
             status === 409
               ? message || '此 email 已註冊過'
               : message || '發生未知錯誤，請稍後再試',
-            color: '#e1e1e1',
-            background: '#27272a',
+          color: '#e1e1e1',
+          background: '#27272a',
         })
       } else {
         Swal.fire({
@@ -151,7 +151,7 @@ const signup = async () => {
           color: '#e1e1e1',
           background: '#27272a',
         })
-      } 
+      }
       clearForm()
     }
   }
