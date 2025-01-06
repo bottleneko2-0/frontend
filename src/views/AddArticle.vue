@@ -38,8 +38,7 @@ const submitArticle = async () => {
   }
   const API_URL = import.meta.env.VITE_API_URL
   try {
-
-    if(!title.value) {
+    if (!title.value) {
       Swal.fire({
         icon: 'error',
         title: '標題不能為空',
@@ -495,8 +494,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-
-
 .sidebar-container {
   position: fixed;
   top: 0;

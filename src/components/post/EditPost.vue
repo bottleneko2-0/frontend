@@ -9,7 +9,6 @@ import NavLoginBtn from '@/components/login/NavLoginBtn.vue'
 import MainFooter from '@/components/home/MainFooter.vue'
 import Editor from '@tinymce/tinymce-vue'
 
-
 const Tiny_API_KEY = import.meta.env.VITE_Tiny_API_KEY
 const router = useRouter()
 const route = useRoute()
@@ -33,20 +32,19 @@ const fetchArticle = async () => {
   }
 }
 
-
 const submitEdit = async () => {
   const postCode = route.params.post_code
   const API_URL = import.meta.env.VITE_API_URL
- 
-    if(!title.value) {
-      Swal.fire({
-        icon: 'error',
-        title: '標題不能為空',
-        color: '#e1e1e1',
-        background: '#27272a',
-      })
-      return
-    }
+
+  if (!title.value) {
+    Swal.fire({
+      icon: 'error',
+      title: '標題不能為空',
+      color: '#e1e1e1',
+      background: '#27272a',
+    })
+    return
+  }
 
   try {
     await axios.put(
@@ -93,7 +91,6 @@ const submitEdit = async () => {
     }
   }
 }
-
 
 const goBack = () => {
   if (window.history.length > 1) {
@@ -292,7 +289,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-
 .sidebar-container {
   position: fixed;
   top: 0;
@@ -442,7 +438,6 @@ header {
   left: 0;
   top: 0;
 }
-
 
 .add-section {
   width: 100%;
