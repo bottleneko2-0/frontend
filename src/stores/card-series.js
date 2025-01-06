@@ -23,15 +23,15 @@ export const useCardSeriesStore = defineStore('card-series', () => {
       seriesInfo.value = selectedSeries
 
       const res = await axios.get(`${API_URL}/api/series/${seriesId}`)
-      res.data.forEach((card) => {
-        if (card.type === 'キャラ') {
-          card.typeTranslate = '角色'
-        } else if (card.type === 'イベント') {
-          card.typeTranslate = '事件'
-        } else if (card.type === 'クライマックス') {
-          card.typeTranslate = '名場'
-        }
-      })
+      // res.data.forEach((card) => {
+      //   if (card.type === 'キャラ') {
+      //     card.typeTranslate = '角色'
+      //   } else if (card.type === 'イベント') {
+      //     card.typeTranslate = '事件'
+      //   } else if (card.type === 'クライマックス') {
+      //     card.typeTranslate = '名場'
+      //   }
+      // })
       seriesCardList.value = res.data
       seriesCardListLength.value = seriesCardList.value.length
     } catch (err) {

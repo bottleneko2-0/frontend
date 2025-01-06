@@ -1,231 +1,201 @@
-<script>
+<script setup>
+import { ref, computed } from 'vue'
 import jsPDF from 'jspdf'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+
 const API_URL = import.meta.env.VITE_API_URL
-export default {
-  data() {
-    return {
-      deckId: '', // 用來儲存用戶輸入的 Deck ID
-      buttons: [false, false], // 按鈕的狀態分別是 false
-      deckValid: false, // 判斷是否有對應的牌組
-      deckInvalid: false, // 判斷是否為無效代碼
+
+// 定義變數
+const deckId = ref('') // 用來儲存用戶輸入的 Deck ID
+const buttons = ref([false, false]) // 按鈕的狀態分別是 false
+const deckValid = ref(false) // 判斷是否有對應的牌組
+const deckInvalid = ref(false) // 判斷是否為無效代碼
+const isVisible = ref(false) // 控制模態框顯示狀態
+
+// 計算屬性：判斷所有按鈕是否都是 active 狀態
+const allButtonsActive = computed(() => {
+  return buttons.value.every((isActive) => isActive)
+})
+
+// 切換按鈕的 active 狀態
+const toggleActive = (index) => {
+  buttons.value[index] = !buttons.value[index]
+}
+
+// 顯示模態框
+const showModal = () => {
+  const modalElement = $refs.remitModal
+  if (modalElement) {
+    modalElement.style.display = 'block'
+    modalElement.setAttribute('inert', '') // 添加 inert 屬性
+    modalElement.focus() // 聚焦於模態框
+  }
+  isVisible.value = true // 更新模態框顯示狀態
+}
+
+// 隱藏模態框
+const hideModal = () => {
+  const modalElement = document.querySelector('#remit')
+  if (modalElement) {
+    modalElement.style.display = 'none'
+    modalElement.removeAttribute('inert') // 移除 inert 屬性
+  }
+  isVisible.value = false // 更新模態框顯示狀態
+}
+
+// 確認是否關閉
+const confirmClose = () => {
+  Swal.fire({
+    title: '確定要離開嗎？',
+    text: '您的資料尚未完成，確定要離開嗎？',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: '離開',
+    cancelButtonText: '取消',
+    reverseButtons: true,
+    color: '#e1e1e1',
+    background: '#27272a',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      hideModal()
+      const modalOverlay = document.querySelector('.modal-overlay')
+      if (modalOverlay) {
+        modalOverlay.style.display = 'none'
+      }
     }
-  },
-  computed: {
-    // 計算屬性：判斷所有按鈕是否都是 active 狀態
-    allButtonsActive() {
-      return this.buttons.every((isActive) => isActive)
-    },
-  },
-  methods: {
-    confirmClose() {
-      Swal.fire({
-        title: '確定要離開嗎？',
-        text: '您的資料尚未完成，確定要離開嗎？',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: '離開',
-        cancelButtonText: '取消',
-        reverseButtons: true,
-        color: '#e1e1e1',
-        background: '#27272a',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.hideModal()
-          const modalOverlay = document.querySelector('.modal-overlay')
-          if (modalOverlay) {
-            modalOverlay.style.display = 'none'
-          }
-        }
-      })
-    },
+  })
+}
 
-    hideModal() {
-      const modalElement = this.$refs.remitModal // 獲取模態框的 DOM 元素
-      if (modalElement) {
-        modalElement.style.display = 'none'
-        modalElement.removeAttribute('inert') // 移除 inert 屬性
-      }
-      this.isVisible = false // 更新模態框顯示狀態
-    },
-    showModal() {
-      const modalElement = this.$refs.remitModal
-      if (modalElement) {
-        modalElement.style.display = 'block'
-        modalElement.setAttribute('inert', '') // 添加 inert 屬性
-        modalElement.focus() // 聚焦於模態框
-      }
-      this.isVisible = true // 更新模態框顯示狀態
-    },
-    // 切換按鈕的 active 狀態
-    toggleActive(index) {
-      // 僅在點擊自身範圍時切換樣式
-      this.buttons[index] = !this.buttons[index]
-    },
-    async checkDeckId() {
-      if (this.deckId && this.deckId.length >= 5) {
-        try {
-          // 發送 API 請求檢查 deckId 是否存在
-          const response = await axios.get(
-            `${API_URL}/api/cardPDF?input=${this.deckId}`
-          )
-
-          // 假設如果返回資料中包含 deck_name，表示有效
-          if (response.data && response.data.deck_name) {
-            this.deckValid = true
-            this.deckInvalid = false
-          } else {
-            this.deckValid = false
-            this.deckInvalid = true
-          }
-        } catch (error) {
-          console.error('Error checking deck ID:', error)
-
-          // 如果是 404 錯誤，顯示無效代碼
-          if (error.response && error.response.status === 404) {
-            this.deckValid = false
-            this.deckInvalid = true
-          } else {
-            this.deckValid = false
-            this.deckInvalid = false
-          }
-        }
+// 檢查 Deck ID 是否有效
+const checkDeckId = async () => {
+  if (deckId.value && deckId.value.length >= 5) {
+    try {
+      const response = await axios.get(
+        `${API_URL}/api/cardPDF?input=${deckId.value}`
+      )
+      if (response.data && response.data.deck_name) {
+        deckValid.value = true
+        deckInvalid.value = false
       } else {
-        // 如果 deckId 少於 5 個字元，不進行檢查
-        this.deckValid = false
-        this.deckInvalid = false
+        deckValid.value = false
+        deckInvalid.value = true
       }
-    },
-    async exportToPDF() {
-      if (!this.deckId) {
-        alert('請輸入牌組代碼')
-        return
+    } catch (error) {
+      console.error('Error checking deck ID:', error)
+      if (error.response && error.response.status === 404) {
+        deckValid.value = false
+        deckInvalid.value = true
+      } else {
+        deckValid.value = false
+        deckInvalid.value = false
       }
+    }
+  } else {
+    deckValid.value = false
+    deckInvalid.value = false
+  }
+}
 
-      const fontResponse = await fetch(`${API_URL}/api/font`)
-      if (!fontResponse.ok) {
-        throw new Error('無法獲取字型資料')
-      }
+// 匯出 PDF
+const exportToPDF = async () => {
+  if (!deckId.value) {
+    alert('請輸入牌組代碼')
+    return
+  }
 
-      const base64msyh = await fontResponse.text() // 確保後端返回的是 text 格式
+  try {
+    const fontResponse = await fetch(`${API_URL}/api/font`)
+    if (!fontResponse.ok) {
+      throw new Error('無法獲取字型資料')
+    }
 
-      // if (!base64msyh) {
-      // throw new Error("字型 Base64 資料為空");
-      // }
+    const base64msyh = await fontResponse.text()
 
-      try {
-        const response = await fetch(
-          `${API_URL}/api/cardPDF?input=${this.deckId}`
-        )
+    const response = await fetch(`${API_URL}/api/cardPDF?input=${deckId.value}`)
+    if (!response.ok) {
+      throw new Error('API 回應非 OK')
+    }
 
-        if (!response.ok) {
-          console.error('API 回應非 OK:', response.status, response.statusText)
-          const errorData = await response.json()
-          console.error('API 回應錯誤內容:', errorData)
-          throw new Error(errorData.error || '未知的錯誤')
+    const { covers, deck_name } = await response.json()
+
+    if (!deck_name || !covers || covers.length === 0) {
+      throw new Error('資料不足或圖片載入錯誤')
+    }
+
+    const pdf = new jsPDF()
+    pdf.addFileToVFS('GenSenRounded2PJP-R.ttf', base64msyh)
+    pdf.addFont('GenSenRounded2PJP-R.ttf', 'GenSenRounded2PJP-R', 'normal')
+    pdf.setFont('GenSenRounded2PJP-R', 'normal')
+
+    pdf.text(deck_name, 10, 10)
+    const pageWidth = 210
+    const pageHeight = 297
+    const columns = 3
+    const rows = 3
+    const marginX = 15
+    const marginY = 25
+    const maxImageWidth = (pageWidth - (columns + 1) * marginX) / columns
+    const maxImageHeight = (pageHeight - (rows + 1) * marginY) / rows
+
+    let xPosition = marginX
+    let yPosition = marginY + 5
+    let imageCount = 0
+
+    const imagePromises = covers.map((coverUrl) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image()
+        img.src = coverUrl
+
+        img.onload = () => {
+          const aspectRatio = img.width / img.height
+          let imageWidth = maxImageWidth
+          let imageHeight = maxImageHeight
+
+          if (img.width > img.height) {
+            imageHeight = imageWidth / aspectRatio
+          } else {
+            imageWidth = imageHeight * aspectRatio
+          }
+
+          pdf.addImage(
+            img,
+            'JPEG',
+            xPosition,
+            yPosition,
+            imageWidth,
+            imageHeight
+          )
+          imageCount++
+          xPosition += imageWidth + marginX
+
+          if (imageCount % columns === 0) {
+            xPosition = marginX
+            yPosition += imageHeight + marginY
+          }
+
+          if (
+            imageCount % (columns * rows) === 0 &&
+            imageCount < covers.length
+          ) {
+            pdf.addPage()
+            xPosition = marginX
+            yPosition = marginY + 10
+          }
+
+          resolve()
         }
 
-        const { covers, deck_name } = await response.json()
+        img.onerror = () => reject(new Error(`圖片載入失敗: ${coverUrl}`))
+      })
+    })
 
-        // 確認有取得 deck_name 和 covers
-        if (!deck_name) {
-          throw new Error('沒有找到 Deck 名稱')
-        }
-
-        if (!covers || covers.length === 0) {
-          throw new Error('沒有找到任何 Deck Cover')
-        }
-
-        const pdf = new jsPDF()
-        // 載入字型
-        pdf.addFileToVFS('GenSenRounded2PJP-R.ttf', base64msyh) //  Base64 字串
-        pdf.addFont('GenSenRounded2PJP-R.ttf', 'GenSenRounded2PJP-R', 'normal') // 設定字型
-        pdf.setFont('GenSenRounded2PJP-R', 'normal') // 設定使用的字型
-
-        pdf.text(deck_name, 10, 10)
-        const pageWidth = 210 // A4 頁面寬度 (mm)
-        const pageHeight = 297 // A4 頁面高度 (mm)
-        const columns = 3 // 每行顯示 3 張圖片
-        const rows = 3 // 每頁顯示 3 行圖片
-        const marginX = 15 // 左右邊距
-        const marginY = 25 // 上下邊距
-        const maxImageWidth = (pageWidth - (columns + 1) * marginX) / columns // 每張圖片的最大寬度
-        const maxImageHeight = (pageHeight - (rows + 1) * marginY) / rows // 每張圖片的最大高度
-
-        let xPosition = marginX // 初始 X 位置
-        let yPosition = marginY + 5 // 初始 Y 位置，略下移以避免與標題重疊
-        let imageCount = 0
-
-        // 使用 Promise.all 確保所有圖片都載入完成
-        const imagePromises = covers.map((coverUrl, index) => {
-          return new Promise((resolve, reject) => {
-            const img = new Image()
-            img.src = coverUrl
-
-            img.onload = () => {
-              // 計算圖片的自適應大小
-              const aspectRatio = img.width / img.height
-              let imageWidth = maxImageWidth
-              let imageHeight = maxImageHeight
-
-              // 根據寬高比縮放圖片
-              if (img.width > img.height) {
-                imageHeight = imageWidth / aspectRatio
-              } else {
-                imageWidth = imageHeight * aspectRatio
-              }
-
-              // 插入圖片到 PDF
-              pdf.addImage(
-                img,
-                'JPEG',
-                xPosition,
-                yPosition,
-                imageWidth,
-                imageHeight
-              )
-
-              // 計算下一張圖片的位置
-              imageCount++
-              xPosition += imageWidth + marginX
-
-              // 換行
-              if (imageCount % columns === 0) {
-                xPosition = marginX // 重置 X 位置
-                yPosition += imageHeight + marginY // 換行
-              }
-
-              // 如果一頁滿了，則換頁
-              if (
-                imageCount % (columns * rows) === 0 &&
-                imageCount < covers.length
-              ) {
-                pdf.addPage()
-                xPosition = marginX
-                yPosition = marginY + 10
-              }
-
-              resolve() // 圖片載入完成
-            }
-
-            img.onerror = () => {
-              reject(new Error(`圖片載入失敗: ${coverUrl}`))
-            }
-          })
-        })
-
-        // 等待所有圖片載入完畢
-        await Promise.all(imagePromises)
-
-        // 所有圖片載入完畢後才保存 PDF
-        pdf.save(`${deck_name}_deck.pdf`)
-      } catch (error) {
-        console.error('匯出 PDF 時發生錯誤:', error.message)
-        alert('匯出 PDF 時發生錯誤：' + error.message)
-      }
-    },
-  },
+    await Promise.all(imagePromises)
+    pdf.save(`${deck_name}_deck.pdf`)
+  } catch (error) {
+    console.error('匯出 PDF 時發生錯誤:', error.message)
+    alert('匯出 PDF 時發生錯誤')
+  }
 }
 </script>
 

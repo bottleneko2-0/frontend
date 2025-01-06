@@ -7,6 +7,10 @@ import SidebarGrid from '@/components/home/SidebarGrid.vue'
 import Notice from '@/components/notice/Notice.vue'
 import NavLoginBtn from '@/components/login/NavLoginBtn.vue'
 import MainFooter from '@/components/home/MainFooter.vue'
+import AngleL from '@/components/svg/AngleL.vue'
+import AngleR from '@/components/svg/AngleR.vue'
+import AnglesR from '@/components/svg/AnglesR.vue'
+import TypeGroup from '@/components/svg/TypeGroup.vue'
 
 Fancybox.bind('[data-fancybox="daily-card"]', {})
 
@@ -176,44 +180,14 @@ onMounted(async () => {
             @click="goBack"
             class="flex-none p-1 text-white rounded-full bg-black/50 default-transition hover:bg-zinc-800/50"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-              data-slot="icon"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15.75 19.5 8.25 12l7.5-7.5"
-              ></path>
-            </svg>
+            <AngleL class="stroke-[1.5] size-6" />
           </button>
           <button
             @click="goAhead"
             class="flex-none hidden p-1 text-white rounded-full md:block bg-black/50 default-transition hover:bg-zinc-800/50 disabled:opacity-30"
             disabled
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-              data-slot="icon"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="m8.25 4.5 7.5 7.5-7.5 7.5"
-              ></path>
-            </svg>
+            <AngleR class="stroke-[1.5] size-6" />
           </button>
           <div class="w-full min-w-0 text-lg font-bold text-white md:text-2xl">
             <h2 class="text-2xl font-bold truncate">每日卡歷史回顧</h2>
@@ -231,23 +205,10 @@ onMounted(async () => {
                 for="list-switch"
                 class="list-switch cursor-pointer w-[6.5rem] h-fit p-1 bg-zinc-600/80 text-zinc-200 default-transition rounded-full mb-2.5 fixed z-10"
               >
-                <span class="hide">Close</span
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
+                <span class="hide">Close</span>
+                <AnglesR
                   class="rotate-180 stroke-2 size-6 default-transition"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5"
-                  ></path>
-                </svg>
+                />
               </label>
               <ul
                 v-if="thisCategory == 'SERIES'"
@@ -303,22 +264,7 @@ onMounted(async () => {
                     class="flex items-center gap-2 py-1 pl-1 pr-2 text-white rounded-lg will-change-auto"
                     @click="switchCategory('SERIES')"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                      data-slot="icon"
-                      class="flex-none stroke-2 size-6"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z"
-                      ></path>
-                    </svg>
+                    <TypeGroup class="flex-none stroke-2 size-6" />
                     <span
                       class="text-sm font-bold select-none whitespace-nowrap"
                       >系列</span
@@ -331,22 +277,7 @@ onMounted(async () => {
                     style="translate: none; rotate: none; scale: none"
                     @click="switchCategory('DATE')"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                      data-slot="icon"
-                      class="flex-none stroke-2 size-6"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z"
-                      ></path>
-                    </svg>
+                    <TypeGroup class="flex-none stroke-2 size-6" />
                     <span
                       class="text-sm font-bold select-none whitespace-nowrap"
                       >日期</span

@@ -1175,7 +1175,7 @@ export const useCardFilterStore = defineStore('card-filter', () => {
     const typeSortArr = ref([])
     if (filterVaribleSet.typeCharacter) {
       newSeriesCardList.value.forEach((card) => {
-        if (card.typeTranslate === '角色') {
+        if (card.type === 'キャラ') {
           const checkHaveCard = typeSortArr.value.find((item) => {
             return item === card
           })
@@ -1187,7 +1187,7 @@ export const useCardFilterStore = defineStore('card-filter', () => {
     }
     if (filterVaribleSet.typeScene) {
       newSeriesCardList.value.forEach((card) => {
-        if (card.typeTranslate === '名場') {
+        if (card.type === 'イベント') {
           const checkHaveCard = typeSortArr.value.find((item) => {
             return item === card
           })
@@ -1199,7 +1199,7 @@ export const useCardFilterStore = defineStore('card-filter', () => {
     }
     if (filterVaribleSet.typeEvent) {
       newSeriesCardList.value.forEach((card) => {
-        if (card.typeTranslate === '事件') {
+        if (card.type === 'クライマックス') {
           const checkHaveCard = typeSortArr.value.find((item) => {
             return item === card
           })

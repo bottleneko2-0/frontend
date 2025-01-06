@@ -312,10 +312,6 @@ header {
   color: rgb(170, 168, 168);
 }
 
-.date {
-  width: 62px;
-}
-
 .date-container i {
   display: flex;
   font-size: 14px;

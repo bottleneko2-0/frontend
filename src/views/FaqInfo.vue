@@ -1,9 +1,10 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useCardInfoStore } from '@/stores/card-info'
 import Card from '@/components/card/Card.vue'
 import axios from 'axios'
+import { useI18n } from 'vue-i18n'
 
 const route = useRoute()
 const router = useRouter()
@@ -12,6 +13,7 @@ const faqId = Number(route.params.id) // 確保與資料型態相同
 const faqItem = ref({})
 const relationCards = ref([])
 const API_URL = import.meta.env.VITE_API_URL
+const { locale } = useI18n()
 
 // 引入CardInfoStore並使用
 const cardInfoStore = useCardInfoStore()
@@ -53,6 +55,16 @@ const getFaqData = async () => {
     console.error(error)
   }
 }
+
+const translatedFaqItem = computed(() => {
+  const translateQ = faqItem.value.i18n?.[locale.value]?.q
+  const translateA = faqItem.value.i18n?.[locale.value]?.a
+  return {
+    ...faqItem.value,
+    q: translateQ || faqItem.value.q,
+    a: translateA || faqItem.value.a,
+  }
+})
 
 const getRelationCards = async () => {
   if (
@@ -136,7 +148,7 @@ watch(
       >
         <h2 class="w-full text-white grow-1">
           <div class="flex items-center gap-2">
-            <p class="text-lg font-bold">Q.{{ faqItem.id }}</p>
+            <p class="text-lg font-bold">Q.{{ translatedFaqItem.id }}</p>
           </div>
         </h2>
         <div @click="goBack" class="flex justify-end flex-none gap-2">
@@ -170,15 +182,17 @@ watch(
                 class="bg-gradient-to-tr from-emerald-500 to-green-300 p-2 rounded-2xl max-w-[80%]"
               >
                 <p
-                  v-html="highlightText(faqItem.q)"
+                  v-html="highlightText(translatedFaqItem.q)"
                   class="text-sm leading-relaxed whitespace-pre-line"
                 ></p>
               </div>
               <div class="flex flex-col">
-                <span class="font-bold text-zinc-300">Q.{{ faqItem.id }}</span>
+                <span class="font-bold text-zinc-300"
+                  >Q.{{ translatedFaqItem.id }}</span
+                >
                 <span
                   class="font-mono text-xs whitespace-nowrap text-zinc-500"
-                  >{{ faqItem.date }}</span
+                  >{{ translatedFaqItem.date }}</span
                 >
               </div>
             </div>
@@ -187,15 +201,17 @@ watch(
                 class="bg-gradient-to-bl from-white to-neutral-400 p-2 rounded-2xl max-w-[80%]"
               >
                 <p
-                  v-html="highlightText(faqItem.a)"
+                  v-html="highlightText(translatedFaqItem.a)"
                   class="text-sm leading-relaxed whitespace-pre-line"
                 ></p>
               </div>
               <div class="flex flex-col text-right">
-                <span class="font-bold text-zinc-300">A.{{ faqItem.id }}</span>
+                <span class="font-bold text-zinc-300"
+                  >A.{{ translatedFaqItem.id }}</span
+                >
                 <span
                   class="font-mono text-xs whitespace-nowrap text-zinc-500"
-                  >{{ faqItem.date }}</span
+                  >{{ translatedFaqItem.date }}</span
                 >
               </div>
             </div>
@@ -204,13 +220,17 @@ watch(
             關聯卡牌
             <span class="subtitle"
               >一共有
-              {{ faqItem && faqItem.relations ? faqItem.relations.length : 0 }}
+              {{
+                translatedFaqItem && translatedFaqItem.relations
+                  ? translatedFaqItem.relations.length
+                  : 0
+              }}
               張</span
             >
           </h3>
           <div class="grid grid-cols-2 gap-4 pb-8 lg:grid-cols-5">
             <div
-              v-if="faqItem.relations != ''"
+              v-if="translatedFaqItem.relations != ''"
               v-for="card in relationCards"
               class="flex flex-col items-center"
             >

@@ -109,11 +109,11 @@ export const useDeckMakeStore = defineStore('deck-make', () => {
 
       selectedCards.value.forEach((card) => {
         if (typeArr.length <= 0) {
-          typeArr.push(card.typeTranslate)
+          typeArr.push(card.type)
         }
-        const ishave = typeArr.find((type) => type === card.typeTranslate)
+        const ishave = typeArr.find((type) => type === card.type)
         if (ishave === undefined) {
-          typeArr.push(card.typeTranslate)
+          typeArr.push(card.type)
         }
       })
       sortedTitle.value = typeArr
@@ -122,7 +122,7 @@ export const useDeckMakeStore = defineStore('deck-make', () => {
       typeArr.forEach((type) => {
         const cardArr = []
         selectedCards.value.forEach((card) => {
-          if (card.typeTranslate === type) {
+          if (card.type === type) {
             cardArr.push(card)
           }
         })

@@ -15,7 +15,7 @@ const API_URL = import.meta.env.VITE_API_URL
 
 const isVisible = ref(false)
 const deckData = ref({ deck: [] })
-const sortBy = ref('typeTranslate')
+const sortBy = ref('type')
 const togglePriceView = ref(false)
 const toggleTableView = ref(false)
 
@@ -47,11 +47,10 @@ const groupedCards = computed(() => {
     sorted = [...deckData.value.deck].sort(
       (a, b) => colorOrder.indexOf(a.color) - colorOrder.indexOf(b.color)
     )
-  } else if (sortBy.value === 'typeTranslate') {
-    const typeOrder = ['角色', '事件', '名場']
+  } else if (sortBy.value === 'type') {
+    const typeOrder = ['キャラ', 'イベント', 'クライマックス']
     sorted = [...deckData.value.deck].sort(
-      (a, b) =>
-        typeOrder.indexOf(a.typeTranslate) - typeOrder.indexOf(b.typeTranslate)
+      (a, b) => typeOrder.indexOf(a.type) - typeOrder.indexOf(b.type)
     )
   } else if (sortBy.value === 'rare') {
     sorted = [...deckData.value.deck].sort((a, b) => {
@@ -189,33 +188,38 @@ const deleteDeck = async () => {
     text: '刪除後將無法復原。',
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonText: '確認刪除',
+    confirmButtonText: '確認',
     cancelButtonText: '取消',
+    color: '#e1e1e1',
+    background: '#27272a',
   }).then(async (result) => {
     if (result.isConfirmed) {
       try {
         const userToken = localStorage.getItem('token')
-        const response = await axios.delete(`${API_URL}/decks/${deck_id}`, {
+        await axios.delete(`${API_URL}/decks/${deck_id}`, {
           headers: {
             Authorization: `Bearer ${userToken}`,
           },
         })
 
-        if (response.status === 200) {
-          Swal.fire({
-            icon: 'success',
-            title: '刪除成功',
-            showConfirmButton: false,
-            timer: 1000,
-          }).then(() => {
-            router.push('/deck')
-          })
-        }
+        Swal.fire({
+          icon: 'success',
+          title: '刪除成功',
+          showConfirmButton: false,
+          timer: 1500,
+          color: '#e1e1e1',
+          background: '#27272a',
+        })
+          
+        router.push('/deck')
+        
       } catch (error) {
         Swal.fire({
           icon: 'error',
           title: '刪除失敗',
           text: '已引用於文章,無法刪除',
+          color: '#e1e1e1',
+          background: '#27272a',
         })
       }
     }
@@ -422,8 +426,9 @@ onBeforeUnmount(() => {
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"
-                ></path></svg
-              >{{ deckData.deck_id }}
+                ></path>
+              </svg>
+              {{ deckData.deck_id }}
             </p>
             <div class="carddeck-name">
               <h1>{{ deckData.deck_name }}</h1>
@@ -460,8 +465,8 @@ onBeforeUnmount(() => {
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     d="M16.5 8.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v8.25A2.25 2.25 0 0 0 6 16.5h2.25m8.25-8.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-7.5A2.25 2.25 0 0 1 8.25 18v-1.5m8.25-8.25h-6a2.25 2.25 0 0 0-2.25 2.25v6"
-                  ></path></svg
-                >&nbsp; 總數{{ deckData.deck.length }}張
+                  ></path>
+                </svg> 總數{{ deckData.deck.length }}張
               </span>
               <span class="data-item">
                 <svg
@@ -478,8 +483,8 @@ onBeforeUnmount(() => {
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"
-                  ></path></svg
-                >&nbsp; 總價
+                  ></path>
+                  </svg> 總價
                 <span>{{ totalPrice }}円</span>
               </span>
               <span
@@ -500,8 +505,8 @@ onBeforeUnmount(() => {
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 1 1 0-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 0 1-1.44-4.282m3.102.069a18.03 18.03 0 0 1-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 0 1 8.835 2.535M10.34 6.66a23.847 23.847 0 0 0 8.835-2.535m0 0A23.74 23.74 0 0 0 18.795 3m.38 1.125a23.91 23.91 0 0 1 1.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 0 0 1.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 0 1 0 3.46"
-                  ></path></svg
-                >&nbsp; 系列包含
+                  ></path>
+                </svg> 系列包含
                 <a
                   v-for="(product, index) in uniqueProductNames"
                   :key="index"
@@ -543,8 +548,8 @@ onBeforeUnmount(() => {
             <div class="toolbar-area1">
               <button
                 class="tool-btn1"
-                @click="setSortBy('typeTranslate')"
-                :class="{ active: sortBy === 'typeTranslate' }"
+                @click="setSortBy('type')"
+                :class="{ active: sortBy === 'type' }"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -739,7 +744,19 @@ onBeforeUnmount(() => {
             :key="group.group"
           >
             <div class="card-info-header">
-              <h2 class="group-title">
+              <h2 v-if="group.group === 'キャラ'" class="group-title">
+                角色 - {{ group.cards.length }}
+              </h2>
+              <h2 v-else-if="group.group === 'イベント'" class="group-title">
+                事件 - {{ group.cards.length }}
+              </h2>
+              <h2
+                v-else-if="group.group === 'クライマックス'"
+                class="group-title"
+              >
+                名場 - {{ group.cards.length }}
+              </h2>
+              <h2 v-else class="group-title">
                 {{ group.group || '角色' }} - {{ group.cards.length }}
               </h2>
               <div class="group-count">
@@ -785,7 +802,15 @@ onBeforeUnmount(() => {
                     </div>
                     <h3>{{ card.title }}</h3>
                     <div class="details" v-if="!toggleTableView">
-                      <div><span>類型</span>{{ card.typeTranslate }}</div>
+                      <div v-if="card.type === 'キャラ'">
+                        <span>類型</span>角色
+                      </div>
+                      <div v-else-if="card.type === 'イベント'">
+                        <span>類型</span>事件
+                      </div>
+                      <div v-else-if="card.type === 'クライマックス'">
+                        <span>類型</span>名場
+                      </div>
                       <div><span>魂傷</span>{{ card.soul }}</div>
                       <div><span>等級</span>{{ card.level }}</div>
                       <div><span>攻擊</span>{{ card.attack }}</div>
