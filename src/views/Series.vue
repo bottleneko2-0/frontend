@@ -8,6 +8,7 @@ import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import Card from '@/components/svg/Card.vue'
 
 const { locale } = useI18n()
 
@@ -376,21 +377,7 @@ onBeforeUnmount(() => {
             </div>
             <div class="card-text">
               <div class="flex">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                  class="flex-none icon-size color-a1"
-                >
-                  <path
-                    d="M16.5 6a3 3 0 0 0-3-3H6a3 3 0 0 0-3 3v7.5a3 3 0 0 0 3 3v-6A4.5 4.5 0 0 1 10.5 6h6Z"
-                  ></path>
-                  <path
-                    d="M18 7.5a3 3 0 0 1 3 3V18a3 3 0 0 1-3 3h-7.5a3 3 0 0 1-3-3v-7.5a3 3 0 0 1 3-3H18Z"
-                  ></path>
-                </svg>
+                <Card class="flex-none icon-size color-a1" />
                 <p class="color-a1">{{ card.code.join(', ') }}</p>
               </div>
               <p class="font-size20 color-white padding-bottom">
@@ -422,21 +409,7 @@ onBeforeUnmount(() => {
             </div>
             <div class="card-text">
               <div class="flex">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                  class="flex-none icon-size color-a1"
-                >
-                  <path
-                    d="M16.5 6a3 3 0 0 0-3-3H6a3 3 0 0 0-3 3v7.5a3 3 0 0 0 3 3v-6A4.5 4.5 0 0 1 10.5 6h6Z"
-                  ></path>
-                  <path
-                    d="M18 7.5a3 3 0 0 1 3 3V18a3 3 0 0 1-3 3h-7.5a3 3 0 0 1-3-3v-7.5a3 3 0 0 1 3-3H18Z"
-                  ></path>
-                </svg>
+                <Card class="flex-none icon-size color-a1" />
                 <p class="color-a1">{{ card.code.join(', ') }}</p>
               </div>
               <p class="font-size20 color-white padding-bottom">

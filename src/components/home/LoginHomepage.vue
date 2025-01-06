@@ -4,6 +4,10 @@ import axios from 'axios'
 import Notice from '@/components/notice/Notice.vue'
 import NavLoginBtn from '@/components/login/NavLoginBtn.vue'
 import MainFooter from '@/components/home/MainFooter.vue'
+import Clock from '@/components/svg/Clock.vue'
+import AngleR from '@/components/svg/AngleR.vue'
+import Horn from '@/components/svg/Horn.vue'
+import Card from '@/components/svg/Card.vue'
 const BASE_URL = import.meta.env.VITE_BASE_URL
 const API_URL = import.meta.env.VITE_API_URL
 const API_DATA = async () => {
@@ -145,22 +149,7 @@ onMounted(async () => {
       <h2 class="title">
         每日卡
         <a :href="`${BASE_URL}/daily-card`" class="title-a">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="size-5 stroke-2"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-            ></path>
-          </svg>
+          <Clock class="size-5 stroke-2" />
           <span class="text">回顧歷史紀錄</span>
         </a>
       </h2>
@@ -305,22 +294,7 @@ onMounted(async () => {
         <a :href="`${BASE_URL}/products`" class="title-a2">最新商品</a>
         <a :href="`${BASE_URL}/products`" class="title-a3">
           閱讀更多
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="size-4"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="m8.25 4.5 7.5 7.5-7.5 7.5"
-            ></path>
-          </svg>
+          <AngleR class="size-4" />
         </a>
       </h2>
       <section class="show-card">
@@ -335,22 +309,7 @@ onMounted(async () => {
           </div>
           <div class="card-text">
             <div class="flex">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-                data-slot="icon"
-                class="icon-size color-a1"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 1 1 0-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 0 1-1.44-4.282m3.102.069a18.03 18.03 0 0 1-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 0 1 8.835 2.535M10.34 6.66a23.847 23.847 0 0 0 8.835-2.535m0 0A23.74 23.74 0 0 0 18.795 3m.38 1.125a23.91 23.91 0 0 1 1.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 0 0 1.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 0 1 0 3.46"
-                ></path>
-              </svg>
+              <Horn class="icon-size color-a1" />
               <p class="color-a1">{{ product.publishAt }}</p>
             </div>
             <p class="font-size20 color-white padding-bottom">
@@ -363,22 +322,7 @@ onMounted(async () => {
         <a :href="`${BASE_URL}/series`" class="title-a2">卡片系列</a>
         <a :href="`${BASE_URL}/series`" class="title-a3">
           閱讀更多
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="size-4"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="m8.25 4.5 7.5 7.5-7.5 7.5"
-            ></path>
-          </svg>
+          <AngleR class="size-4" />
         </a>
       </h2>
       <section class="show-card">
@@ -393,21 +337,7 @@ onMounted(async () => {
           </div>
           <div class="card-text">
             <div class="flex">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-                data-slot="icon"
-                class="icon-size flex-none color-a1"
-              >
-                <path
-                  d="M16.5 6a3 3 0 0 0-3-3H6a3 3 0 0 0-3 3v7.5a3 3 0 0 0 3 3v-6A4.5 4.5 0 0 1 10.5 6h6Z"
-                ></path>
-                <path
-                  d="M18 7.5a3 3 0 0 1 3 3V18a3 3 0 0 1-3 3h-7.5a3 3 0 0 1-3-3v-7.5a3 3 0 0 1 3-3H18Z"
-                ></path>
-              </svg>
+              <Card class="icon-size flex-none color-a1" />
               <p class="color-a1">{{ series.code }}</p>
             </div>
             <p class="font-size20 color-white padding-bottom">
