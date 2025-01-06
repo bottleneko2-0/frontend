@@ -3,6 +3,9 @@ import SidebarGrid from '@/components/home/SidebarGrid.vue'
 import MainFooter from '@/components/home/MainFooter.vue'
 import NavLoginBtn from '@/components/login/NavLoginBtn.vue'
 import Notice from '@/components/notice/Notice.vue'
+import AngleL from '@/components/svg/AngleL.vue'
+import Human from '@/components/svg/Human.vue'
+import AngleD from '@/components/svg/AngleD.vue'
 const goBack = () => {
   if (window.history.length > 1) {
     window.history.back()
@@ -18,22 +21,7 @@ const goBack = () => {
     <div class="team">
       <nav class="navbar">
         <button class="page-btn" @click="goBack">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="h-6 w-6 text-white"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M15.75 19.5 8.25 12l7.5-7.5"
-            ></path>
-          </svg>
+          <AngleL class="h-6 w-6 text-white" />
         </button>
         <div class="import-bar">
           <Notice />
@@ -46,37 +34,9 @@ const goBack = () => {
           <div>
             <input type="checkbox" id="question1" class="all-question" />
             <label for="question1" class="question question1">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-                data-slot="icon"
-                class="m-1 text-zinc-200"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                ></path>
-              </svg>
+              <Human class="m-1 text-zinc-200" />
               <h3>吳宗倫</h3>
-              <svg
-                class="dropdown-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                st
-                data-slot="icon"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                ></path>
-              </svg>
+              <AngleD class="dropdown-icon" />
             </label>
             <p class="answer">
               連絡信箱：allen84324@gmail.com <br />
@@ -89,37 +49,9 @@ const goBack = () => {
           <div>
             <input type="checkbox" id="question2" class="all-question" />
             <label for="question2" class="question question2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-                data-slot="icon"
-                class="m-1 text-zinc-200"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                ></path>
-              </svg>
+              <Human class="m-1 text-zinc-200" />
               <h3>柯昱丞</h3>
-              <svg
-                class="dropdown-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                st
-                data-slot="icon"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                ></path>
-              </svg>
+              <AngleD class="dropdown-icon" />
             </label>
             <p class="answer">
               連絡信箱：aa139532058@gmail.com <br />
@@ -132,37 +64,9 @@ const goBack = () => {
           <div>
             <input type="checkbox" id="question3" class="all-question" />
             <label for="question3" class="question question3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-                data-slot="icon"
-                class="m-1 text-zinc-200"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                ></path>
-              </svg>
+              <Human class="m-1 text-zinc-200" />
               <h3>萬代賢</h3>
-              <svg
-                class="dropdown-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                st
-                data-slot="icon"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                ></path>
-              </svg>
+              <AngleD class="dropdown-icon" />
             </label>
             <p class="answer">
               連絡信箱：graywolf7235@gmail.com <br />
@@ -175,37 +79,9 @@ const goBack = () => {
           <div>
             <input type="checkbox" id="question4" class="all-question" />
             <label for="question4" class="question question4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-                data-slot="icon"
-                class="m-1 text-zinc-200"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                ></path>
-              </svg>
+              <Human class="m-1 text-zinc-200" />
               <h3>張景淵</h3>
-              <svg
-                class="dropdown-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                st
-                data-slot="icon"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                ></path>
-              </svg>
+              <AngleD class="dropdown-icon" />
             </label>
             <p class="answer">
               連絡信箱：kennych063@gmail.com <br />
@@ -218,37 +94,9 @@ const goBack = () => {
           <div>
             <input type="checkbox" id="question5" class="all-question" />
             <label for="question5" class="question question5">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-                data-slot="icon"
-                class="m-1 text-zinc-200"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                ></path>
-              </svg>
+              <Human class="m-1 text-zinc-200" />
               <h3>吳宜臻</h3>
-              <svg
-                class="dropdown-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                st
-                data-slot="icon"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                ></path>
-              </svg>
+              <AngleD class="dropdown-icon" />
             </label>
             <p class="answer">
               連絡信箱：enyawu0119@gmail.com <br />
@@ -261,37 +109,9 @@ const goBack = () => {
           <div>
             <input type="checkbox" id="question6" class="all-question" />
             <label for="question6" class="question question6">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-                data-slot="icon"
-                class="m-1 text-zinc-200"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                ></path>
-              </svg>
+              <Human class="m-1 text-zinc-200" />
               <h3>呂旻叡</h3>
-              <svg
-                class="dropdown-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                st
-                data-slot="icon"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                ></path>
-              </svg>
+              <AngleD class="dropdown-icon" />
             </label>
             <p class="answer">
               連絡信箱：miranda880502@gmail.com <br />
@@ -304,37 +124,9 @@ const goBack = () => {
           <div>
             <input type="checkbox" id="question7" class="all-question" />
             <label for="question7" class="question question7">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-                data-slot="icon"
-                class="m-1 text-zinc-200"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                ></path>
-              </svg>
+              <Human class="m-1 text-zinc-200" />
               <h3>吳佳樺</h3>
-              <svg
-                class="dropdown-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                st
-                data-slot="icon"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                ></path>
-              </svg>
+              <AngleD class="dropdown-icon" />
             </label>
             <p class="answer">
               連絡信箱：miku071522@gmail.com <br />
