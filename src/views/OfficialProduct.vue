@@ -5,7 +5,7 @@ import Notice from '@/components/notice/Notice.vue'
 import MainFooter from '@/components/home/MainFooter.vue'
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
-import Horn from '@/components/svg/horn.vue'
+import Horn from '@/components/svg/Horn.vue'
 
 const API_URL = import.meta.env.VITE_API_URL
 
