@@ -82,7 +82,7 @@ const groupedCards = computed(() => {
       (a, b) => colorOrder.indexOf(a.color) - colorOrder.indexOf(b.color)
     )
   }
-  
+
   if (sortBy.value === 'type') {
     const typeOrder = ['キャラ', 'イベント', 'クライマックス']
     sorted = sorted.sort(
@@ -632,7 +632,7 @@ onBeforeUnmount(() => {
             <div class="description-item description2">編輯文章</div>
           </button>
           <button v-else class="social-btn-item social-btn2" @click="copyDeck">
-            <Copy  />
+            <Copy />
             <div class="description-item description2">複製牌組</div>
           </button>
           <button
@@ -640,7 +640,7 @@ onBeforeUnmount(() => {
             @click="deleteArticle"
             class="social-btn-item social-btn3"
           >
-          <Delete  />
+            <Delete />
             <div class="description-item description3">刪除文章</div>
           </button>
           <button
@@ -648,7 +648,7 @@ onBeforeUnmount(() => {
             class="social-btn-item social-btn3"
             @click="toggleRemitCard"
           >
-          <Download  />
+            <Download />
             <div class="description-item description3">匯出牌組</div>
           </button>
           <Notice />
@@ -656,7 +656,7 @@ onBeforeUnmount(() => {
             <NavLoginBtn />
           </div>
           <button class="social-btn-item social-btn5">
-            <Litter  />
+            <Litter />
             <div class="description-item description5">複製牌組</div>
             <div class="description-item description6">匯出牌組</div>
           </button>
@@ -695,11 +695,11 @@ onBeforeUnmount(() => {
                 </span>
               </div>
               <span class="data-item">
-                <Card  />
+                <Card />
                 總數{{ cards.length }}張
               </span>
               <span class="data-item">
-                <Cash  />
+                <Cash />
                 總價
                 <span>{{ totalPrice }}円</span>
               </span>
@@ -721,7 +721,7 @@ onBeforeUnmount(() => {
         <div class="article-area">
           <div class="text-container">
             <div class="article-title">
-              <ChatBox  />
+              <ChatBox />
               <span>文章內容</span>
             </div>
             <div class="article-content">
@@ -736,7 +736,7 @@ onBeforeUnmount(() => {
                 <img :src="currentUser?.picture || userPicture" alt="" />
               </div>
               <div class="message">
-                <Message  />
+                <Message />
                 <input
                   class="enter-message"
                   type="text"
@@ -744,7 +744,7 @@ onBeforeUnmount(() => {
                   v-model="newMessage"
                 />
                 <button @click="sendMessage">
-                  <SendMessage  />
+                  <SendMessage />
                 </button>
               </div>
             </div>
@@ -777,7 +777,7 @@ onBeforeUnmount(() => {
                       </div>
                       <div class="dot">
                         <button @click="toggleMenu(message.id)">
-                          <Dot  /> 
+                          <Dot />
                         </button>
                         <div
                           class="dot-menu"
@@ -785,11 +785,11 @@ onBeforeUnmount(() => {
                           v-if="message.showMenu"
                         >
                           <a class="edit" @click.stop="toggleEdit(message)">
-                            <Edit  />
+                            <Edit />
                             <span>編輯</span>
                           </a>
                           <a class="delete" @click="deleteMessage(message.id)">
-                            <Delete  />
+                            <Delete />
                             <span>刪除</span>
                           </a>
                         </div>
@@ -818,7 +818,7 @@ onBeforeUnmount(() => {
                         @click="submitEdit(message)"
                         class="flex-none rounded-full py-1 pl-1 pr-2 flex items-center bg-white text-zinc-800 send-btn"
                       >
-                      <AngleR  />
+                        <AngleR />
                         <span class="text-xs text-mono leading-none font-bold"
                           >送出</span
                         >
@@ -828,7 +828,7 @@ onBeforeUnmount(() => {
                         @click="cancelEdit(message)"
                         class="flex-none rounded-full py-1 pl-1 pr-2 flex items-center bg-amber-600 text-white cancel-btn"
                       >
-                      <AngleR  />
+                        <AngleR />
                         <span class="text-xs text-mono leading-none font-bold"
                           >取消</span
                         >
@@ -864,21 +864,21 @@ onBeforeUnmount(() => {
                         @click="toggleHate(message)"
                       >
                         <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            aria-hidden="true"
-                            data-slot="icon"
-                            :class="{ 'bg-gray': message.hated }"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M7.498 15.25H4.372c-1.026 0-1.945-.694-2.054-1.715a12.137 12.137 0 0 1-.068-1.285c0-2.848.992-5.464 2.649-7.521C5.287 4.247 5.886 4 6.504 4h4.016a4.5 4.5 0 0 1 1.423.23l3.114 1.04a4.5 4.5 0 0 0 1.423.23h1.294M7.498 15.25c.618 0 .991.724.725 1.282A7.471 7.471 0 0 0 7.5 19.75 2.25 2.25 0 0 0 9.75 22a.75.75 0 0 0 .75-.75v-.633c0-.573.11-1.14.322-1.672.304-.76.93-1.33 1.653-1.715a9.04 9.04 0 0 0 2.86-2.4c.498-.634 1.226-1.08 2.032-1.08h.384m-10.253 1.5H9.7m8.075-9.75c.01.05.027.1.05.148.593 1.2.925 2.55.925 3.977 0 1.487-.36 2.89-.999 4.125m.023-8.25c-.076-.365.183-.75.575-.75h.908c.889 0 1.713.518 1.972 1.368.339 1.11.521 2.287.521 3.507 0 1.553-.295 3.036-.831 4.398-.306.774-1.086 1.227-1.918 1.227h-1.053c-.472 0-.745-.556-.5-.96a8.95 8.95 0 0 0 .303-.54"
-                            ></path>
-                          </svg>
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          aria-hidden="true"
+                          data-slot="icon"
+                          :class="{ 'bg-gray': message.hated }"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M7.498 15.25H4.372c-1.026 0-1.945-.694-2.054-1.715a12.137 12.137 0 0 1-.068-1.285c0-2.848.992-5.464 2.649-7.521C5.287 4.247 5.886 4 6.504 4h4.016a4.5 4.5 0 0 1 1.423.23l3.114 1.04a4.5 4.5 0 0 0 1.423.23h1.294M7.498 15.25c.618 0 .991.724.725 1.282A7.471 7.471 0 0 0 7.5 19.75 2.25 2.25 0 0 0 9.75 22a.75.75 0 0 0 .75-.75v-.633c0-.573.11-1.14.322-1.672.304-.76.93-1.33 1.653-1.715a9.04 9.04 0 0 0 2.86-2.4c.498-.634 1.226-1.08 2.032-1.08h.384m-10.253 1.5H9.7m8.075-9.75c.01.05.027.1.05.148.593 1.2.925 2.55.925 3.977 0 1.487-.36 2.89-.999 4.125m.023-8.25c-.076-.365.183-.75.575-.75h.908c.889 0 1.713.518 1.972 1.368.339 1.11.521 2.287.521 3.507 0 1.553-.295 3.036-.831 4.398-.306.774-1.086 1.227-1.918 1.227h-1.053c-.472 0-.745-.556-.5-.96a8.95 8.95 0 0 0 .303-.54"
+                          ></path>
+                        </svg>
                       </button>
                     </div>
                   </div>
@@ -918,7 +918,7 @@ onBeforeUnmount(() => {
                         </div>
                         <div class="dot">
                           <button @click="toggleMenu(message.id)">
-                            <Dot  />
+                            <Dot />
                           </button>
                           <div
                             class="dot-menu"
@@ -933,7 +933,7 @@ onBeforeUnmount(() => {
                               class="delete"
                               @click="deleteMessage(message.id)"
                             >
-                            <Delete  />
+                              <Delete />
                               <span>刪除</span>
                             </a>
                           </div>
@@ -962,7 +962,7 @@ onBeforeUnmount(() => {
                           @click="submitEdit(message)"
                           class="flex-none rounded-full py-1 pl-1 pr-2 flex items-center bg-white text-zinc-800 send-btn"
                         >
-                          <AngleR  />
+                          <AngleR />
                           <span class="text-xs text-mono leading-none font-bold"
                             >送出</span
                           >
@@ -972,7 +972,7 @@ onBeforeUnmount(() => {
                           @click="cancelEdit(message)"
                           class="flex-none rounded-full py-1 pl-1 pr-2 flex items-center bg-amber-600 text-white cancel-btn"
                         >
-                          <Delete  />
+                          <Delete />
                           <span class="text-xs text-mono leading-none font-bold"
                             >取消</span
                           >
@@ -1044,7 +1044,7 @@ onBeforeUnmount(() => {
                 @click="setSortBy('type')"
                 :class="{ active: sortBy === 'type' }"
               >
-              <TypeGroup  />
+                <TypeGroup />
                 <span>類型</span>
               </button>
               <button
@@ -1052,7 +1052,7 @@ onBeforeUnmount(() => {
                 @click="setSortBy('color')"
                 :class="{ active: sortBy === 'color' }"
               >
-              <TypeGroup  />
+                <TypeGroup />
                 <span>顏色</span>
               </button>
               <button
@@ -1060,7 +1060,7 @@ onBeforeUnmount(() => {
                 @click="setSortBy('level')"
                 :class="{ active: sortBy === 'level' }"
               >
-              <TypeGroup  />
+                <TypeGroup />
                 <span>等級</span>
               </button>
               <button
@@ -1069,7 +1069,7 @@ onBeforeUnmount(() => {
                 @click="setSortBy('rare')"
                 :class="{ active: sortBy === 'rare' }"
               >
-              <TypeGroup  />
+                <TypeGroup />
                 <span>稀有度</span>
               </button>
               <button
@@ -1077,7 +1077,7 @@ onBeforeUnmount(() => {
                 @click="setSortBy('seriesCode')"
                 :class="{ active: sortBy === 'seriesCode' }"
               >
-              <TypeGroup  />
+                <TypeGroup />
                 <span>商品</span>
               </button>
             </div>
@@ -1089,7 +1089,7 @@ onBeforeUnmount(() => {
                   backgroundColor: togglePriceView ? '#060608' : '#06b6d4',
                 }"
               >
-              <Cash  />
+                <Cash />
                 <div class="func-text func-text4">開啟價格</div>
               </button>
               <button
@@ -1097,7 +1097,7 @@ onBeforeUnmount(() => {
                 @click="toggleTableView = true"
                 :style="{ backgroundColor: toggleTableView ? '#06b6d4' : '' }"
               >
-              <Table  />
+                <Table />
                 <div class="func-text func-text5">表格顯示</div>
               </button>
               <button
@@ -1105,7 +1105,7 @@ onBeforeUnmount(() => {
                 @click="toggleTableView = false"
                 :style="{ backgroundColor: !toggleTableView ? '#06b6d4' : '' }"
               >
-              <CardInfo  />
+                <CardInfo />
                 <div class="func-text func-text6">卡片資訊</div>
               </button>
             </div>
@@ -1141,7 +1141,7 @@ onBeforeUnmount(() => {
                 :key="card.index"
               >
                 <p class="price-row" v-if="!togglePriceView">
-                  <CashJP  />
+                  <CashJP />
                   <span class="price-row-text">{{ card.price.number }}</span>
                   <span class="price-row-text">{{ card.rare }}</span>
                 </p>
@@ -1189,7 +1189,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
 svg {
-  stroke-width:1.5px;
+  stroke-width: 1.5px;
 }
 .price-row {
   display: flex;
