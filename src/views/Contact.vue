@@ -29,7 +29,7 @@ const handleBack = () => {
           @click="handleBack"
           class="flex-none p-1 rounded-full bg-black/50 text-white default-transition hover:bg-zinc-800/50"
         >
-        <ArrowLeft/>
+          <ArrowLeft />
         </button>
         <div class="w-full min-w-0 font-bold text-white justify-start">
           <h2 class="header-title truncate text-2xl font-bold">與我聯絡</h2>
@@ -83,9 +83,9 @@ const handleBack = () => {
               <div>
                 <input type="checkbox" id="question1" />
                 <label for="question1" class="question question1">
-                  <Question/>
+                  <Question />
                   <h3>Capie是什麼？</h3>
-                  <ArrowDown/>
+                  <ArrowDown />
                 </label>
                 <p class="answer">
                   Capie是一個線上的卡牌組牌工具，提供各種便利的功能，讓您可以輕鬆的組牌、分享牌組、查詢卡片等等。
@@ -95,9 +95,9 @@ const handleBack = () => {
               <div>
                 <input type="checkbox" id="question2" />
                 <label for="question2" class="question question2">
-                  <Question/>
+                  <Question />
                   <h3>是否有手機版可以用？</h3>
-                  <ArrowDown/>
+                  <ArrowDown />
                 </label>
                 <p class="answer">
                   目前Capie以全網站式開發，但您能可以透過以下方式加入至主畫面：<br /><br />
@@ -119,9 +119,9 @@ const handleBack = () => {
               <div>
                 <input type="checkbox" id="question3" />
                 <label for="question3" class="question question3">
-                  <Question/>
+                  <Question />
                   <h3>我的Capie打不開或是轉圈圈？</h3>
-                  <ArrowDown/>
+                  <ArrowDown />
                 </label>
                 <p class="answer">
                   請您先確認處於網路良好狀態，並嘗試著重新開啟網站/應用程式，<br />
@@ -131,9 +131,9 @@ const handleBack = () => {
               <div>
                 <input type="checkbox" id="question4" />
                 <label for="question4" class="question question4">
-                  <Question/>
+                  <Question />
                   <h3>我是新手，我要怎麼開始呢？</h3>
-                  <ArrowDown/>
+                  <ArrowDown />
                 </label>
                 <p class="answer">
                   由於Capie提供很多功能，您可以首先到 "系列卡表"
@@ -152,9 +152,9 @@ const handleBack = () => {
               <div>
                 <input type="checkbox" id="question5" />
                 <label for="question5" class="question question5">
-                  <Question/>
+                  <Question />
                   <h3>我要怎麼加入英雄會員呢？</h3>
-                  <ArrowDown/>
+                  <ArrowDown />
                 </label>
                 <p class="answer">
                   英雄榜的會員，可以到工作坊找到 "加入英雄榜" 按鈕。<br />
@@ -164,9 +164,9 @@ const handleBack = () => {
               <div>
                 <input type="checkbox" id="question6" />
                 <label for="question6" class="question question6">
-                  <Question/>
+                  <Question />
                   <h3>是否有其他資源？</h3>
-                  <ArrowDown/>
+                  <ArrowDown />
                 </label>
                 <p class="answer">
                   目前Capie搜集來自<span
@@ -179,9 +179,9 @@ const handleBack = () => {
               <div>
                 <input type="checkbox" id="question7" />
                 <label for="question7" class="question question7">
-                  <Question/>
+                  <Question />
                   <h3>Capie與武士道</h3>
-                  <ArrowDown/>
+                  <ArrowDown />
                 </label>
                 <p class="answer">
                   Capie提供的 Weiβ Schwarz 卡牌資訊以及卡圖，皆為<span
@@ -193,9 +193,9 @@ const handleBack = () => {
               <div>
                 <input type="checkbox" id="question8" />
                 <label for="question8" class="question question8">
-                  <Question/>
+                  <Question />
                   <h3>其他問題與我們態度</h3>
-                  <ArrowDown/>
+                  <ArrowDown />
                 </label>
                 <p class="answer">
                   保持正向、保持快樂、持續改善。 <br />

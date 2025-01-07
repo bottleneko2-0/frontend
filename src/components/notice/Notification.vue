@@ -93,10 +93,11 @@ onMounted(() => {
     <SideBar class="sidebar-container" />
     <header class="h-16 z-10">
       <nav class="header-container">
-        <button @click="goBack"
+        <button
+          @click="goBack"
           class="flex-none p-1 rounded-full bg-black/50 text-white default-transition hover:bg-zinc-800/50"
         >
-        <ArrowLeft />
+          <ArrowLeft />
         </button>
         <div class="w-full min-w-0 font-bold text-white justify-start">
           <h2 class="header-title truncate text-2xl font-bold">通知</h2>
@@ -125,7 +126,7 @@ onMounted(() => {
             <div
               class="flex-none w-[3rem] h-[3rem] rounded-full bg-zinc-500/50 grid place-content-center"
             >
-            <Message/>
+              <Message />
             </div>
             <div>
               <h3 class="font-bold line-clamp-2 break-all">
@@ -141,7 +142,7 @@ onMounted(() => {
             <button
               class="flex-none text-white ml-auto rounded-full p-1 bg-zinc-500/20 default-transition"
             >
-            <ArrowRight/>
+              <ArrowRight />
             </button>
           </a>
         </section>

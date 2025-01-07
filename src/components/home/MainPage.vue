@@ -248,23 +248,23 @@ onBeforeUnmount(() => {
                 <span>官方牌組</span>
               </div>
               <div>
-                <Cube/>
+                <Cube />
                 <span>上傳至官方</span>
               </div>
               <div>
-                <Cube/>
+                <Cube />
                 <span>匯出圖片</span>
               </div>
               <div>
-                <Cube/>
+                <Cube />
                 <span>匯出檔案</span>
               </div>
               <div>
-                <Cube/>
+                <Cube />
                 <span>匯出賽用表</span>
               </div>
               <div>
-                <Cube/>
+                <Cube />
                 <span>More...</span>
               </div>
             </div>
@@ -584,33 +584,33 @@ onBeforeUnmount(() => {
           <div class="link-area1">
             <h3>實用連結</h3>
             <a href="https://bottleneko.app/policy" target="_blank">
-              <Link stroke="#e4e4e7"/>
+              <Link stroke="#e4e4e7" />
               <span>隱私權政策</span>
             </a>
             <a href="https://bottleneko.app/eula" target="_blank">
-              <Link stroke="#e4e4e7"/>
+              <Link stroke="#e4e4e7" />
               <span>服務條款</span>
             </a>
           </div>
           <div class="link-area2">
             <h3>外部連結</h3>
             <a href="https://ws-tcg.com/" target="_blank">
-              <Link stroke="#e4e4e7"/>
+              <Link stroke="#e4e4e7" />
               <span>Weiβ Schwarz</span>
             </a>
             <a href="https://yuyu-tei.jp/" target="_blank">
-              <Link stroke="#e4e4e7"/>
+              <Link stroke="#e4e4e7" />
               <span>遊々亭</span>
             </a>
           </div>
           <div class="link-area3">
             <h3>內部連結</h3>
             <a href="/team">
-              <Link stroke="#e4e4e7"/>
+              <Link stroke="#e4e4e7" />
               <span>關於我們</span>
             </a>
             <a href="/hero-member">
-              <Link stroke="#e4e4e7"/>
+              <Link stroke="#e4e4e7" />
               <span>成為英雄榜會員</span>
             </a>
           </div>

@@ -315,14 +315,14 @@ onBeforeUnmount(() => {
           @click="handleBack"
           class="flex-none p-1 text-white rounded-full bg-black/50 default-transition hover:bg-zinc-800/50"
         >
-        <ArrowLeft/>
+          <ArrowLeft />
         </button>
         <div class="justify-start w-full min-w-0 font-bold text-white">
           <h2 class="text-2xl font-bold truncate header-title">帳號管理</h2>
         </div>
         <div class="icons">
           <button class="logout" @click="logout">
-            <Logout/>
+            <Logout />
             <p class="logout-txt">登出</p>
           </button>
         </div>
@@ -354,23 +354,23 @@ onBeforeUnmount(() => {
                   alt="使用者頭像"
                   class="object-cover w-full h-full"
                 />
-                <img src="@/components/svg/ProfilePicture.vue" v-else>
+                <img src="@/components/svg/ProfilePicture.vue" v-else />
               </div>
               <div
                 class="absolute inset-0 grid text-white rounded-full opacity-0 group-hover:opacity-100 default-transition bg-black/50 place-content-center"
               >
-              <ProfileImg/>
+                <ProfileImg />
               </div>
             </label>
             <div class="account-info-right-area">
               <div class="e-mail">
-                <Email/>
+                <Email />
                 <p>{{ email }}</p>
               </div>
               <div v-if="!isEditingName" class="edit">
                 <h1>{{ name }}</h1>
                 <label for="editName" @click="editName" class="cursor-pointer">
-                  <Edit/>
+                  <Edit />
                 </label>
               </div>
               <div v-else class="flex items-center gap-2">
@@ -387,22 +387,22 @@ onBeforeUnmount(() => {
                   @click="saveName"
                   class="flex-none p-1 text-white rounded-full cursor-pointer btn btn-sm bg-green-400/70 hover:bg-green-400"
                 >
-                <Check/>
+                  <Check />
                 </button>
                 <button
                   @click="cancelEdit"
                   class="flex-none p-1 text-white rounded-full cursor-pointer btn btn-sm bg-red-400/70 hover:bg-red-400"
                 >
-                <Cancel/>
+                  <Cancel />
                 </button>
               </div>
               <div class="card-and-article">
                 <div class="card">
-                  <Deck/>
+                  <Deck />
                   <a href=""> 共有 {{ deckCount }} 副牌組 </a>
                 </div>
                 <div class="article">
-                  <Global/>
+                  <Global />
                   <a href=""> 共有 {{ postCount }} 篇文章 </a>
                 </div>
               </div>
@@ -435,7 +435,9 @@ onBeforeUnmount(() => {
                     </div>
                     <div class="mt-2 md:mt-4 min-h-0 md:min-h-[62px]">
                       <div class="flex gap-1 font-mono text-zinc-400">
-                        <Deck style="fill: #a1a1aa; width: 16px; height: 16px;"/>
+                        <Deck
+                          style="fill: #a1a1aa; width: 16px; height: 16px"
+                        />
                         <p class="text-xs truncate">{{ deck.deck_id }}</p>
                       </div>
                       <p
@@ -459,10 +461,10 @@ onBeforeUnmount(() => {
                         <span
                           class="animate-ping h-[6rem] w-[6rem] rounded-full bg-gradient-to-r from-cyan-500 to-blue-500"
                         ></span>
-                        <Book/>
+                        <Book />
                       </div>
                       <span>閱讀更多</span>
-                      <ArrowR/>
+                      <ArrowR />
                     </div>
                   </a>
                 </section>
@@ -497,7 +499,7 @@ onBeforeUnmount(() => {
                     </div>
                     <div class="mt-2 md:mt-4 min-h-0 md:min-h-[62px]">
                       <div class="flex gap-1 font-mono text-zinc-400">
-                        <Global style="width: 16px; height: 16px;"/>
+                        <Global style="width: 16px; height: 16px" />
                         <p class="text-xs truncate">{{ post.post_code }}</p>
                       </div>
                       <p
@@ -521,10 +523,10 @@ onBeforeUnmount(() => {
                         <span
                           class="animate-ping h-[6rem] w-[6rem] rounded-full bg-gradient-to-r from-cyan-500 to-blue-500"
                         ></span>
-                        <Book/>
+                        <Book />
                       </div>
                       <span>閱讀更多</span>
-                      <ArrowR/>
+                      <ArrowR />
                     </div>
                   </a>
                 </section>
@@ -538,11 +540,11 @@ onBeforeUnmount(() => {
                 </h2>
                 <div class="main-setting-bar">
                   <button @click="logout">
-                    <Logout/>
+                    <Logout />
                     <span>登出</span>
                   </button>
                   <button @click="refreshPage">
-                    <Refresh/>
+                    <Refresh />
                     <span>重新整理</span>
                   </button>
                 </div>

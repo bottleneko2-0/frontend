@@ -89,7 +89,7 @@ onMounted(() => {
         for="notice-jump"
         class="inline-flex items-center p-1 text-center text-white rounded-full cursor-pointer default-transition hover:bg-zinc-800/50"
       >
-      <Notice/>
+        <Notice />
         <span
           v-if="unreadCount > 0"
           class="absolute -top-1 -right-1 text-xs rounded-full px-1 bg-red-500 text-white pb-[2px]"
@@ -115,7 +115,7 @@ onMounted(() => {
             <div
               class="flex-none w-[3rem] h-[3rem] rounded-full bg-zinc-500/50 grid place-content-center"
             >
-            <Message/>
+              <Message />
             </div>
             <div class="select-none">
               <h3 class="font-bold break-all line-clamp-2">
@@ -131,7 +131,7 @@ onMounted(() => {
             <button
               class="flex-none p-1 ml-auto text-white rounded-full bg-zinc-500/20 default-transition"
             >
-            <ArrowRight/>
+              <ArrowRight />
             </button>
           </a>
         </div>
