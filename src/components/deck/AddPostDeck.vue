@@ -8,6 +8,12 @@ import Notice from '@/components/notice/Notice.vue'
 import NavLoginBtn from '@/components/login/NavLoginBtn.vue'
 import MainFooter from '@/components/home/MainFooter.vue'
 import Editor from '@tinymce/tinymce-vue'
+import AngleL from '@/components/svg/AngleL.vue'
+import ArrowR from '@/components/svg/ArrowR.vue'
+import Ball from '@/components/svg/Ball.vue'
+import Content from '@/components/svg/Content.vue'
+import Deck from '@/components/svg/Deck.vue'
+import Earth from '@/components/svg/Earth.vue'
 
 const Tiny_API_KEY = import.meta.env.VITE_Tiny_API_KEY
 const router = useRouter()
@@ -149,11 +155,7 @@ const clearSearch = () => {
 }
 
 const goBack = () => {
-  if (window.history.length > 1) {
-    window.history.back()
-  } else {
-    router.push('/')
-  }
+  router.go(-1)
 }
 
 onMounted(() => {
@@ -168,78 +170,15 @@ onMounted(() => {
     <header>
       <div class="pagebtn-area">
         <button class="page-btn" @click="goBack">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="h-6 w-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M15.75 19.5 8.25 12l7.5-7.5"
-            ></path>
-          </svg>
-        </button>
-        <button class="page-btn next-btn">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="h-6 w-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="m8.25 4.5 7.5 7.5-7.5 7.5"
-            ></path>
-          </svg>
+          <AngleL />
         </button>
         <h2>新增文章</h2>
       </div>
       <div class="btn-area">
         <button class="submit-btn" @click="submitArticle">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="flex-none size-5 stroke-2"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 0 0-8.862 12.872M12.75 3.031a9 9 0 0 1 6.69 14.036m0 0-.177-.529A2.25 2.25 0 0 0 17.128 15H16.5l-.324-.324a1.453 1.453 0 0 0-2.328.377l-.036.073a1.586 1.586 0 0 1-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 0 1-5.276 3.67m0 0a9 9 0 0 1-10.275-4.835M15.75 9c0 .896-.393 1.7-1.016 2.25"
-            ></path>
-          </svg>
+          <Earth />
           <span>送出</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="flex-none size-5 stroke-2"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-            ></path>
-          </svg>
+          <ArrowR  />
         </button>
         <Notice />
         <div class="user-sign">
@@ -249,45 +188,12 @@ onMounted(() => {
     </header>
     <section class="title-area">
       <div class="title-area-container">
-        <button class="upload-btn" @click="handleButtonClick">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="w-20 h-20"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2M12 4v12m0-12 4 4m-4-4L8 8"
-            ></path>
-          </svg>
-
+        <button class="upload-btn">
           <img :src="deckData.deck_cover" alt="" />
         </button>
         <div class="add-section">
           <div class="add-article">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-              data-slot="icon"
-              class="size-5 md:size-6 flex-none"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"
-              ></path>
-            </svg>
+            <Ball />
             <p>新增文章</p>
           </div>
           <input
@@ -298,22 +204,7 @@ onMounted(() => {
           />
           <div class="card-select-area" style="position: relative">
             <button class="card-select-btn" @click="toggleMenu">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-                data-slot="icon"
-                class="size-5 md:size-6 flex-none"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
-                ></path>
-              </svg>
+              <Deck />
               <p>{{ deckData.deck_name }}</p>
             </button>
             <ul
@@ -339,22 +230,7 @@ onMounted(() => {
                 v-if="decks && decks.length"
                 @click="selectDeck(deck)"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                  class="size-5 md:size-6 flex-none"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
-                  ></path>
-                </svg>
+                <Deck />
                 <p class="text-xs truncate">{{ deck.deck_name }}</p>
               </li>
             </ul>
@@ -369,22 +245,7 @@ onMounted(() => {
     <section class="text-area">
       <div class="edit-area">
         <div class="message-tag">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="text-white/50 size-8"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z"
-            ></path>
-          </svg>
+          <Content />
         </div>
 
         <editor
@@ -489,6 +350,7 @@ onMounted(() => {
   width: 20px;
   height: 20px;
   stroke: #292828;
+  stroke-width: 1.5px;
 }
 
 .submit-btn span {
@@ -556,21 +418,6 @@ header {
   top: 0;
 }
 
-.upload-btn svg {
-  width: 85px;
-  height: 85px;
-  --tw-text-opacity: 1;
-  color: rgb(228 228 231 / var(--tw-text-opacity, 1));
-  visibility: hidden;
-  opacity: 0;
-  transition: ease 0.2s;
-}
-
-.upload-btn:hover svg {
-  visibility: visible;
-  opacity: 1;
-}
-
 .add-section {
   width: 100%;
   margin-left: 32px;
@@ -586,6 +433,7 @@ header {
   width: 24px;
   height: 24px;
   color: white;
+  stroke-width: 1.5px;
 }
 
 .add-article p {
@@ -683,11 +531,13 @@ header {
   height: 32px;
   border-radius: 20px;
   display: flex;
-  justify-content: center;
   align-items: center;
   border: none;
   background-color: #2fb7e7;
   cursor: pointer;
+  padding-left: 10px;
+  gap:5px;
+  box-sizing: border-box;
 }
 
 .card-select-btn p {
@@ -708,6 +558,7 @@ header {
   width: 24px;
   height: 24px;
   stroke: white;
+  stroke-width: 1.5px;
 }
 
 .cannot-change {

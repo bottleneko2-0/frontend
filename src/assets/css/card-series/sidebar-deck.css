@@ -253,6 +253,12 @@
   font-weight: 700;
 }
 
+.currency-icon {
+  width: 20px;
+  height: 20px;
+  stroke: #c9a83d;
+}
+
 .card-image {
   display: flex;
   position: relative;
