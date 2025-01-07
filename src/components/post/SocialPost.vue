@@ -500,9 +500,8 @@ const deleteArticle = async () => {
           background: '#27272a',
           timer: 1500,
         })
-        
-        router.push('/social')
 
+        router.push('/social')
       } catch (error) {
         if (error.response && error.response.status === 403) {
           Swal.fire({
