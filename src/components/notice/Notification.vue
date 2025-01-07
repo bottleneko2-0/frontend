@@ -7,8 +7,8 @@ import SideBar from '@/components/home/SidebarGrid.vue'
 import Notice from '@/components/notice/Notice.vue'
 import Footer from '@/components/home/MainFooter.vue'
 import Login from '@/components/login/NavLoginBtn.vue'
-import ArrowLeft from '@/components/svg/ArrowLeft.vue'
-import ArrowRight from '@/components/svg/ArrowRight.vue'
+import AngleL from '@/components/svg/AngleL.vue'
+import AngleR from '@/components/svg/AngleR.vue'
 import Message from '@/components/svg/Message.vue'
 
 const BASE_URL = import.meta.env.VITE_BASE_URL
@@ -97,7 +97,7 @@ onMounted(() => {
           @click="goBack"
           class="flex-none p-1 rounded-full bg-black/50 text-white default-transition hover:bg-zinc-800/50"
         >
-          <ArrowLeft />
+          <AngleL />
         </button>
         <div class="w-full min-w-0 font-bold text-white justify-start">
           <h2 class="header-title truncate text-2xl font-bold">通知</h2>
@@ -142,7 +142,7 @@ onMounted(() => {
             <button
               class="flex-none text-white ml-auto rounded-full p-1 bg-zinc-500/20 default-transition"
             >
-              <ArrowRight />
+              <AngleR />
             </button>
           </a>
         </section>

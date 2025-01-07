@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue'
 import dayjs from 'dayjs'
 import axios from 'axios'
-import ArrowRight from '@/components/svg/ArrowRight.vue'
+import AngleR from '@/components/svg/AngleR.vue'
 import Message from '@/components/svg/Message.vue'
 import Notice from '@/components/svg/Notice.vue'
 
@@ -131,7 +131,7 @@ onMounted(() => {
             <button
               class="flex-none p-1 ml-auto text-white rounded-full bg-zinc-500/20 default-transition"
             >
-              <ArrowRight />
+              <AngleR />
             </button>
           </a>
         </div>

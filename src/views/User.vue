@@ -8,7 +8,7 @@ import SideBar from '@/components/home/SidebarGrid.vue'
 import Notice from '@/components/notice/Notice.vue'
 import Login from '@/components/login/NavLoginBtn.vue'
 import MainFooter from '@/components/home/MainFooter.vue'
-import ArrowLeft from '@/components/svg/ArrowLeft.vue'
+import AngleL from '@/components/svg/AngleL.vue'
 import Logout from '@/components/svg/Logout.vue'
 import Email from '@/components/svg/Email.vue'
 import Edit from '@/components/svg/Edit.vue'
@@ -315,7 +315,7 @@ onBeforeUnmount(() => {
           @click="handleBack"
           class="flex-none p-1 text-white rounded-full bg-black/50 default-transition hover:bg-zinc-800/50"
         >
-          <ArrowLeft />
+          <AngleL />
         </button>
         <div class="justify-start w-full min-w-0 font-bold text-white">
           <h2 class="text-2xl font-bold truncate header-title">帳號管理</h2>

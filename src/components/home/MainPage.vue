@@ -292,7 +292,7 @@ onBeforeUnmount(() => {
             <label for="question2" class="question question2">
               <Question />
               <h3>是否有手機版可以用？</h3>
-              <ArrowDown class="dropdown-icon"/>
+              <ArrowDown class="dropdown-icon" />
             </label>
             <p class="answer">
               目前Capie以全網站式開發，但您能可以透過以下方式加入至主畫面：<br /><br />
@@ -316,7 +316,7 @@ onBeforeUnmount(() => {
             <label for="question3" class="question question3">
               <Question />
               <h3>我的Capie打不開或是轉圈圈？</h3>
-              <ArrowDown class="dropdown-icon"/>
+              <ArrowDown class="dropdown-icon" />
             </label>
             <p class="answer">
               請您先確認處於網路良好狀態，並嘗試著重新開啟網站/應用程式，<br />
@@ -328,7 +328,7 @@ onBeforeUnmount(() => {
             <label for="question4" class="question question4">
               <Question />
               <h3>我是新手，我要怎麼開始呢？</h3>
-              <ArrowDown class="dropdown-icon"/>
+              <ArrowDown class="dropdown-icon" />
             </label>
             <p class="answer">
               由於Capie提供很多功能，您可以首先到 "系列卡表"
@@ -350,7 +350,7 @@ onBeforeUnmount(() => {
             <label for="question5" class="question question5">
               <Question />
               <h3>我要怎麼加入英雄會員呢？</h3>
-              <ArrowDown class="dropdown-icon"/>
+              <ArrowDown class="dropdown-icon" />
             </label>
             <p class="answer">
               英雄榜的會員，可以到工作坊找到 "加入英雄榜" 按鈕。<br />
@@ -362,7 +362,7 @@ onBeforeUnmount(() => {
             <label for="question6" class="question question6">
               <Question />
               <h3>是否有其他資源？</h3>
-              <ArrowDown class="dropdown-icon"/>
+              <ArrowDown class="dropdown-icon" />
             </label>
             <p class="answer">
               目前Capie搜集來自<span
@@ -377,7 +377,7 @@ onBeforeUnmount(() => {
             <label for="question7" class="question question7">
               <Question />
               <h3>Capie與武士道</h3>
-              <ArrowDown class="dropdown-icon"/>
+              <ArrowDown class="dropdown-icon" />
             </label>
             <p class="answer">
               Capie提供的 Weiβ Schwarz 卡牌資訊以及卡圖，皆為<span
@@ -391,7 +391,7 @@ onBeforeUnmount(() => {
             <label for="question8" class="question question8">
               <Question />
               <h3>其他問題與我們態度</h3>
-              <ArrowDown class="dropdown-icon"/>
+              <ArrowDown class="dropdown-icon" />
             </label>
             <p class="answer">
               保持正向、保持快樂、持續改善。 <br />
