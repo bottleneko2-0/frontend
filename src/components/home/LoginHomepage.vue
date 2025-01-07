@@ -52,12 +52,34 @@ const API_DATA = async () => {
       sellAt: formatDate(series.sell),
       code: formatValue(series.code.join(', ')),
     }))
+
+    // 新增 /api/day-card 的請求
+    const dayCardResponse = await axios.get(`${API_URL}/api/day-card`)
+    const dayCardData = dayCardResponse.data
+    items.value.dayCard = dayCardData.map((item) => ({
+      today: item.today,
+      image: item.image,
+      series: item.series,
+      sell: item.sell,
+    }))
+    if (items.value.dayCard.length > 0) {
+      displayCard.value = items.value.dayCard[0]
+    }
   } catch (err) {
     console.error('獲取資料失敗:', err.message)
   }
 }
-const items = ref({ topics: [], videos: [], latestProducts: [], series: [] })
-
+const items = ref({
+  topics: [],
+  videos: [],
+  latestProducts: [],
+  series: [],
+  dayCard: [],
+})
+const displayCard = ref(null)
+const updateDisplayCard = (index) => {
+  displayCard.value = items.value.dayCard[index]
+}
 // 格式化資料函數，避免顯示 null 或 undefined
 const formatValue = (value, defaultValue = '無資料') => {
   return value !== null && value !== undefined ? value : defaultValue
@@ -155,106 +177,36 @@ onMounted(async () => {
         </a>
       </h2>
       <div class="card2">
-        <h2>プレミアムブースター リコリス・リコイル</h2>
-        <span class="card2-top-span">▼2024/11/15（金）発売</span>
+        <h2 v-if="displayCard">
+          {{ displayCard.series }}
+        </h2>
+        <span class="card2-top-span" v-if="displayCard">
+          {{ displayCard.sell }}
+        </span>
         <!-- second swiper -->
         <div class="swiper second-swiper-container">
           <div class="swiper-wrapper second-swiper-wrapper">
-            <div class="swiper-slide second-swiper-slide">
+            <div
+              class="swiper-slide second-swiper-slide"
+              v-for="(image, imgIndex) in items.dayCard"
+              :key="imgIndex"
+              @mouseover="updateDisplayCard(imgIndex)"
+            >
               <a
                 href="#"
                 data-fancybox="card-list"
-                data-src="https://live.staticflickr.com/65535/54229641318_905fb943f7_o.png"
-                data-caption="ブースターパック 「Re:ゼロから始める異世界生活」Vol.3 - ▼2024/11/22（金）発売"
+                :data-src="image.image"
+                :data-caption="`${image.series} - ${image.sell}`"
               >
-                <img
-                  src="https://live.staticflickr.com/65535/54229641318_905fb943f7_o.png"
-                  alt=""
-                />
-              </a>
-            </div>
-            <div class="swiper-slide second-swiper-slide">
-              <a
-                href="#"
-                data-fancybox="card-list"
-                data-src="https://live.staticflickr.com/65535/54229641308_a3fccb7d05_o.png"
-                data-caption="ブースターパック 「Re:ゼロから始める異世界生活」Vol.3 - ▼2024/11/22（金）発売"
-              >
-                <img
-                  src="https://live.staticflickr.com/65535/54229641308_a3fccb7d05_o.png"
-                  alt=""
-                />
-              </a>
-            </div>
-            <div class="swiper-slide second-swiper-slide">
-              <a
-                href="#"
-                data-fancybox="card-list"
-                data-src="https://live.staticflickr.com/65535/54229815665_1020885b78_o.png"
-                data-caption="ブースターパック 「Re:ゼロから始める異世界生活」Vol.3 - ▼2024/11/22（金）発売"
-              >
-                <img
-                  src="https://live.staticflickr.com/65535/54229815665_1020885b78_o.png"
-                  alt=""
-                />
-              </a>
-            </div>
-            <div class="swiper-slide second-swiper-slide">
-              <a
-                href="#"
-                data-fancybox="card-list"
-                data-src="https://live.staticflickr.com/65535/54228504232_22ffd68a8c_o.png"
-                data-caption="ブースターパック 「Re:ゼロから始める異世界生活」Vol.3 - ▼2024/11/22（金）発売"
-              >
-                <img
-                  src="https://live.staticflickr.com/65535/54228504232_22ffd68a8c_o.png"
-                  alt=""
-                />
-              </a>
-            </div>
-            <div class="swiper-slide second-swiper-slide">
-              <a
-                href="#"
-                data-fancybox="card-list"
-                data-src="https://live.staticflickr.com/65535/54229413836_3068f8523a_o.png"
-                data-caption="プレミアムブースター リコリス・リコイル - ▼2024/11/15（金）発売"
-              >
-                <img
-                  src="https://live.staticflickr.com/65535/54229413836_3068f8523a_o.png"
-                  alt=""
-                />
-              </a>
-            </div>
-            <div class="swiper-slide second-swiper-slide">
-              <a
-                href="#"
-                data-fancybox="card-list"
-                data-src="https://live.staticflickr.com/65535/54229641303_b1a36453b7_o.png"
-                data-caption="プレミアムブースター リコリス・リコイル - ▼2024/11/15（金）発売"
-              >
-                <img
-                  src="https://live.staticflickr.com/65535/54229641303_b1a36453b7_o.png"
-                  alt=""
-                />
-              </a>
-            </div>
-            <div class="swiper-slide second-swiper-slide">
-              <a
-                href="#"
-                data-fancybox="card-list"
-                data-src="https://live.staticflickr.com/65535/54229641313_0be78bd7a4_o.png"
-                data-caption="プレミアムブースター リコリス・リコイル - ▼2024/11/15（金）発売"
-              >
-                <img
-                  src="https://live.staticflickr.com/65535/54229641313_0be78bd7a4_o.png"
-                  alt=""
-                />
+                <img :src="image.image" :alt="image.series" />
               </a>
             </div>
           </div>
         </div>
         <!-- second swiper -->
-        <span class="card2-bottom-span">2024-11-14</span>
+        <span class="card2-bottom-span" v-if="displayCard">
+          {{ displayCard.sell }}
+        </span>
       </div>
       <h2 class="title">發燒影片</h2>
       <div class="card3">
