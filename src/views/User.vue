@@ -623,16 +623,12 @@ onBeforeUnmount(() => {
                       </p>
                     </div>
                   </a>
-                  <a
-                    href="/mycard"
-                    class="overflow-hidden transition-colors url"
-                  >
+                  <a href="/deck" class="overflow-hidden transition-colors url">
                     <div class="read-more-area">
                       <div class="read-more">
                         <span
                           class="animate-ping h-[6rem] w-[6rem] rounded-full bg-gradient-to-r from-cyan-500 to-blue-500"
                         ></span>
-                        <!-- <span class="animation-ping"></span> -->
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
