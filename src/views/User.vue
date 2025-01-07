@@ -8,6 +8,18 @@ import SideBar from '@/components/home/SidebarGrid.vue'
 import Notice from '@/components/notice/Notice.vue'
 import Login from '@/components/login/NavLoginBtn.vue'
 import MainFooter from '@/components/home/MainFooter.vue'
+import AngleL from '@/components/svg/AngleL.vue'
+import Logout from '@/components/svg/Logout.vue'
+import Email from '@/components/svg/Email.vue'
+import Edit from '@/components/svg/Edit.vue'
+import Check from '@/components/svg/Check.vue'
+import Cancel from '@/components/svg/Cancel.vue'
+import Deck from '@/components/svg/Deck.vue'
+import Global from '@/components/svg/Global.vue'
+import Book from '@/components/svg/Book.vue'
+import ArrowR from '@/components/svg/ArrowR.vue'
+import Refresh from '@/components/svg/Refresh.vue'
+import ProfileImg from '@/components/svg/ProfileImg.vue'
 
 const API_URL = import.meta.env.VITE_API_URL
 const router = useRouter()
@@ -303,64 +315,14 @@ onBeforeUnmount(() => {
           @click="handleBack"
           class="flex-none p-1 text-white rounded-full bg-black/50 default-transition hover:bg-zinc-800/50"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="w-6 h-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M15.75 19.5 8.25 12l7.5-7.5"
-            ></path>
-          </svg>
-        </button>
-        <button
-          class="flex-none p-1 text-white rounded-full arrow-right bg-black/50 default-transition hover:bg-zinc-800/50 disabled:opacity-30"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="w-6 h-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="m8.25 4.5 7.5 7.5-7.5 7.5"
-            ></path>
-          </svg>
+          <AngleL />
         </button>
         <div class="justify-start w-full min-w-0 font-bold text-white">
           <h2 class="text-2xl font-bold truncate header-title">帳號管理</h2>
         </div>
         <div class="icons">
           <button class="logout" @click="logout">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-              data-slot="icon"
-              class="stroke-2 size-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"
-              ></path>
-            </svg>
+            <Logout />
             <p class="logout-txt">登出</p>
           </button>
         </div>
@@ -392,85 +354,23 @@ onBeforeUnmount(() => {
                   alt="使用者頭像"
                   class="object-cover w-full h-full"
                 />
-                <svg
-                  v-else
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                  class="m-1 text-zinc-200"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                  ></path>
-                </svg>
+                <img src="@/components/svg/ProfilePicture.vue" v-else />
               </div>
               <div
                 class="absolute inset-0 grid text-white rounded-full opacity-0 group-hover:opacity-100 default-transition bg-black/50 place-content-center"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                  class="w-20 h-20"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2M12 4v12m0-12 4 4m-4-4L8 8"
-                  />
-                </svg>
+                <ProfileImg />
               </div>
             </label>
             <div class="account-info-right-area">
               <div class="e-mail">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                  class="flex-none size-5 md:size-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
-                  ></path>
-                </svg>
+                <Email />
                 <p>{{ email }}</p>
               </div>
               <div v-if="!isEditingName" class="edit">
                 <h1>{{ name }}</h1>
                 <label for="editName" @click="editName" class="cursor-pointer">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                    data-slot="icon"
-                    class="size-5"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-                    ></path>
-                  </svg>
+                  <Edit />
                 </label>
               </div>
               <div v-else class="flex items-center gap-2">
@@ -487,82 +387,22 @@ onBeforeUnmount(() => {
                   @click="saveName"
                   class="flex-none p-1 text-white rounded-full cursor-pointer btn btn-sm bg-green-400/70 hover:bg-green-400"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                    data-slot="icon"
-                    class="size-5"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m4.5 12.75 6 6 9-13.5"
-                    ></path>
-                  </svg>
+                  <Check />
                 </button>
                 <button
                   @click="cancelEdit"
                   class="flex-none p-1 text-white rounded-full cursor-pointer btn btn-sm bg-red-400/70 hover:bg-red-400"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                    data-slot="icon"
-                    class="size-5"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M6 18 18 6M6 6l12 12"
-                    ></path>
-                  </svg>
+                  <Cancel />
                 </button>
               </div>
               <div class="card-and-article">
                 <div class="card">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                    data-slot="icon"
-                    class="flex-none size-5 md:size-6"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
-                    ></path>
-                  </svg>
+                  <Deck />
                   <a href=""> 共有 {{ deckCount }} 副牌組 </a>
                 </div>
                 <div class="article">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                    data-slot="icon"
-                    class="flex-none size-5 md:size-6"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"
-                    ></path>
-                  </svg>
+                  <Global />
                   <a href=""> 共有 {{ postCount }} 篇文章 </a>
                 </div>
               </div>
@@ -595,20 +435,9 @@ onBeforeUnmount(() => {
                     </div>
                     <div class="mt-2 md:mt-4 min-h-0 md:min-h-[62px]">
                       <div class="flex gap-1 font-mono text-zinc-400">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          aria-hidden="true"
-                          data-slot="icon"
-                          class="flex-none size-4"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M6.32 2.577a49.255 49.255 0 0 1 11.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 0 1-1.085.67L12 18.089l-7.165 3.583A.75.75 0 0 1 3.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93Z"
-                            clip-rule="evenodd"
-                          ></path>
-                        </svg>
+                        <Deck
+                          style="fill: #a1a1aa; width: 16px; height: 16px"
+                        />
                         <p class="text-xs truncate">{{ deck.deck_id }}</p>
                       </div>
                       <p
@@ -632,41 +461,10 @@ onBeforeUnmount(() => {
                         <span
                           class="animate-ping h-[6rem] w-[6rem] rounded-full bg-gradient-to-r from-cyan-500 to-blue-500"
                         ></span>
-                        <!-- <span class="animation-ping"></span> -->
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke-width="1.5"
-                          stroke="currentColor"
-                          aria-hidden="true"
-                          data-slot="icon"
-                          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[3rem] w-[3rem] stroke-2"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"
-                          ></path>
-                        </svg>
+                        <Book />
                       </div>
                       <span>閱讀更多</span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        aria-hidden="true"
-                        data-slot="icon"
-                        class="mx-auto size-6"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                        ></path>
-                      </svg>
+                      <ArrowR />
                     </div>
                   </a>
                 </section>
@@ -701,18 +499,7 @@ onBeforeUnmount(() => {
                     </div>
                     <div class="mt-2 md:mt-4 min-h-0 md:min-h-[62px]">
                       <div class="flex gap-1 font-mono text-zinc-400">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          aria-hidden="true"
-                          data-slot="icon"
-                          class="flex-none size-4"
-                        >
-                          <path
-                            d="M21.721 12.752a9.711 9.711 0 0 0-.945-5.003 12.754 12.754 0 0 1-4.339 2.708 18.991 18.991 0 0 1-.214 4.772 17.165 17.165 0 0 0 5.498-2.477ZM14.634 15.55a17.324 17.324 0 0 0 .332-4.647c-.952.227-1.945.347-2.966.347-1.021 0-2.014-.12-2.966-.347a17.515 17.515 0 0 0 .332 4.647 17.385 17.385 0 0 0 5.268 0ZM9.772 17.119a18.963 18.963 0 0 0 4.456 0A17.182 17.182 0 0 1 12 21.724a17.18 17.18 0 0 1-2.228-4.605ZM7.777 15.23a18.87 18.87 0 0 1-.214-4.774 12.753 12.753 0 0 1-4.34-2.708 9.711 9.711 0 0 0-.944 5.004 17.165 17.165 0 0 0 5.498 2.477ZM21.356 14.752a9.765 9.765 0 0 1-7.478 6.817 18.64 18.64 0 0 0 1.988-4.718 18.627 18.627 0 0 0 5.49-2.098ZM2.644 14.752c1.682.971 3.53 1.688 5.49 2.099a18.64 18.64 0 0 0 1.988 4.718 9.765 9.765 0 0 1-7.478-6.816ZM13.878 2.43a9.755 9.755 0 0 1 6.116 3.986 11.267 11.267 0 0 1-3.746 2.504 18.63 18.63 0 0 0-2.37-6.49ZM12 2.276a17.152 17.152 0 0 1 2.805 7.121c-.897.23-1.837.353-2.805.353-.968 0-1.908-.122-2.805-.353A17.151 17.151 0 0 1 12 2.276ZM10.122 2.43a18.629 18.629 0 0 0-2.37 6.49 11.266 11.266 0 0 1-3.746-2.504 9.754 9.754 0 0 1 6.116-3.985Z"
-                          ></path>
-                        </svg>
+                        <Global style="width: 16px; height: 16px" />
                         <p class="text-xs truncate">{{ post.post_code }}</p>
                       </div>
                       <p
@@ -736,40 +523,10 @@ onBeforeUnmount(() => {
                         <span
                           class="animate-ping h-[6rem] w-[6rem] rounded-full bg-gradient-to-r from-cyan-500 to-blue-500"
                         ></span>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke-width="1.5"
-                          stroke="currentColor"
-                          aria-hidden="true"
-                          data-slot="icon"
-                          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[3rem] w-[3rem] stroke-2"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"
-                          ></path>
-                        </svg>
+                        <Book />
                       </div>
                       <span>閱讀更多</span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        aria-hidden="true"
-                        data-slot="icon"
-                        class="mx-auto size-6"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                        ></path>
-                      </svg>
+                      <ArrowR />
                     </div>
                   </a>
                 </section>
@@ -783,41 +540,11 @@ onBeforeUnmount(() => {
                 </h2>
                 <div class="main-setting-bar">
                   <button @click="logout">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="white"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                      data-slot="icon"
-                      class="size-6"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"
-                      ></path>
-                    </svg>
+                    <Logout />
                     <span>登出</span>
                   </button>
                   <button @click="refreshPage">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                      data-slot="icon"
-                      class="size-6"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"
-                      ></path>
-                    </svg>
+                    <Refresh />
                     <span>重新整理</span>
                   </button>
                 </div>
