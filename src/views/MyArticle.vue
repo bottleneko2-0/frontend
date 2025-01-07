@@ -78,7 +78,7 @@ onMounted(() => {
         </div>
       </nav>
     </header>
-    
+
     <div class="background"></div>
     <main class="relative content-container bg-base md:my-2 z-1">
       <div class="h-full content">

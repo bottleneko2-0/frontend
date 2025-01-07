@@ -212,20 +212,16 @@ onMounted(() => {
   gap: 10px;
 }
 
-.sidebar-menu li:hover a h2 {
+.sidebar-menu li:not(.active):hover a h2 {
   color: white;
 }
 
-.sidebar-menu li:hover a svg {
+.sidebar-menu li:not(.active):hover a svg {
   stroke: white;
 }
 
 .sidebar-menu li.active h2 {
   color: white;
-}
-
-.sidebar-menu li.active:hover svg {
-  stroke: none;
 }
 
 .translate-btn.active {
