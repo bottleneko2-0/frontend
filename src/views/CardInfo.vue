@@ -215,7 +215,7 @@ onMounted(async () => {
             <div class="flex items-center counter gap-x-1">
               <button
                 class="text-white btn btn-sm bg-zinc-700 hover:bg-green-400"
-                @click="addCard(translatedCardInfo)"
+                @click="addCard(cardInfo)"
               >
                 <Plus class="stroke-2 size-6" />
               </button>
@@ -227,7 +227,7 @@ onMounted(async () => {
               </div>
               <button
                 class="text-white btn btn-sm bg-zinc-700 hover:bg-red-400"
-                @click="removeCard(translatedCardInfo)"
+                @click="removeCard(cardInfo)"
               >
                 <Minus class="stroke-2 size-6" />
               </button>
