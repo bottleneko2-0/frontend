@@ -13,7 +13,7 @@ import Close from '@/components/svg/Close.vue'
 import TwoSquare from '@/components/svg/TwoSquare.vue'
 import Box from '@/components/svg/Box.vue'
 import TrashCan from '@/components/svg/TrashCan.vue'
-import Banner from '@/components/svg/Banner.vue'
+import Tag from '@/components/svg/Tag.vue'
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -579,7 +579,7 @@ onBeforeUnmount(() => {
 
         <section
           v-if="cardDecks.length === 0"
-          class="flex justify-center items-center mx-auto"
+          class="flex items-center justify-center mx-auto"
           style="
             width: calc(100% - 16px);
             height: 500px;
@@ -590,7 +590,7 @@ onBeforeUnmount(() => {
           <div>
             <img
               style="width: 300px; height: 400px"
-              src="@/assets/img/logo-use/no-data.png"
+              src="@/img/no-data.png"
               alt="no-data"
             />
           </div>
@@ -615,12 +615,12 @@ onBeforeUnmount(() => {
                 @click.prevent="deleteDeck(cardDeck.deck_id)"
                 class="bottom-0 right-0 p-1 m-1 text-white rounded-full bg-zinc-800"
               >
-                <TrashCan class="text-white stroke-2 w-6 h-6" />
+                <TrashCan class="w-6 h-6 text-white stroke-2" />
               </button>
             </div>
             <div class="card-text">
               <div class="flex">
-                <Banner stroke-width="2" class="w-6 h-6" />
+                <Tag class="w-6 h-6 stroke-2" />
                 <p class="card-div-text">{{ cardDeck.deck_id }}</p>
               </div>
               <p class="card-name">{{ cardDeck.deck_name }}</p>

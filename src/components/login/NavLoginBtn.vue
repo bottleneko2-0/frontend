@@ -2,6 +2,8 @@
 import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import axios from 'axios'
+import AngleD from '@/components/svg/AngleD.vue'
+import Human from '@/components/svg/Human.vue'
 
 const API_URL = import.meta.env.VITE_API_URL
 const router = useRouter()
@@ -49,28 +51,12 @@ onMounted(() => {
 <template>
   <div
     @click="gotoLink"
-    class="flex items-center gap-1 text-white rounded-full bg-black/50 default-transition hover:bg-zinc-800/50 cursor-pointer"
+    class="flex items-center gap-1 text-white rounded-full cursor-pointer bg-black/50 default-transition hover:bg-zinc-800/50"
   >
     <div class="flex flex-col items-center gap-1 p-1 rounded-full">
-      <div class="flex-none rounded-full size-6 bg-black/70 overflow-hidden">
+      <div class="flex-none overflow-hidden rounded-full size-6 bg-black/70">
         <img v-if="picture" :src="picture" alt="使用者頭像" />
-        <svg
-          v-else
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          aria-hidden="true"
-          data-slot="icon"
-          class="m-1 text-zinc-200"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-          ></path>
-        </svg>
+        <Human v-else class="stroke-[1.5] size-4 m-1 text-zinc-200" />
       </div>
     </div>
     <span v-if="isloggedIn" class="text-sm flex-none max-w-[8rem] truncate">{{
@@ -78,22 +64,7 @@ onMounted(() => {
     }}</span>
     <span v-else class="text-sm flex-none max-w-[8rem] truncate">登入</span>
     <div class="p-1 rounded-full">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        aria-hidden="true"
-        data-slot="icon"
-        class="flex-none w-4 h-4"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="m19.5 8.25-7.5 7.5-7.5-7.5"
-        ></path>
-      </svg>
+      <AngleD class="flex-none w-4 h-4 stroke-[1.5]" />
     </div>
   </div>
 </template>

@@ -4,7 +4,7 @@ import jsPDF from 'jspdf'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import Close from '@/components/svg/Close.vue'
-import Banner from '@/components/svg/Banner.vue'
+import Tag from '@/components/svg/Tag.vue'
 import Triangle from '@/components/svg/Triangle.vue'
 import Tick from '@/components/svg/Tick.vue'
 import Paper from '@/components/svg/Paper.vue'
@@ -241,7 +241,7 @@ const exportToPDF = async () => {
             @click="toggleActive(0)"
             class="z-20 button-remit item focus-button"
           >
-            <Banner class="icon size-6" />
+            <Tag class="icon size-6" />
             <span class="font-mono text-sm">牌組編號</span>
           </button>
 

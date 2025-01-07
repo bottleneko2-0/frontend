@@ -12,7 +12,7 @@ import AngleL from '@/components/svg/AngleL.vue'
 import ArrowR from '@/components/svg/ArrowR.vue'
 import Ball from '@/components/svg/Ball.vue'
 import Content from '@/components/svg/Content.vue'
-import Deck from '@/components/svg/Deck.vue'
+import Tag from '@/components/svg/Tag.vue'
 import Earth from '@/components/svg/Earth.vue'
 
 const Tiny_API_KEY = import.meta.env.VITE_Tiny_API_KEY
@@ -137,7 +137,7 @@ onMounted(() => {
         <button class="submit-btn" @click="submitEdit">
           <Earth />
           <span>送出</span>
-          <ArrowR  />
+          <ArrowR />
         </button>
         <Notice />
         <div class="user-sign">
@@ -163,7 +163,7 @@ onMounted(() => {
           />
           <div class="card-select-area">
             <button class="card-select-btn">
-              <Deck />
+              <Tag class="stroke-[1.5]" />
               <p>{{ deck_name }}</p>
             </button>
 
@@ -468,7 +468,7 @@ header {
   background-color: #2fb7e7;
   cursor: pointer;
   padding-left: 10px;
-  gap:5px;
+  gap: 5px;
   box-sizing: border-box;
 }
 

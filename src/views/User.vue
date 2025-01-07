@@ -12,10 +12,10 @@ import AngleL from '@/components/svg/AngleL.vue'
 import Logout from '@/components/svg/Logout.vue'
 import Email from '@/components/svg/Email.vue'
 import Edit from '@/components/svg/Edit.vue'
-import Check from '@/components/svg/Check.vue'
-import Cancel from '@/components/svg/Cancel.vue'
-import Deck from '@/components/svg/Deck.vue'
-import Global from '@/components/svg/Global.vue'
+import Tick from '@/components/svg/Tick.vue'
+import Close from '@/components/svg/Close.vue'
+import Tag from '@/components/svg/Tag.vue'
+import Ball from '@/components/svg/Ball.vue'
 import Book from '@/components/svg/Book.vue'
 import ArrowR from '@/components/svg/ArrowR.vue'
 import Refresh from '@/components/svg/Refresh.vue'
@@ -387,22 +387,22 @@ onBeforeUnmount(() => {
                   @click="saveName"
                   class="flex-none p-1 text-white rounded-full cursor-pointer btn btn-sm bg-green-400/70 hover:bg-green-400"
                 >
-                  <Check />
+                  <Tick />
                 </button>
                 <button
                   @click="cancelEdit"
                   class="flex-none p-1 text-white rounded-full cursor-pointer btn btn-sm bg-red-400/70 hover:bg-red-400"
                 >
-                  <Cancel />
+                  <Close />
                 </button>
               </div>
               <div class="card-and-article">
                 <div class="card">
-                  <Deck />
+                  <Tag class="stroke-[1.5]" />
                   <a href=""> 共有 {{ deckCount }} 副牌組 </a>
                 </div>
                 <div class="article">
-                  <Global />
+                  <Ball />
                   <a href=""> 共有 {{ postCount }} 篇文章 </a>
                 </div>
               </div>
@@ -435,9 +435,7 @@ onBeforeUnmount(() => {
                     </div>
                     <div class="mt-2 md:mt-4 min-h-0 md:min-h-[62px]">
                       <div class="flex gap-1 font-mono text-zinc-400">
-                        <Deck
-                          style="fill: #a1a1aa; width: 16px; height: 16px"
-                        />
+                        <Tag class="fill-current size-4 stroke-none" />
                         <p class="text-xs truncate">{{ deck.deck_id }}</p>
                       </div>
                       <p
@@ -496,7 +494,7 @@ onBeforeUnmount(() => {
                     </div>
                     <div class="mt-2 md:mt-4 min-h-0 md:min-h-[62px]">
                       <div class="flex gap-1 font-mono text-zinc-400">
-                        <Global style="width: 16px; height: 16px" />
+                        <Ball class="size-4 stroke-[1.5]" />
                         <p class="text-xs truncate">{{ post.post_code }}</p>
                       </div>
                       <p

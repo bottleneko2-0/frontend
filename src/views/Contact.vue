@@ -6,7 +6,7 @@ import Footer from '@/components/home/MainFooter.vue'
 import Login from '@/components/login/NavLoginBtn.vue'
 import AngleL from '@/components/svg/AngleL.vue'
 import Question from '@/components/svg/Question.vue'
-import ArrowDown from '@/components/svg/ArrowDown.vue'
+import AngleD from '@/components/svg/AngleD.vue'
 
 const router = useRouter()
 const BASE_URL = import.meta.env.VITE_BASE_URL
@@ -23,16 +23,16 @@ const handleBack = () => {
 <template>
   <div class="layout">
     <SideBar class="sidebar-container" />
-    <header class="h-16 z-10">
+    <header class="z-10 h-16">
       <nav class="header-container">
         <button
           @click="handleBack"
-          class="flex-none p-1 rounded-full bg-black/50 text-white default-transition hover:bg-zinc-800/50"
+          class="flex-none p-1 text-white rounded-full bg-black/50 default-transition hover:bg-zinc-800/50"
         >
           <AngleL />
         </button>
-        <div class="w-full min-w-0 font-bold text-white justify-start">
-          <h2 class="header-title truncate text-2xl font-bold">與我聯絡</h2>
+        <div class="justify-start w-full min-w-0 font-bold text-white">
+          <h2 class="text-2xl font-bold truncate header-title">與我聯絡</h2>
         </div>
 
         <Notice class="notice-mobile-hidden" />
@@ -44,12 +44,12 @@ const handleBack = () => {
         <section class="main-container">
           <section class="w-full md:w-[75%] mx-auto text-white">
             <div class="mt-12 mb-8">
-              <h2 class="text-center text-3xl font-black">與我聯絡</h2>
+              <h2 class="text-3xl font-black text-center">與我聯絡</h2>
               <p class="mt-2 text-center">
                 無論您有任何問題、意見與建議，歡迎透過以下方式與我們聯絡！
               </p>
             </div>
-            <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 gap-4 mt-2 md:grid-cols-2">
               <a
                 class="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-br from-[#0866ff50] to-zinc-700 hover:shadow-lg hover:shadow-zinc-700/50"
                 :href="`${BASE_URL}/team`"
@@ -59,7 +59,7 @@ const handleBack = () => {
                   <img src="@/img/capie-user.png" />
                 </div>
                 <div>
-                  <h3 class="font-bold text-lg">關於卡派團隊</h3>
+                  <h3 class="text-lg font-bold">關於卡派團隊</h3>
                   <p class="text-zinc-300">專注於提供趣味卡牌遊戲的七人小組</p>
                 </div>
               </a>
@@ -71,7 +71,7 @@ const handleBack = () => {
                   <img src="@/img/capie-user.png" />
                 </div>
                 <div>
-                  <h3 class="font-bold text-lg">卡派 Discord</h3>
+                  <h3 class="text-lg font-bold">卡派 Discord</h3>
                   <p class="text-zinc-300">加入 Discord 一起討論與分享消息</p>
                 </div>
               </a>
@@ -85,7 +85,7 @@ const handleBack = () => {
                 <label for="question1" class="question question1">
                   <Question />
                   <h3>Capie是什麼？</h3>
-                  <ArrowDown class="dropdown-icon" />
+                  <AngleD class="dropdown-icon" />
                 </label>
                 <p class="answer">
                   Capie是一個線上的卡牌組牌工具，提供各種便利的功能，讓您可以輕鬆的組牌、分享牌組、查詢卡片等等。
@@ -97,7 +97,7 @@ const handleBack = () => {
                 <label for="question2" class="question question2">
                   <Question />
                   <h3>是否有手機版可以用？</h3>
-                  <ArrowDown class="dropdown-icon" />
+                  <AngleD class="dropdown-icon" />
                 </label>
                 <p class="answer">
                   目前Capie以全網站式開發，但您能可以透過以下方式加入至主畫面：<br /><br />
@@ -121,7 +121,7 @@ const handleBack = () => {
                 <label for="question3" class="question question3">
                   <Question />
                   <h3>我的Capie打不開或是轉圈圈？</h3>
-                  <ArrowDown class="dropdown-icon" />
+                  <AngleD class="dropdown-icon" />
                 </label>
                 <p class="answer">
                   請您先確認處於網路良好狀態，並嘗試著重新開啟網站/應用程式，<br />
@@ -133,7 +133,7 @@ const handleBack = () => {
                 <label for="question4" class="question question4">
                   <Question />
                   <h3>我是新手，我要怎麼開始呢？</h3>
-                  <ArrowDown class="dropdown-icon" />
+                  <AngleD class="dropdown-icon" />
                 </label>
                 <p class="answer">
                   由於Capie提供很多功能，您可以首先到 "系列卡表"
@@ -154,7 +154,7 @@ const handleBack = () => {
                 <label for="question5" class="question question5">
                   <Question />
                   <h3>我要怎麼加入英雄會員呢？</h3>
-                  <ArrowDown class="dropdown-icon" />
+                  <AngleD class="dropdown-icon" />
                 </label>
                 <p class="answer">
                   英雄榜的會員，可以到工作坊找到 "加入英雄榜" 按鈕。<br />
@@ -166,7 +166,7 @@ const handleBack = () => {
                 <label for="question6" class="question question6">
                   <Question />
                   <h3>是否有其他資源？</h3>
-                  <ArrowDown class="dropdown-icon" />
+                  <AngleD class="dropdown-icon" />
                 </label>
                 <p class="answer">
                   目前Capie搜集來自<span
@@ -181,7 +181,7 @@ const handleBack = () => {
                 <label for="question7" class="question question7">
                   <Question />
                   <h3>Capie與武士道</h3>
-                  <ArrowDown class="dropdown-icon" />
+                  <AngleD class="dropdown-icon" />
                 </label>
                 <p class="answer">
                   Capie提供的 Weiβ Schwarz 卡牌資訊以及卡圖，皆為<span
@@ -195,7 +195,7 @@ const handleBack = () => {
                 <label for="question8" class="question question8">
                   <Question />
                   <h3>其他問題與我們態度</h3>
-                  <ArrowDown class="dropdown-icon" />
+                  <AngleD class="dropdown-icon" />
                 </label>
                 <p class="answer">
                   保持正向、保持快樂、持續改善。 <br />

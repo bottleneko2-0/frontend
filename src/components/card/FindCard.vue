@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import Swal from 'sweetalert2'
-import Banner from '@/components/svg/Banner.vue'
+import Tag from '@/components/svg/Tag.vue'
 import Close from '@/components/svg/Close.vue'
 import Earth from '@/components/svg/Earth.vue'
 import Tick from '@/components/svg/Tick.vue'
@@ -115,7 +115,7 @@ const hideModal = () => {
                 :class="searchType === 'deck' ? 'active' : 'dimmed'"
                 class="item default-transition active button"
               >
-                <Banner class="icon size-6" />
+                <Tag class="icon size-6" />
                 <span>牌組</span>
               </button>
               <button
