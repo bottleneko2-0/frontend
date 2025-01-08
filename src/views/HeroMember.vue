@@ -142,7 +142,7 @@ onMounted(async () => {
                         id="hero-member-main-function-section-content-item-description-box-innerbox-gifbox-img"
                       >
                         <img
-                          src="@/assets/img/hero-member/card-price-gif.gif"
+                          src="@/img/hero-member/card-price-gif.gif"
                           alt=""
                         />
                       </div>
@@ -211,7 +211,7 @@ onMounted(async () => {
                         id="hero-member-main-function-section-content-item-description-box-innerbox-gifbox-img"
                       >
                         <img
-                          src="@/assets/img/hero-member/card-cover-gif.gif"
+                          src="@/img/hero-member/card-cover-gif.gif"
                           alt=""
                         />
                       </div>
@@ -279,7 +279,7 @@ onMounted(async () => {
                         id="hero-member-main-function-section-content-item-description-box-innerbox-gifbox-img"
                       >
                         <img
-                          src="@/assets/img/hero-member/deck-chart-gif.gif"
+                          src="@/img/hero-member/deck-chart-gif.gif"
                           alt=""
                         />
                       </div>
@@ -347,7 +347,7 @@ onMounted(async () => {
                         id="hero-member-main-function-section-content-item-description-box-innerbox-gifbox-img"
                       >
                         <img
-                          src="@/assets/img/hero-member/switch-version-gif.gif"
+                          src="@/img/hero-member/switch-version-gif.gif"
                           alt=""
                         />
                       </div>
@@ -415,7 +415,7 @@ onMounted(async () => {
                         id="hero-member-main-function-section-content-item-description-box-innerbox-gifbox-img"
                       >
                         <img
-                          src="@/assets/img/hero-member/quick-note-gif.gif"
+                          src="@/img/hero-member/quick-note-gif.gif"
                           alt=""
                         />
                       </div>
@@ -483,7 +483,7 @@ onMounted(async () => {
                         id="hero-member-main-function-section-content-item-description-box-innerbox-gifbox-img"
                       >
                         <img
-                          src="@/assets/img/hero-member/price-top10-gif.gif"
+                          src="@/img/hero-member/price-top10-gif.gif"
                           alt=""
                         />
                       </div>

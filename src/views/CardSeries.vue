@@ -2266,7 +2266,7 @@ onBeforeUnmount(() => {
           <div v-else class="card-info-empty">
             <div class="card-info-empty-content">
               <div class="card-info-empty-content-box">
-                <img src="@/assets/img/logo-use/no-data.png" alt="" />
+                <img src="@/img/no-data.png" alt="" />
                 <h2>沒東西</h2>
                 <p>何もないことは、何でもあることだ。 - YC</p>
               </div>

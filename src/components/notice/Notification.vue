@@ -147,7 +147,7 @@ onMounted(() => {
           </a>
         </section>
         <section class="notice-grid-down" v-else>
-          <img src="@/assets/img/logo-use/no-data.png" alt="no-data" />
+          <img src="@/img/no-data.png" alt="no-data" />
           <h2>沒東西</h2>
           <p>你只有一無所有的時候，才能全身心地投入機會。 - 拿破崙·波拿巴</p>
         </section>
