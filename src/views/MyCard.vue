@@ -8,6 +8,12 @@ import NavLoginBtn from '@/components/login/NavLoginBtn.vue'
 import Notice from '@/components/notice/Notice.vue'
 import RemitCard from '@/components/card/RemitCard.vue'
 import FindCard from '@/components/card/FindCard.vue'
+import Magnifier from '@/components/svg/Magnifier.vue'
+import Close from '@/components/svg/Close.vue'
+import TwoSquare from '@/components/svg/TwoSquare.vue'
+import Box from '@/components/svg/Box.vue'
+import TrashCan from '@/components/svg/TrashCan.vue'
+import Banner from '@/components/svg/Banner.vue'
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -434,22 +440,7 @@ onBeforeUnmount(() => {
       </div>
       <header class="header-container" :class="{ scrolled: isScrolled }">
         <div class="search-container">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            class="icon search-icon"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-            ></path>
-          </svg>
-
+          <Magnifier stroke-width="1.5" class="w-8 h-8 text-black" />
           <input
             v-model="searchQuery"
             @keyup="searchDecks"
@@ -458,21 +449,7 @@ onBeforeUnmount(() => {
             placeholder="找我的牌組？"
           />
           <button @click="clearSearch" class="clear-btn">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-              class="icon clear-icon"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              ></path>
-            </svg>
+            <Close stroke-width="1.5" class="w-6 h-6 text-black" />
           </button>
         </div>
         <div class="sort-button">
@@ -532,23 +509,7 @@ onBeforeUnmount(() => {
                   <span
                     class="flex items-center gap-1 font-mono text-xs truncate text-zinc-400"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                      data-slot="icon"
-                      class="flex-none size-4 svg"
-                    >
-                      <path
-                        class="path"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M16.5 8.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v8.25A2.25 2.25 0 0 0 6 16.5h2.25m8.25-8.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-7.5A2.25 2.25 0 0 1 8.25 18v-1.5m8.25-8.25h-6a2.25 2.25 0 0 0-2.25 2.25v6"
-                      ></path>
-                    </svg>
+                    <TwoSquare stroke-width="1.5" class="w-6 h-6" />
                     {{ matchedCodes[index].join(',') }}
                   </span>
                   <p
@@ -581,23 +542,7 @@ onBeforeUnmount(() => {
               >
                 <div class="in-div">
                   <p class="in-div in-div-text">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                      data-slot="icon"
-                      class="flex-none size-6 md:size-8"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3
-                            7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
-                      ></path>
-                    </svg>
+                    <Box stroke-width="1.5" class="w-6 h-6" />
                     <span>尋找牌組</span>
                   </p>
                 </div>
@@ -619,23 +564,7 @@ onBeforeUnmount(() => {
               >
                 <div class="in-div">
                   <p class="in-div in-div-text">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                      data-slot="icon"
-                      class="flex-none size-6 md:size-8"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3
-                           7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
-                      ></path>
-                    </svg>
+                    <Box stroke-width="1.5" class="w-6 h-6" />
                     <span>匯出牌組</span>
                   </p>
                 </div>
@@ -647,7 +576,6 @@ onBeforeUnmount(() => {
           <h2>我的牌組</h2>
           <p>一共有{{ cardDecks.length }}結果</p>
         </div>
-
         <section class="show-card grid-card">
           <a
             v-for="cardDeck in cardDecks"
@@ -667,42 +595,12 @@ onBeforeUnmount(() => {
                 @click.prevent="deleteDeck(cardDeck.deck_id)"
                 class="bottom-0 right-0 p-1 m-1 text-white rounded-full bg-zinc-800"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                  class="text-white stroke-2 size-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0
-                             1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
-                  ></path>
-                </svg>
+                <TrashCan class="text-white stroke-2 w-6 h-6" />
               </button>
             </div>
             <div class="card-text">
               <div class="flex">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                  class="flex-none icon-size color-a1"
-                >
-                  <path
-                    d="M16.5 6a3 3 0 0 0-3-3H6a3 3 0 0 0-3 3v7.5a3 3 0 0 0 3 3v-6A4.5 4.5 0 0 1 10.5 6h6Z"
-                  ></path>
-                  <path
-                    d="M18 7.5a3 3 0 0 1 3 3V18a3 3 0 0 1-3 3h-7.5a3 3 0 0 1-3-3v-7.5a3 3 0 0 1 3-3H18Z"
-                  ></path>
-                </svg>
+                <Banner stroke-width="2" class="w-6 h-6" />
                 <p class="card-div-text">{{ cardDeck.deck_id }}</p>
               </div>
               <p class="card-name">{{ cardDeck.deck_name }}</p>
@@ -803,12 +701,13 @@ header.scrolled {
 }
 
 .search-container {
+  max-width: 270px;
+  height: 36px;
   display: flex;
   align-items: center;
   padding: 5px 10px;
-  border-radius: 9999px;
+  border-radius: 20px;
   background-color: white;
-  max-width: 270px;
   gap: 5px;
 }
 
@@ -944,16 +843,6 @@ header.scrolled {
   width: 100%;
 }
 
-.header-input {
-  width: 100%;
-  display: flex;
-  outline: none;
-  font-size: 1rem;
-  color: black;
-  background-color: transparent;
-  height: 20px;
-}
-
 .sort-button {
   display: flex;
   gap: 0.5rem;
@@ -979,11 +868,13 @@ header.scrolled {
 
 .active1 {
   width: 72px;
+  height: 36px;
   background: white;
 }
 
 .active2 {
   width: 72px;
+  height: 36px;
   background: linear-gradient(to right, #5eead4, #93c5fd);
 }
 
@@ -1033,16 +924,18 @@ header.scrolled {
 }
 
 .header-input {
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  color: black;
+  background-color: transparent;
   display: flex;
   align-items: center;
-  flex-grow: 1;
   background-color: white;
   border: none;
   gap: 4px;
-  font-weight: 300;
-  font-size: 14px;
   padding: 0;
-  height: 20px;
+  height: 22px;
 }
 
 .button {
