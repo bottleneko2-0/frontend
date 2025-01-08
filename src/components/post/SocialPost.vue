@@ -1918,11 +1918,12 @@ header.scrolled .header-title {
 }
 
 .description2 {
-  right: 150px;
+  right: 160px;
   width: 60px;
 }
 
 .description3 {
+  right: 115px;
   width: 60px;
 }
 
@@ -2280,6 +2281,7 @@ span svg {
 }
 
 .tool-btn1 {
+  min-width: 86px;
   box-sizing: border-box;
   height: 32px;
   display: flex;
@@ -2745,7 +2747,7 @@ span svg {
 }
 @media screen and (max-width: 375px) {
   .tool-btn1 {
-    min-width: 62px;
+    min-width: 72px;
   }
   .toolbar {
     margin-left: 10px;

@@ -576,6 +576,26 @@ onBeforeUnmount(() => {
           <h2>我的牌組</h2>
           <p>一共有{{ cardDecks.length }}結果</p>
         </div>
+
+        <section
+          v-if="cardDecks.length === 0"
+          class="flex justify-center items-center mx-auto"
+          style="
+            width: calc(100% - 16px);
+            height: 500px;
+            border-radius: 0.5rem;
+            background-color: #151517;
+          "
+        >
+          <div>
+            <img
+              style="width: 300px; height: 400px"
+              src="@/assets/img/logo-use/no-data.png"
+              alt="no-data"
+            />
+          </div>
+        </section>
+
         <section class="show-card grid-card">
           <a
             v-for="cardDeck in cardDecks"
@@ -609,9 +629,7 @@ onBeforeUnmount(() => {
           </a>
         </section>
       </main>
-      <footer class="work-shop-footer">
-        <MainFooter />
-      </footer>
+      <MainFooter />
     </div>
   </div>
 </template>
@@ -926,7 +944,7 @@ header.scrolled {
 .header-input {
   width: 100%;
   outline: none;
-  font-size: 16px;
+  font-size: 15px;
   color: black;
   background-color: transparent;
   display: flex;
