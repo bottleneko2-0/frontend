@@ -40,27 +40,37 @@ const API_URL = import.meta.env.VITE_API_URL
 
 const fetchGrids = async () => {
   try {
-    // 使用 Promise.all 並行請求，提高效率
-    const gridPromises = Array.from({ length: numberOfGrids }, async () => {
-      const itemPromises = Array.from({ length: itemsPerGrid }, async () => {
-        try {
-          const response = await axios.get(`${API_URL}/cards/random`)
-          const covers = response.data.covers
+    let requestCount = 0 // 記錄發送的請求次數
+    const maxRequests = 50 // 最大隨機請求數量
 
-          return covers.length > 0
-            ? covers[Math.floor(Math.random() * covers.length)]
-            : placeholderImage
-        } catch (error) {
-          console.error('單個卡片請求失敗：', error)
-          return placeholderImage
-        }
-      })
+    // 使用 Promise.all 並行請求，但總請求數量不超過 50
+    const gridPromises = Array.from({ length: numberOfGrids }, () =>
+      Promise.all(
+        Array.from({ length: itemsPerGrid }, async () => {
+          if (requestCount >= maxRequests) {
+            // 如果已達到最大請求次數，直接返回預設圖片
+            return placeholderImage
+          }
 
-      // 等待每個網格的所有項目
-      return Promise.all(itemPromises)
-    })
+          try {
+            const response = await axios.get(`${API_URL}/cards/random`)
+            const covers = response.data.covers
 
-    // 更新網格
+            if (covers.length > 0) {
+              requestCount++ // 每發送一次請求，就增加計數
+              return covers[Math.floor(Math.random() * covers.length)]
+            } else {
+              return placeholderImage
+            }
+          } catch (error) {
+            console.error('單個卡片請求失敗：', error)
+            return placeholderImage
+          }
+        })
+      )
+    )
+
+    // 等待所有網格的所有項目完成
     grids.value = await Promise.all(gridPromises)
   } catch (error) {
     console.error('讀取失敗：', error)
