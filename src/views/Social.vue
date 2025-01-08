@@ -674,15 +674,11 @@ a {
   position: absolute;
   top: 14px;
   right: 300px;
-}
-
-.sign-container {
-  display: flex;
   gap: 8px;
 }
 
 .add-article {
-  width: 96px;
+  width: 106px;
   height: 36px;
   border-radius: 20px;
   background-color: #ffffff;

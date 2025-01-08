@@ -387,7 +387,7 @@ svg {
 }
 
 .submit-btn {
-  width: 92px;
+  width: 100px;
   height: 36px;
   background-color: white;
   border-radius: 20px;

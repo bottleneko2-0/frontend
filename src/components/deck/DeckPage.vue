@@ -300,10 +300,7 @@ onBeforeUnmount(() => {
             <Delete class="stroke-2 size-6 svg-icon red" />
             <div class="description-item description4">刪除牌組</div>
           </button>
-          <button class="social-btn-item social-btn3">
-            <div class="description-item description5">通知</div>
-            <Notice />
-          </button>
+          <Notice />
           <div class="user-btn">
             <NavLoginBtn />
           </div>
@@ -1409,23 +1406,23 @@ header.scrolled .header-title {
 }
 
 .description2 {
-  right: 270px;
+  right: 240px;
 }
 
 .description3 {
-  right: 189px;
+  right: 160px;
 }
 
 .description4 {
-  right: 147px;
+  right: 120px;
 }
 
 .description5 {
-  right: 125px;
+  right: 95px;
 }
 
 .description7 {
-  right: 227px;
+  right: 200px;
 }
 
 .description6 {
@@ -1772,7 +1769,7 @@ span svg {
 
 .tool-btn1 {
   box-sizing: border-box;
-  min-width: 72px;
+  min-width: 78px;
   height: 32px;
   display: flex;
   align-items: center;
@@ -2340,13 +2337,7 @@ span svg {
 
 @media screen and (max-width: 375px) {
   .tool-btn1 {
-    min-width: 62px;
+    min-width: 72px;
   }
-  .toolbar {
-    margin-left: 10px;
-  }
-  /* .col-Sheet, .col-Info{
-            width: calc(100% - 235px);
-        } */
 }
 </style>
