@@ -45,7 +45,7 @@ const submitEdit = async () => {
 
   if (!title.value) {
     Swal.fire({
-      icon: 'error',
+      icon: 'warning',
       title: '標題不能為空',
       color: '#e1e1e1',
       background: '#27272a',
@@ -87,6 +87,17 @@ const submitEdit = async () => {
         confirmButtonText: '確定',
       }).then(() => {
         window.location.href = `${BASE_URL}/login`
+      })
+    } else if (error.response && error.response.status === 404) {
+      Swal.fire({
+        title: '非本人文章',
+        text: '無權編輯',
+        icon: 'warning',
+        color: '#e1e1e1',
+        background: '#27272a',
+        confirmButtonText: '確定',
+      }).then(() => {
+        router.push(`/social/${postCode}`)
       })
     } else {
       Swal.fire({

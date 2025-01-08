@@ -65,7 +65,7 @@ const submitArticle = async () => {
   try {
     if (!title.value) {
       Swal.fire({
-        icon: 'error',
+        icon: 'warning',
         title: '標題不能為空',
         color: '#e1e1e1',
         background: '#27272a',

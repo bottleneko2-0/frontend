@@ -426,6 +426,9 @@ input[type='checkbox'] {
 }
 
 .inner-info-container > span {
+  display:flex;
+  align-items: center;
+  gap:5px;
   font-size: 0.85rem;
   line-height: 1.25rem;
 }
@@ -458,6 +461,7 @@ input[type='checkbox'] {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap:5px;
 }
 
 .toggle-inner-filter {
@@ -531,7 +535,7 @@ input[type='checkbox'] {
 .change-sheet:hover::before {
   font-size: 13px;
   color: white;
-  width: 65px;
+  width: 75px;
   content: '表格顯示';
   padding: 3px;
   background-color: #121212c3;
@@ -549,7 +553,7 @@ input[type='checkbox'] {
 .change-info:hover::before {
   font-size: 13px;
   color: white;
-  width: 65px;
+  width: 75px;
   content: '卡片資訊';
   padding: 3px;
   background-color: #121212c3;
