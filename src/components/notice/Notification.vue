@@ -1,14 +1,19 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import dayjs from 'dayjs'
 import axios from 'axios'
 import SideBar from '@/components/home/SidebarGrid.vue'
 import Notice from '@/components/notice/Notice.vue'
 import Footer from '@/components/home/MainFooter.vue'
 import Login from '@/components/login/NavLoginBtn.vue'
+import AngleL from '@/components/svg/AngleL.vue'
+import AngleR from '@/components/svg/AngleR.vue'
+import Message from '@/components/svg/Message.vue'
 
 const BASE_URL = import.meta.env.VITE_BASE_URL
 const API_URL = import.meta.env.VITE_API_URL
+const router = useRouter()
 
 const unreadCount = ref('')
 const notices = ref([])
@@ -74,6 +79,10 @@ const goToPost = (postCode) => {
   window.location.href = `${BASE_URL}/social/${postCode}`
 }
 
+const goBack = () => {
+  router.go(-1)
+}
+
 onMounted(() => {
   fetchNotices()
 })
@@ -85,44 +94,10 @@ onMounted(() => {
     <header class="h-16 z-10">
       <nav class="header-container">
         <button
+          @click="goBack"
           class="flex-none p-1 rounded-full bg-black/50 text-white default-transition hover:bg-zinc-800/50"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="h-6 w-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M15.75 19.5 8.25 12l7.5-7.5"
-            ></path>
-          </svg>
-        </button>
-        <button
-          class="arrow-right flex-none p-1 rounded-full bg-black/50 text-white default-transition hover:bg-zinc-800/50 disabled:opacity-30"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="h-6 w-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="m8.25 4.5 7.5 7.5-7.5 7.5"
-            ></path>
-          </svg>
+          <AngleL />
         </button>
         <div class="w-full min-w-0 font-bold text-white justify-start">
           <h2 class="header-title truncate text-2xl font-bold">通知</h2>
@@ -151,22 +126,7 @@ onMounted(() => {
             <div
               class="flex-none w-[3rem] h-[3rem] rounded-full bg-zinc-500/50 grid place-content-center"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-                data-slot="icon"
-                class="size-7"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z"
-                ></path>
-              </svg>
+              <Message />
             </div>
             <div>
               <h3 class="font-bold line-clamp-2 break-all">
@@ -182,22 +142,7 @@ onMounted(() => {
             <button
               class="flex-none text-white ml-auto rounded-full p-1 bg-zinc-500/20 default-transition"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-                data-slot="icon"
-                class="size-6"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m8.25 4.5 7.5 7.5-7.5 7.5"
-                ></path>
-              </svg>
+              <AngleR />
             </button>
           </a>
         </section>

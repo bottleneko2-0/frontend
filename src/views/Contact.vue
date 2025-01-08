@@ -4,6 +4,9 @@ import SideBar from '@/components/home/SidebarGrid.vue'
 import Notice from '@/components/notice/Notice.vue'
 import Footer from '@/components/home/MainFooter.vue'
 import Login from '@/components/login/NavLoginBtn.vue'
+import AngleL from '@/components/svg/AngleL.vue'
+import Question from '@/components/svg/Question.vue'
+import ArrowDown from '@/components/svg/ArrowDown.vue'
 
 const router = useRouter()
 const BASE_URL = import.meta.env.VITE_BASE_URL
@@ -26,22 +29,7 @@ const handleBack = () => {
           @click="handleBack"
           class="flex-none p-1 rounded-full bg-black/50 text-white default-transition hover:bg-zinc-800/50"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="h-6 w-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M15.75 19.5 8.25 12l7.5-7.5"
-            ></path>
-          </svg>
+          <AngleL />
         </button>
         <div class="w-full min-w-0 font-bold text-white justify-start">
           <h2 class="header-title truncate text-2xl font-bold">與我聯絡</h2>
@@ -95,34 +83,9 @@ const handleBack = () => {
               <div>
                 <input type="checkbox" id="question1" />
                 <label for="question1" class="question question1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    st
-                    data-slot="icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
-                    ></path>
-                  </svg>
+                  <Question />
                   <h3>Capie是什麼？</h3>
-                  <svg
-                    class="dropdown-icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    st
-                    data-slot="icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                    ></path>
-                  </svg>
+                  <ArrowDown class="dropdown-icon" />
                 </label>
                 <p class="answer">
                   Capie是一個線上的卡牌組牌工具，提供各種便利的功能，讓您可以輕鬆的組牌、分享牌組、查詢卡片等等。
@@ -132,34 +95,9 @@ const handleBack = () => {
               <div>
                 <input type="checkbox" id="question2" />
                 <label for="question2" class="question question2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    st
-                    data-slot="icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
-                    ></path>
-                  </svg>
+                  <Question />
                   <h3>是否有手機版可以用？</h3>
-                  <svg
-                    class="dropdown-icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    st
-                    data-slot="icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                    ></path>
-                  </svg>
+                  <ArrowDown class="dropdown-icon" />
                 </label>
                 <p class="answer">
                   目前Capie以全網站式開發，但您能可以透過以下方式加入至主畫面：<br /><br />
@@ -181,34 +119,9 @@ const handleBack = () => {
               <div>
                 <input type="checkbox" id="question3" />
                 <label for="question3" class="question question3">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    st
-                    data-slot="icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
-                    ></path>
-                  </svg>
+                  <Question />
                   <h3>我的Capie打不開或是轉圈圈？</h3>
-                  <svg
-                    class="dropdown-icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    st
-                    data-slot="icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                    ></path>
-                  </svg>
+                  <ArrowDown class="dropdown-icon" />
                 </label>
                 <p class="answer">
                   請您先確認處於網路良好狀態，並嘗試著重新開啟網站/應用程式，<br />
@@ -218,34 +131,9 @@ const handleBack = () => {
               <div>
                 <input type="checkbox" id="question4" />
                 <label for="question4" class="question question4">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    st
-                    data-slot="icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
-                    ></path>
-                  </svg>
+                  <Question />
                   <h3>我是新手，我要怎麼開始呢？</h3>
-                  <svg
-                    class="dropdown-icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    st
-                    data-slot="icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                    ></path>
-                  </svg>
+                  <ArrowDown class="dropdown-icon" />
                 </label>
                 <p class="answer">
                   由於Capie提供很多功能，您可以首先到 "系列卡表"
@@ -264,34 +152,9 @@ const handleBack = () => {
               <div>
                 <input type="checkbox" id="question5" />
                 <label for="question5" class="question question5">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    st
-                    data-slot="icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
-                    ></path>
-                  </svg>
+                  <Question />
                   <h3>我要怎麼加入英雄會員呢？</h3>
-                  <svg
-                    class="dropdown-icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    st
-                    data-slot="icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                    ></path>
-                  </svg>
+                  <ArrowDown class="dropdown-icon" />
                 </label>
                 <p class="answer">
                   英雄榜的會員，可以到工作坊找到 "加入英雄榜" 按鈕。<br />
@@ -301,34 +164,9 @@ const handleBack = () => {
               <div>
                 <input type="checkbox" id="question6" />
                 <label for="question6" class="question question6">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    st
-                    data-slot="icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
-                    ></path>
-                  </svg>
+                  <Question />
                   <h3>是否有其他資源？</h3>
-                  <svg
-                    class="dropdown-icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    st
-                    data-slot="icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                    ></path>
-                  </svg>
+                  <ArrowDown class="dropdown-icon" />
                 </label>
                 <p class="answer">
                   目前Capie搜集來自<span
@@ -341,34 +179,9 @@ const handleBack = () => {
               <div>
                 <input type="checkbox" id="question7" />
                 <label for="question7" class="question question7">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    st
-                    data-slot="icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
-                    ></path>
-                  </svg>
+                  <Question />
                   <h3>Capie與武士道</h3>
-                  <svg
-                    class="dropdown-icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    st
-                    data-slot="icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                    ></path>
-                  </svg>
+                  <ArrowDown class="dropdown-icon" />
                 </label>
                 <p class="answer">
                   Capie提供的 Weiβ Schwarz 卡牌資訊以及卡圖，皆為<span
@@ -380,34 +193,9 @@ const handleBack = () => {
               <div>
                 <input type="checkbox" id="question8" />
                 <label for="question8" class="question question8">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    st
-                    data-slot="icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
-                    ></path>
-                  </svg>
+                  <Question />
                   <h3>其他問題與我們態度</h3>
-                  <svg
-                    class="dropdown-icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    st
-                    data-slot="icon"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                    ></path>
-                  </svg>
+                  <ArrowDown class="dropdown-icon" />
                 </label>
                 <p class="answer">
                   保持正向、保持快樂、持續改善。 <br />
