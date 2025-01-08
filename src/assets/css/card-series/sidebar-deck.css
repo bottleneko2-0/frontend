@@ -189,7 +189,7 @@
 }
 .plus:hover::before {
   font-size: 13px;
-  width: 90px;
+  width: 100px;
   content: '新增卡片模式';
   padding: 3px;
   background-color: #121212c3;
@@ -209,7 +209,7 @@
 }
 .minus:hover::before {
   font-size: 13px;
-  width: 90px;
+  width: 100px;
   content: '刪除卡片模式';
   padding: 3px;
   background-color: #121212c3;
@@ -251,6 +251,12 @@
   gap: 4px;
   color: rgba(252, 211, 77, 0.7);
   font-weight: 700;
+}
+
+.currency-icon {
+  width: 20px;
+  height: 20px;
+  stroke: #c9a83d;
 }
 
 .card-image {

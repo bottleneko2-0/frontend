@@ -1,12 +1,15 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import SidebarGrid from '@/components/home/SidebarGrid.vue'
 import MainFooter from '@/components/home/MainFooter.vue'
 import NavLoginBtn from '@/components/login/NavLoginBtn.vue'
 import Notice from '@/components/notice/Notice.vue'
+import AngleL from '@/components/svg/AngleL.vue'
 
+const router = useRouter()
 const articles = ref([])
 const postCount = computed(() => articles.value.length)
 const API_URL = import.meta.env.VITE_API_URL
@@ -20,7 +23,9 @@ const getUserArticles = async () => {
     const response = await axios.get(`${API_URL}/api/my`, {
       headers: { Authorization: `Bearer ${token}` },
     })
-    articles.value = response.data
+    articles.value = response.data.sort(
+      (a, b) => new Date(b.created_at) - new Date(a.created_at)
+    )
   } catch (error) {
     if (error.response && error.response.status === 403) {
       Swal.fire({
@@ -41,6 +46,10 @@ const formatDate = (date) => {
   return date.split('T')[0]
 }
 
+const goBack = () => {
+  router.go(-1)
+}
+
 onMounted(() => {
   getUserArticles()
 })
@@ -48,30 +57,15 @@ onMounted(() => {
 
 <template>
   <body class="overflow-hidden bg-black root-container">
+    <SidebarGrid />
     <header class="z-10 h-16 md:mt-2 md:mr-2 header-bg md:rounded-t-2xl">
       <nav class="header-container">
-        <a :href="'/user'">
-          <button
-            class="flex-none p-1 text-white rounded-full bg-black/50 default-transition hover:bg-zinc-800/50"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-              data-slot="icon"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15.75 19.5 8.25 12l7.5-7.5"
-              ></path>
-            </svg>
-          </button>
-        </a>
+        <button
+          @click="goBack"
+          class="flex-none p-1 text-white rounded-full bg-black/50 default-transition hover:bg-zinc-800/50"
+        >
+          <AngleL class="stroke-[1.5] size-6" />
+        </button>
 
         <div class="w-full min-w-0 text-lg font-bold text-white md:text-2xl">
           <h2 class="text-2xl font-bold truncate">我的文章</h2>
@@ -84,8 +78,7 @@ onMounted(() => {
         </div>
       </nav>
     </header>
-    <SidebarGrid />
-
+    
     <div class="background"></div>
     <main class="relative content-container bg-base md:my-2 z-1">
       <div class="h-full content">
