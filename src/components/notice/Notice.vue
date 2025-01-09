@@ -3,8 +3,8 @@ import { ref, onMounted } from 'vue'
 import dayjs from 'dayjs'
 import axios from 'axios'
 import AngleR from '@/components/svg/AngleR.vue'
+import Bell from '@/components/svg/Bell.vue'
 import Message from '@/components/svg/Message.vue'
-import Notice from '@/components/svg/Notice.vue'
 
 const BASE_URL = import.meta.env.VITE_BASE_URL
 const API_URL = import.meta.env.VITE_API_URL
@@ -90,7 +90,7 @@ onMounted(() => {
         for="notice-jump"
         class="inline-flex items-center p-1 text-center text-white rounded-full cursor-pointer default-transition hover:bg-zinc-800/50"
       >
-        <Notice />
+        <Bell class="stroke-2" />
         <span
           v-if="unreadCount > 0"
           class="absolute -top-1 -right-1 text-xs rounded-full px-1 bg-red-500 text-white pb-[2px]"

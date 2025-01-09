@@ -5,11 +5,11 @@ import placeholderImage from '@/img/card-loading.png'
 import NavLoginBtn from '@/components/login/NavLoginBtn.vue'
 import Notice from '@/components/notice/Notice.vue'
 import MainFooter from '@/components/home/MainFooter.vue'
-import Flag from '@/components/svg/Flag.vue'
-import Cube from '@/components/svg/Cube.vue'
-import Question from '@/components/svg/Question.vue'
 import AngleD from '@/components/svg/AngleD.vue'
+import Cube from '@/components/svg/Cube.vue'
+import FlagFill from '@/components/svg/FlagFill.vue'
 import Link from '@/components/svg/Link.vue'
+import Question from '@/components/svg/Question.vue'
 
 const isScrolled = ref(false)
 
@@ -152,7 +152,7 @@ onBeforeUnmount(() => {
         <div>
           <div class="author-icon">
             <h2>Capie 團隊</h2>
-            <Flag />
+            <FlagFill class="fill-current stroke-none" />
           </div>
           <div class="author-text">
             <p>
