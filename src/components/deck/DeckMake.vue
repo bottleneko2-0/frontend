@@ -422,7 +422,7 @@ onBeforeUnmount(() => {
           </svg>
         </button>
         <div class="pay-btn">
-          <CashJP class="flex-none size-6"/>
+          <CashJP class="flex-none size-6" />
           <span>{{ countDeck }} </span><span>¥</span>
         </div>
       </div>
