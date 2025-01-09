@@ -172,7 +172,7 @@ onMounted(async () => {
       <h2 class="title">
         每日卡
         <a :href="`${BASE_URL}/daily-card`" class="title-a">
-          <Clock class="size-5 stroke-2" />
+          <Clock class="stroke-2 size-5" />
           <span class="text">回顧歷史紀錄</span>
         </a>
       </h2>
@@ -253,7 +253,7 @@ onMounted(async () => {
       <section class="show-card">
         <a
           :href="product.link"
-          class="url transition-colors"
+          class="transition-colors url"
           v-for="product in items.latestProducts"
           :key="product.name"
         >
@@ -281,7 +281,7 @@ onMounted(async () => {
       <section class="show-card">
         <a
           :href="`${BASE_URL}/card-series/${series.id}`"
-          class="url transition-colors"
+          class="transition-colors url"
           v-for="series in items.series"
           :key="series.id"
         >
@@ -290,7 +290,7 @@ onMounted(async () => {
           </div>
           <div class="card-text">
             <div class="flex">
-              <Card class="icon-size flex-none color-a1" />
+              <Card class="flex-none icon-size color-a1" />
               <p class="color-a1">{{ series.code }}</p>
             </div>
             <p class="font-size20 color-white padding-bottom">

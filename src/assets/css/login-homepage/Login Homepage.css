@@ -417,9 +417,9 @@ nav {
   font-size: 16px;
   color: white;
   overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  line-height: 24px;
+  max-height: 48px;
 }
 
 .third-swiper-slide-content-info-text {
@@ -434,6 +434,7 @@ nav {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .third-swiper-slide-content-info-text-box {
@@ -587,9 +588,6 @@ a {
 }
 .content .show-card a:hover {
   background-color: #27272a;
-}
-.swiper-slide img {
-  border-radius: 15px;
 }
 
 @media (width < 1440px) {
