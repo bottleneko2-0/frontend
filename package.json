@@ -7,7 +7,6 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test:unit": "vitest",
     "format": "prettier . --write",
     "prepare": "husky"
   },
@@ -29,14 +28,12 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.4",
-    "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.20",
     "husky": "^9.1.7",
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
     "tailwindcss": "^3.4.15",
     "vite": "^5.4.10",
-    "vite-plugin-vue-devtools": "^7.5.4",
-    "vitest": "^2.1.4"
+    "vite-plugin-vue-devtools": "^7.5.4"
   }
 }
