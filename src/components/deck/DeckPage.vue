@@ -227,13 +227,37 @@ const deleteDeck = async () => {
 
         router.push('/deck')
       } catch (error) {
-        Swal.fire({
-          icon: 'error',
-          title: '刪除失敗',
-          text: '已引用於文章,無法刪除',
-          color: '#e1e1e1',
-          background: '#27272a',
-        })
+        if (error.response && error.response.status === 403) {
+          Swal.fire({
+            title: '請先登入',
+            text: '登入後才能刪除牌組',
+            icon: 'warning',
+            color: '#e1e1e1',
+            background: '#27272a',
+            confirmButtonText: '確定',
+          }).then(() => {
+            router.push('/login')
+          })
+        } else if (error.response && error.response.status === 404) {
+          Swal.fire({
+            title: '非本人牌組',
+            text: '無權刪除',
+            icon: 'warning',
+            color: '#e1e1e1',
+            background: '#27272a',
+            confirmButtonText: '確定',
+          }).then(() => {
+            router.push(`/deck/${deck_id}`)
+          })
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: '刪除失敗',
+            text: '已引用於文章,無法刪除',
+            color: '#e1e1e1',
+            background: '#27272a',
+          })
+        }
       }
     }
   })

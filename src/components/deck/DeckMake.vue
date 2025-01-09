@@ -1,16 +1,19 @@
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount, onBeforeMount } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { useCardSeriesStore } from '@/stores/card-series'
 import { useDeckMakeStore } from '@/stores/deck-make'
-import { useCardInfoStore } from '@/stores/card-info'
-import Swal from 'sweetalert2'
 
-const cardSeriesStore = useCardSeriesStore()
+import Swal from 'sweetalert2'
+import Card from '@/components/card/Card.vue'
+import Cash from '@/components/svg/Cash.vue'
+import CashJP from '@/components/svg/CashJP.vue'
+import Flag from '@/components/svg/Flag.vue'
+import Minus from '@/components/svg/Minus.vue'
+import Plus from '@/components/svg/Plus.vue'
+import TypeGroup from '@/components/svg/TypeGroup.vue'
+
 const router = useRouter()
-const getLastViewSeries = cardSeriesStore.getLastViewSeries
-const saveLastViewSeries = cardSeriesStore.saveLastViewSeries
 
 const deckMakeStore = useDeckMakeStore()
 const {
@@ -171,13 +174,7 @@ function updateScreenSize() {
     currentMain.value = ''
   }
 }
-// onBeforeMount(async () => {
-//   const route = useRoute()
-//   const seriesId = route.params.series_id
-//   saveLastViewSeries(seriesId)
-//   await getLastViewSeries()
-// })
-// Lifecycle hooks
+
 onMounted(async () => {
   getLastDeckEdit()
   switchSortMode()
@@ -208,238 +205,49 @@ onBeforeUnmount(() => {
 
     <div class="sidebar-deck-choice" v-if="sidebarSelectedStatus === true">
       <button id="type-btn-active" v-if="sortStatus === 'TYPE'">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          width="24"
-          height="24"
-          stroke="currentColor"
-          aria-hidden="true"
-          data-slot="icon"
-          class="flex-none stroke-2 size-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z"
-          ></path>
-        </svg>
-        <span class="text-sm font-bold whitespace-nowrap">類型</span>
+        <TypeGroup class="flex-none stroke-2 size-6" />
+        類型
       </button>
       <button @click="handleSwitchBtnClick('TYPE')" v-else>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          width="24"
-          height="24"
-          stroke="currentColor"
-          aria-hidden="true"
-          data-slot="icon"
-          class="flex-none stroke-2 size-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z"
-          ></path>
-        </svg>
-        <span class="text-sm font-bold whitespace-nowrap">類型</span>
+        <TypeGroup class="flex-none stroke-2 size-6" />
+        類型
       </button>
       <button id="color-btn-active" v-if="sortStatus === 'COLOR'">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          width="24"
-          height="24"
-          stroke="currentColor"
-          aria-hidden="true"
-          data-slot="icon"
-          class="flex-none stroke-2 size-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z"
-          ></path>
-        </svg>
-        <span class="text-sm font-bold whitespace-nowrap">顏色</span>
+        <TypeGroup class="flex-none stroke-2 size-6" />
+        顏色
       </button>
       <button @click="handleSwitchBtnClick('COLOR')" v-else>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          width="24"
-          height="24"
-          stroke="currentColor"
-          aria-hidden="true"
-          data-slot="icon"
-          class="flex-none stroke-2 size-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z"
-          ></path>
-        </svg>
-        <span class="text-sm font-bold whitespace-nowrap">顏色</span>
+        <TypeGroup class="flex-none stroke-2 size-6" />
+        顏色
       </button>
       <button id="level-btn-active" v-if="sortStatus === 'LEVEL'">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          width="24"
-          height="24"
-          stroke="currentColor"
-          aria-hidden="true"
-          data-slot="icon"
-          class="flex-none stroke-2 size-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z"
-          ></path>
-        </svg>
-        <span class="text-sm font-bold select-none whitespace-nowrap"
-          >等級</span
-        >
+        <TypeGroup class="flex-none stroke-2 size-6" />
+        等級
       </button>
       <button @click="handleSwitchBtnClick('LEVEL')" v-else>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          width="24"
-          height="24"
-          stroke="currentColor"
-          aria-hidden="true"
-          data-slot="icon"
-          class="flex-none stroke-2 size-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z"
-          ></path>
-        </svg>
-        <span class="text-sm font-bold whitespace-nowrap">等級</span>
+        <TypeGroup class="flex-none stroke-2 size-6" />
+        等級
       </button>
       <button id="rare-btn-active" v-if="sortStatus === 'RARE'">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          width="24"
-          height="24"
-          stroke="currentColor"
-          aria-hidden="true"
-          data-slot="icon"
-          class="flex-none stroke-2 size-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z"
-          ></path>
-        </svg>
-        <span class="text-sm font-bold whitespace-nowrap">稀有度</span>
+        <TypeGroup class="flex-none stroke-2 size-6" />
+        稀有度
       </button>
       <button @click="handleSwitchBtnClick('RARE')" v-else>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          width="24"
-          height="24"
-          stroke="currentColor"
-          aria-hidden="true"
-          data-slot="icon"
-          class="flex-none stroke-2 size-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z"
-          ></path>
-        </svg>
-        <span class="text-sm font-bold whitespace-nowrap">稀有度</span>
+        <TypeGroup class="flex-none stroke-2 size-6" />
+        稀有度
       </button>
       <button id="product-btn-active" v-if="sortStatus === 'PRODUCT'">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          width="24"
-          height="24"
-          stroke="currentColor"
-          aria-hidden="true"
-          data-slot="icon"
-          class="flex-none stroke-2 size-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z"
-          ></path>
-        </svg>
-        <span class="text-sm font-bold whitespace-nowrap">商品</span>
+        <TypeGroup class="flex-none stroke-2 size-6" />
+        商品
       </button>
       <button @click="handleSwitchBtnClick('PRODUCT')" v-else>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          width="24"
-          height="24"
-          stroke="currentColor"
-          aria-hidden="true"
-          data-slot="icon"
-          class="flex-none stroke-2 size-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z"
-          ></path>
-        </svg>
-        <span class="text-sm font-bold whitespace-nowrap">商品</span>
+        <TypeGroup class="flex-none stroke-2 size-6" />
+        商品
       </button>
     </div>
     <div class="sidebar-deck-control" v-if="sidebarSelectedStatus === true">
       <button class="cash" @click="showCardPrice = !showCardPrice">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          width="24"
-          height="24"
-          aria-hidden="true"
-          data-slot="icon"
-          class="size-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"
-          ></path>
-        </svg>
+        <Cash class="size-6" />
       </button>
       <span class="flex-none font-mono divder text-zinc-500/50"> | </span>
 
@@ -448,48 +256,14 @@ onBeforeUnmount(() => {
         @click="changeTypeToAdd"
         v-if="editType === 'ADD_CARD'"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          width="24"
-          height="24"
-          aria-hidden="true"
-          data-slot="icon"
-          class=""
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M12 4.5v15m7.5-7.5h-15"
-          ></path>
-        </svg>
+        <Plus class="stroke-2 size-6" />
       </button>
       <button
         class="plus"
         @click="changeTypeToAdd"
         v-else="editType === 'CHECK_INFO'"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          width="24"
-          height="24"
-          aria-hidden="true"
-          data-slot="icon"
-          class=""
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M12 4.5v15m7.5-7.5h-15"
-          ></path>
-        </svg>
+        <Plus class="stroke-2 size-6" />
       </button>
 
       <button
@@ -497,44 +271,10 @@ onBeforeUnmount(() => {
         @click="changeTypeToDelete"
         v-if="editType === 'DELETE_CARD'"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          width="24"
-          height="24"
-          aria-hidden="true"
-          data-slot="icon"
-          class=""
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M5 12h14"
-          ></path>
-        </svg>
+        <Minus class="stroke-2 size-6" />
       </button>
       <button class="minus" @click="changeTypeToDelete" v-else>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          width="24"
-          height="24"
-          aria-hidden="true"
-          data-slot="icon"
-          class=""
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M5 12h14"
-          ></path>
-        </svg>
+        <Minus class="stroke-2 size-6" />
       </button>
     </div>
     <div class="card-content" v-if="sidebarSelectedStatus === true">
@@ -553,28 +293,15 @@ onBeforeUnmount(() => {
               @click="checkTypeAndRunFunction(card, index, sortedTitleIndex)"
             >
               <div class="card-price" v-if="showCardPrice">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  data-slot="icon"
-                  class="size-5"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m9 7.5 3 4.5m0 0 3-4.5M12 12v5.25M15 12H9m6 3H9m12-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                  ></path>
-                </svg>
+                <CashJP class="currency-icon" />
                 <span>{{ card.price.number }}</span>
                 <span>{{ card.rare }}</span>
               </div>
-              <div class="card-image">
-                <img :src="card.cover" />
-              </div>
+              <Card>
+                <div class="card-image">
+                  <img :src="card.cover" />
+                </div>
+              </Card>
             </div>
           </div>
         </div>
@@ -583,22 +310,7 @@ onBeforeUnmount(() => {
     <div class="deck-save" v-if="settingDeckStatus === true">
       <div class="deck-save-title-section">
         <div class="deck-save-title-section-top">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="stroke-2 size-5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"
-            ></path>
-          </svg>
+          <Flag class="stroke-2 size-5" />
           <h2>標題：</h2>
         </div>
         <input
@@ -612,22 +324,7 @@ onBeforeUnmount(() => {
       </div>
       <div class="deck-save-content-section">
         <div class="deck-save-content-section-top">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="stroke-2 size-5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"
-            ></path>
-          </svg>
+          <Flag class="stroke-2 size-5" />
           <h2>內容：</h2>
         </div>
         <textarea
@@ -641,22 +338,7 @@ onBeforeUnmount(() => {
       </div>
       <div class="deck-save-covercard-section" v-if="selectedCards.length > 0">
         <div class="deck-save-covercard-section-top">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="stroke-2 size-5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"
-            ></path>
-          </svg>
+          <Flag class="stroke-2 size-5" />
           <h2>封面卡：</h2>
         </div>
         <div class="deck-save-covercard-section-content">
@@ -685,66 +367,23 @@ onBeforeUnmount(() => {
         v-if="selectedCards.length > 0 && settingDeckStatus === false"
         @click="nextStep"
       >
-        <span
-          >下一步<svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="size-5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-            ></path>
-          </svg>
+        <span>
+          下一步
+          <ArrowR class="stroke-2 size-6" />
         </span>
       </button>
       <div class="sidebar-footer-box" v-else-if="settingDeckStatus === true">
         <button id="sidebar-footer-active" @click="finalStep">
-          <span
-            >完成
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-              data-slot="icon"
-              class="size-5"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-              ></path>
-            </svg>
+          <span>
+            完成
+            <ArrowR class="stroke-2 size-6" />
           </span>
         </button>
       </div>
       <button v-else>
-        <span
-          >下一步<svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="size-5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-            ></path>
-          </svg>
+        <span>
+          下一步
+          <ArrowR class="stroke-2 size-6" />
         </span>
       </button>
     </footer>
@@ -783,24 +422,7 @@ onBeforeUnmount(() => {
           </svg>
         </button>
         <div class="pay-btn">
-          <svg
-            width="24px"
-            height="24px"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            class="flex-none size-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="m9 7.5 3 4.5m0 0 3-4.5M12 12v5.25M15 12H9m6 3H9m12-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-            ></path>
-          </svg>
+          <CashJP class="flex-none size-6"/>
           <span>{{ countDeck }} </span><span>¥</span>
         </div>
       </div>
