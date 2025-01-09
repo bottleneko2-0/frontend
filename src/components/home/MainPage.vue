@@ -38,27 +38,25 @@ const grids = ref(
 
 const API_URL = import.meta.env.VITE_API_URL
 
+let currentCoverIndex = 0
+
 const fetchGrids = async () => {
   try {
-    let requestCount = 0 // 記錄發送的請求次數
-    const maxRequests = 50 // 最大隨機請求數量
+    const response = await axios.get(`${API_URL}/cards/random`)
+    const covers = response.data.covers
 
-    // 使用 Promise.all 並行請求，但總請求數量不超過 50
+    currentCoverIndex = 0
+
+    // 使用 Promise.all 並行請求
     const gridPromises = Array.from({ length: numberOfGrids }, () =>
       Promise.all(
         Array.from({ length: itemsPerGrid }, async () => {
-          if (requestCount >= maxRequests) {
-            // 如果已達到最大請求次數，直接返回預設圖片
-            return placeholderImage
-          }
-
           try {
-            const response = await axios.get(`${API_URL}/cards/random`)
-            const covers = response.data.covers
-
             if (covers.length > 0) {
-              requestCount++ // 每發送一次請求，就增加計數
-              return covers[Math.floor(Math.random() * covers.length)]
+              // return covers[Math.floor(Math.random() * covers.length)]
+              const cover = covers[currentCoverIndex % covers.length]
+              currentCoverIndex++
+              return cover
             } else {
               return placeholderImage
             }
