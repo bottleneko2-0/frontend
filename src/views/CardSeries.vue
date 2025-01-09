@@ -1527,9 +1527,9 @@ onBeforeUnmount(() => {
           }"
         >
           <button
-              @click="goBack"
-              class="flex-none p-1 text-white rounded-full bg-black/50 default-transition hover:bg-zinc-800/50"
-            >
+            @click="goBack"
+            class="flex-none p-1 text-white rounded-full bg-black/50 default-transition hover:bg-zinc-800/50"
+          >
             <AngleL class="stroke-[1.5] size-6" />
           </button>
 
@@ -1600,7 +1600,7 @@ onBeforeUnmount(() => {
             <h1 class="text-white">{{ translatedSeriesInfo.name }}</h1>
             <div class="text-white">
               <div v-if="translatedSeriesInfo.sellAt">
-                <Release class="size-5 md:size-6"/>
+                <Release class="size-5 md:size-6" />
                 <span
                   >最新發布{{
                     seriesInfo.sellAt[seriesInfo.sellAt.length - 1]
@@ -1608,7 +1608,7 @@ onBeforeUnmount(() => {
                 >
               </div>
               <div v-else>
-                <Release class="size-5 md:size-6"/>
+                <Release class="size-5 md:size-6" />
                 <span>最新發布</span>
               </div>
               <div v-if="seriesCardListLength > 0">

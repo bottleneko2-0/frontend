@@ -7,6 +7,12 @@ import SidebarGrid from '@/components/home/SidebarGrid.vue'
 import GoogleLogin from '@/components/login/GoogleLogin.vue'
 import Notice from '@/components/notice/Notice.vue'
 import NavLoginBtn from '@/components/login/NavLoginBtn.vue'
+import AngleL from '@/components/svg/AngleL.vue'
+import AngleR from '@/components/svg/AngleR.vue'
+import Lock from '@/components/svg/Lock.vue'
+import Mail from '@/components/svg/Mail.vue'
+import More from '@/components/svg/More.vue'
+import Tick from '@/components/svg/Tick.vue'
 
 const BASE_URL = import.meta.env.VITE_BASE_URL
 const API_URL = import.meta.env.VITE_API_URL
@@ -168,44 +174,14 @@ const signup = async () => {
             @click="goBack"
             class="flex-none p-1 text-white rounded-full bg-black/50 default-transition hover:bg-zinc-800/50"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-              data-slot="icon"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15.75 19.5 8.25 12l7.5-7.5"
-              ></path>
-            </svg>
+            <AngleL class="size-6 stroke-[1.5]" />
           </button>
           <button
             @click="goAhead"
             class="flex-none hidden p-1 text-white rounded-full md:block bg-black/50 default-transition hover:bg-zinc-800/50 disabled:opacity-30"
             disabled
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
-              data-slot="icon"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="m8.25 4.5 7.5 7.5-7.5 7.5"
-              ></path>
-            </svg>
+            <AngleR class="size-6 stroke-[1.5]" />
           </button>
           <div class="w-full min-w-0 text-lg font-bold text-white md:text-2xl">
             <h2 class="invisible text-2xl font-bold truncate">
@@ -234,22 +210,7 @@ const signup = async () => {
                 <div
                   class="flex items-center w-full gap-2 p-2 rounded-2xl bg-input"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                    data-slot="icon"
-                    class="flex-none size-7 text-zinc-300"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
-                    ></path>
-                  </svg>
+                  <Mail class="flex-none size-7 stroke-[1.5] text-zinc-300" />
                   <input
                     type="email"
                     class="w-full p-0 bg-transparent outline-none focus:ring-0 placeholder:text-zinc-500"
@@ -260,22 +221,7 @@ const signup = async () => {
                 <div
                   class="flex items-center w-full gap-2 p-2 rounded-2xl bg-input"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                    data-slot="icon"
-                    class="flex-none size-7 text-zinc-300"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
-                    ></path>
-                  </svg>
+                  <Lock class="flex-none size-7 stroke-[1.5] text-zinc-300" />
                   <input
                     type="password"
                     class="w-full p-0 bg-transparent outline-none focus:ring-0 placeholder:text-zinc-500"
@@ -301,45 +247,17 @@ const signup = async () => {
                         'bg-zinc-300/10': !state.isServiceButtonGreen,
                       }"
                     ></div>
-                    <svg
+                    <Tick
                       v-else
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                      data-slot="icon"
-                      class="flex-none text-green-400 size-7"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="m4.5 12.75 6 6 9-13.5"
-                      ></path>
-                    </svg>
+                      class="flex-none text-green-400 size-7 stroke-[1.5]"
+                    />
                     <p>同意服務條款</p>
                   </button>
                   <a
                     href="https://bottleneko.app/eula"
                     class="grid flex-none p-2 rounded-full place-content-center bg-input"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                      data-slot="icon"
-                      class="flex-none size-7 text-zinc-300"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                      ></path>
-                    </svg>
+                    <More class="flex-none text-zinc-300 size-7 stroke-[1.5]" />
                   </a>
                 </div>
                 <div class="flex items-center w-full gap-2">
@@ -360,50 +278,22 @@ const signup = async () => {
                         'bg-zinc-300/10': !state.isPolicyButtonGreen,
                       }"
                     ></div>
-                    <svg
+                    <Tick
                       v-else
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                      data-slot="icon"
-                      class="flex-none text-green-400 size-7"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="m4.5 12.75 6 6 9-13.5"
-                      ></path>
-                    </svg>
+                      class="flex-none text-green-400 size-7 stroke-[1.5]"
+                    />
                     <p>同意隱私權政策</p>
                   </button>
                   <a
                     href="https://bottleneko.app/policy"
                     class="grid flex-none p-2 rounded-full place-content-center bg-input"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                      data-slot="icon"
-                      class="flex-none size-7 text-zinc-300"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                      ></path>
-                    </svg>
+                    <More class="flex-none text-zinc-300 size-7 stroke-[1.5]" />
                   </a>
                 </div>
                 <div class="flex flex-col w-full gap-2">
                   <button
-                    class="flex items-center justify-center w-full gap-2 p-2 text-white rounded-2xl ring ring-white/50 hover:bg-white/90 hover:text-zinc-900"
+                    class="flex items-center justify-center w-full gap-2 p-2 text-white rounded-2xl ring ring-white/50 disabled:bg-black/30 disabled:text-white/20 hover:bg-white/90 hover:text-zinc-900"
                     @click.prevent="signup"
                     :disabled="!isValid"
                   >

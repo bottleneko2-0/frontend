@@ -788,13 +788,13 @@ onBeforeUnmount(() => {
                     </p>
                     <!-- 編輯模式：顯示 textarea -->
                     <div
-                      class="bg-black/30 p-1 rounded-xl"
+                      class="p-1 bg-black/30 rounded-xl"
                       v-if="message.isEditing"
                     >
                       <textarea
                         v-model="message.editContent"
                         rows="3"
-                        class="w-full p-0 bg-transparent border-none focus:ring-0 placeholder:text-zinc-500 text-white"
+                        class="w-full p-0 text-white bg-transparent border-none focus:ring-0 placeholder:text-zinc-500"
                         placeholder=""
                       ></textarea>
                     </div>
@@ -803,20 +803,20 @@ onBeforeUnmount(() => {
                       <button
                         v-if="message.isEditing"
                         @click="submitEdit(message)"
-                        class="flex-none rounded-full py-1 pl-1 pr-2 flex items-center bg-white text-zinc-800 send-btn"
+                        class="flex items-center flex-none py-1 pl-1 pr-2 bg-white rounded-full text-zinc-800 send-btn"
                       >
                         <AngleR />
-                        <span class="text-xs text-mono leading-none font-bold"
+                        <span class="text-xs font-bold leading-none text-mono"
                           >送出</span
                         >
                       </button>
                       <button
                         v-if="message.isEditing"
                         @click="cancelEdit(message)"
-                        class="flex-none rounded-full py-1 pl-1 pr-2 flex items-center bg-amber-600 text-white cancel-btn"
+                        class="flex items-center flex-none py-1 pl-1 pr-2 text-white rounded-full bg-amber-600 cancel-btn"
                       >
                         <AngleR />
-                        <span class="text-xs text-mono leading-none font-bold"
+                        <span class="text-xs font-bold leading-none text-mono"
                           >取消</span
                         >
                       </button>
@@ -828,7 +828,7 @@ onBeforeUnmount(() => {
                           }"
                         />
                         <span
-                          class="text-xs text-mono leading-none font-bold"
+                          class="text-xs font-bold leading-none text-mono"
                           >{{ message.likeCount }}</span
                         >
                       </button>
@@ -903,13 +903,13 @@ onBeforeUnmount(() => {
                       </p>
                       <!-- 編輯模式：顯示 textarea -->
                       <div
-                        class="bg-black/30 p-1 rounded-xl"
+                        class="p-1 bg-black/30 rounded-xl"
                         v-if="message.isEditing"
                       >
                         <textarea
                           v-model="message.editContent"
                           rows="3"
-                          class="w-full p-0 bg-transparent border-none focus:ring-0 placeholder:text-zinc-500 text-white"
+                          class="w-full p-0 text-white bg-transparent border-none focus:ring-0 placeholder:text-zinc-500"
                           placeholder=""
                         ></textarea>
                       </div>
@@ -918,20 +918,20 @@ onBeforeUnmount(() => {
                         <button
                           v-if="message.isEditing"
                           @click="submitEdit(message)"
-                          class="flex-none rounded-full py-1 pl-1 pr-2 flex items-center bg-white text-zinc-800 send-btn"
+                          class="flex items-center flex-none py-1 pl-1 pr-2 bg-white rounded-full text-zinc-800 send-btn"
                         >
                           <AngleR />
-                          <span class="text-xs text-mono leading-none font-bold"
+                          <span class="text-xs font-bold leading-none text-mono"
                             >送出</span
                           >
                         </button>
                         <button
                           v-if="message.isEditing"
                           @click="cancelEdit(message)"
-                          class="flex-none rounded-full py-1 pl-1 pr-2 flex items-center bg-amber-600 text-white cancel-btn"
+                          class="flex items-center flex-none py-1 pl-1 pr-2 text-white rounded-full bg-amber-600 cancel-btn"
                         >
                           <Delete />
-                          <span class="text-xs text-mono leading-none font-bold"
+                          <span class="text-xs font-bold leading-none text-mono"
                             >取消</span
                           >
                         </button>
@@ -946,7 +946,7 @@ onBeforeUnmount(() => {
                             }"
                           />
                           <span
-                            class="text-xs text-mono leading-none font-bold"
+                            class="text-xs font-bold leading-none text-mono"
                             >{{ message.likeCount }}</span
                           >
                         </button>
@@ -1057,7 +1057,7 @@ onBeforeUnmount(() => {
               </h2>
               <div class="group-count">
                 <img src="https://bottleneko.app/soul.gif" class="size-4" />
-                <span class="font-mono flex-none">{{
+                <span class="flex-none font-mono">{{
                   countSoulCards(group.cards)
                 }}</span>
               </div>

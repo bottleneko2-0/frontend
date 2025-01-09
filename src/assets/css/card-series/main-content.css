@@ -426,9 +426,9 @@ input[type='checkbox'] {
 }
 
 .inner-info-container > span {
-  display:flex;
+  display: flex;
   align-items: center;
-  gap:5px;
+  gap: 5px;
   font-size: 0.85rem;
   line-height: 1.25rem;
 }
@@ -461,7 +461,7 @@ input[type='checkbox'] {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap:5px;
+  gap: 5px;
 }
 
 .toggle-inner-filter {

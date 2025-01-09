@@ -15,7 +15,7 @@ import ArrowR from '@/components/svg/ArrowR.vue'
 import ArrowT from '@/components/svg/ArrowT.vue'
 import Null from '@/components/svg/Null.vue'
 import Ball from '@/components/svg/Ball.vue'
-import Banner from '@/components/svg/Banner.vue'
+import Tag from '@/components/svg/Tag.vue'
 import ChatBox from '@/components/svg/ChatBox.vue'
 import Message from '@/components/svg/Message.vue'
 import Triangle from '@/components/svg/Triangle.vue'
@@ -241,7 +241,7 @@ onMounted(() => {
           />
           <div class="card-select-area" style="position: relative">
             <button class="card-select-btn" @click="toggleMenu">
-              <Banner />
+              <Tag />
               <p>{{ seriesName }}</p>
             </button>
             <ul
@@ -267,7 +267,7 @@ onMounted(() => {
                 v-if="decks && decks.length"
                 @click="selectDeck(deck)"
               >
-                <Banner />
+                <Tag />
                 <p class="text-xs truncate">{{ deck.deck_name }}</p>
               </li>
             </ul>
