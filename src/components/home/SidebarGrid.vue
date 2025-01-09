@@ -224,6 +224,10 @@ onMounted(() => {
   color: white;
 }
 
+.sidebar-menu li.active:hover svg {
+  stroke: none;
+}
+
 .translate-btn.active {
   color: white;
   background: linear-gradient(45deg, #a855f7, #ec4899);
