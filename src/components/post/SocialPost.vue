@@ -2294,7 +2294,7 @@ span svg {
 }
 
 .tool-btn1 span {
-  margin-left: 8px;
+  /* margin-left: 8px; */
   color: white;
   font-size: 14px;
   font-weight: 900;
@@ -2537,9 +2537,9 @@ span svg {
   .card-info {
     margin-top: 150px;
   }
-  .tool-btn1 {
+  /* .tool-btn1 {
     min-width: 78px;
-  }
+  } */
 
   .tool-btn1 span {
     width: 100%;
@@ -2732,6 +2732,9 @@ span svg {
   .toolbar-area2 {
     display: none;
   }
+  .toolbar {
+    overflow-x: auto;
+  }
 }
 @media screen and (max-width: 768px) {
   .col-Sheet,
@@ -2750,7 +2753,8 @@ span svg {
     min-width: 72px;
   }
   .toolbar {
-    margin-left: 10px;
+    margin-left: -10px;
+    top: 71px;
   }
 }
 </style>
