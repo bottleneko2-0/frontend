@@ -1099,9 +1099,6 @@ onBeforeUnmount(() => {
                     </div>
                     <div class="price-download" v-if="!toggleTableView">
                       <p>${{ card.price.number }}</p>
-                      <button>
-                        <CashJP />
-                      </button>
                     </div>
                   </div>
                 </div>
